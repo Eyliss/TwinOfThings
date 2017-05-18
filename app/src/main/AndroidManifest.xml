@@ -33,6 +33,7 @@
                 android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
@@ -47,6 +48,7 @@
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="com.twinofthings.activities.MainActivity"/>
+
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
                 <action android:name="android.nfc.action.TAG_DISCOVERED"/>
@@ -55,6 +57,22 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <!-- <data android:mimeType="text/plain" /> -->
             </intent-filter>
+        </activity>
+        <activity
+                android:name=".activities.ScannedTwinActivity"
+                android:label="@string/title_activity_scanned_twin"
+                android:parentActivityName=".activities.MainActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.twinofthings.activities.MainActivity"/>
+        </activity>
+        <activity
+                android:name=".activities.CreateDigitalTwinActivity"
+                android:label="@string/title_activity_create_digital_twin"
+                android:parentActivityName=".activities.MainActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.twinofthings.activities.MainActivity"/>
         </activity>
     </application>
 

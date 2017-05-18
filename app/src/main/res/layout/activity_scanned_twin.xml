@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/purple_background"
+        tools:context="com.twinofthings.activities.ScannedTwinActivity"
+        android:orientation="vertical"
+>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_registered_date"
+                android:gravity="center"
+                android:text="Registered 01/07"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_pup_id"
+                android:gravity="center"
+                android:text="Pup. ID 123456789"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:background="@android:color/white">
+        <TextView
+                android:id="@+id/tv_product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Omega"
+                android:textAllCaps="true"/>
+        <TextView
+                android:id="@+id/tv_product_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Speedmaster speedy Tuesday"/>
+    </LinearLayout>
+</LinearLayout>

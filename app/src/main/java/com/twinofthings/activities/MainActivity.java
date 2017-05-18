@@ -3,13 +3,13 @@ package com.twinofthings.activities;
 import com.twinofthings.R;
 import com.twinofthings.utils.Constants;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private Button mCreateTwinButton;
     private Button mScanTagButton;
@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         mCreateTwinButton = (Button)findViewById(R.id.create_twin_button);
         mCreateTwinButton.setOnClickListener(new View.OnClickListener() {
