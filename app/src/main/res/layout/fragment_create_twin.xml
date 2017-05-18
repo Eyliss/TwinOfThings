@@ -12,13 +12,16 @@
                   android:layout_height="wrap_content"
                   android:orientation="vertical"
                   android:layout_centerInParent="true">
-        <ImageView android:layout_width="wrap_content"
+        <ImageView
+                android:id="@+id/creating_icon"
+                android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center_horizontal|center_vertical"
                    android:layout_margin="@dimen/activity_horizontal_margin"
                    android:src="@drawable/ic_create_twin"/>
         <TextView
-                android:text="@string/create_digital_twin_text"
+                android:id="@+id/creating_title"
+                android:text="@string/create_digital_twin_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/TextAppearance.AppCompat.Body2"
@@ -27,6 +30,7 @@
                 android:layout_margin="@dimen/activity_horizontal_margin"
                 android:textColor="@android:color/white"/>
         <TextView
+                android:id="@+id/creating_description"
                 android:text="@string/create_digital_twin_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -9,10 +9,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ScanFragment extends Fragment {
 
-    private OnScanTagListener mListener;
+    private ImageButton mCloseButton;
+    private ImageView mScanIcon;
+    private TextView mScanTitle;
+    private TextView mScanDescription;
 
     public ScanFragment() {
 
@@ -33,6 +39,20 @@ public class ScanFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_scan, container, false);
+
+        //Bind views
+        mCloseButton = (ImageButton)rootView.findViewById(R.id.close_button);
+        mScanIcon = (ImageView) rootView.findViewById(R.id.scanning_icon);
+        mScanTitle = (TextView) rootView.findViewById(R.id.scanning_title);
+        mScanDescription = (TextView) rootView.findViewById(R.id.scanning_description);
+
+        mCloseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((ReaderActivity) getActivity()).finishProcess();
+            }
+        });
+
         ((ReaderActivity) getActivity()).setActionBarTitle(R.string.scan_activity_title);
 
         return rootView;
@@ -41,21 +61,11 @@ public class ScanFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnScanTagListener) {
-            mListener = (OnScanTagListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                  + " must implement OnScanTagListener");
-        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
-    public interface OnScanTagListener {
-        void onFragmentInteraction();
-    }
 }

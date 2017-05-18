@@ -14,10 +14,10 @@
     <string name="create_twin_button_text">CREATE DIGITAL TWIN</string>
     <string name="scan_tag_button_text">SCAN_NFC_TAG</string>
 
-    <string name="scanning_tag_text">LOOKING FOR NFC TAG&#8230;</string>
+    <string name="scanning_tag_title">LOOKING FOR NFC TAG&#8230;</string>
     <string name="scanning_tag_description">PLEASE HOLD\nYOUR DEVICE OVER THE NFC TAG YOU WANT TO SCAN</string>
 
-    <string name="create_digital_twin_text">PROVISIONING NEW NFC TAG&#8230;</string>
+    <string name="create_digital_twin_title">PROVISIONING NEW NFC TAG&#8230;</string>
     <string name="create_digital_twin_description">TO CREATE A DIGITAL TWIN,\nHOLD YOUR DEVICE OVER A NOT YET PAIRED NFC TAG</string>
 
     <string name="create_twin_activity_title">Create Digital Twin</string>

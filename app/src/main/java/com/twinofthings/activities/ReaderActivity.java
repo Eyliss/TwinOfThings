@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -105,6 +106,7 @@ public class ReaderActivity extends Activity {
     private static final String CREATE_FRAGMENT_TAG = "create_twin_fragment_tag";
 
     private ActionBar mActionBar;
+    private Fragment mFragment;
 
     private IKeyData objKEY_2KTDES_ULC = null;
     private IKeyData objKEY_2KTDES = null;
@@ -335,13 +337,13 @@ public class ReaderActivity extends Activity {
             }
 
             if(process.equals(Constants.SCAN)){
-                ScanFragment scanFragment = ScanFragment.newInstance();
+                mFragment = ScanFragment.newInstance();
                 getFragmentManager().beginTransaction()
-                      .add(R.id.fragment_container, scanFragment,SCAN_FRAGMENT_TAG).commit();
+                      .add(R.id.fragment_container, mFragment,SCAN_FRAGMENT_TAG).commit();
             }else{
-                CreateTwinFragment createTwinFragment = CreateTwinFragment.newInstance();
+                mFragment = CreateTwinFragment.newInstance();
                 getFragmentManager().beginTransaction()
-                      .add(R.id.fragment_container, createTwinFragment,CREATE_FRAGMENT_TAG).commit();
+                      .add(R.id.fragment_container, mFragment,CREATE_FRAGMENT_TAG).commit();
             }
         }
 
@@ -361,6 +363,10 @@ public class ReaderActivity extends Activity {
 
     public void setActionBarTitle(int title){
         mActionBar.setTitle(title);
+    }
+
+    public void finishProcess(){
+        finish();
     }
 
     @Override

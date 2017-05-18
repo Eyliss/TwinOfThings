@@ -2,18 +2,26 @@ package com.twinofthings.fragments;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.twinofthings.R;
 import com.twinofthings.activities.ReaderActivity;
 
 public class CreateTwinFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
+    private ImageButton mCloseButton;
+    private ImageView mCreateTwinIcon;
+    private TextView mCreateTwinTitle;
+    private TextView mCreateTwinDescription;
 
     public CreateTwinFragment() {
         // Required empty public constructor
@@ -34,6 +42,20 @@ public class CreateTwinFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_create_twin, container, false);
+
+        //Bind views
+        mCloseButton = (ImageButton)rootView.findViewById(R.id.close_button);
+        mCreateTwinIcon = (ImageView) rootView.findViewById(R.id.creating_icon);
+        mCreateTwinTitle = (TextView) rootView.findViewById(R.id.creating_title);
+        mCreateTwinDescription = (TextView) rootView.findViewById(R.id.creating_description);
+
+        mCloseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((ReaderActivity) getActivity()).finishProcess();
+            }
+        });
+
         ((ReaderActivity) getActivity()).setActionBarTitle(R.string.scan_activity_title);
 
         return rootView;
@@ -42,22 +64,10 @@ public class CreateTwinFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                  + " must implement OnFragmentInteractionListener");
-        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
     }
 }
