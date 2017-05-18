@@ -1,6 +1,7 @@
 package com.twinofthings.fragments;
 
 import com.twinofthings.R;
+import com.twinofthings.activities.ReaderActivity;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -30,14 +31,11 @@ public class ScanFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_scan, container, false);
-    }
 
-    public void onButtonPressed() {
-        if (mListener != null) {
-            mListener.onFragmentInteraction();
-        }
+        View rootView = inflater.inflate(R.layout.fragment_scan, container, false);
+        ((ReaderActivity) getActivity()).setActionBarTitle(R.string.scan_activity_title);
+
+        return rootView;
     }
 
     @Override

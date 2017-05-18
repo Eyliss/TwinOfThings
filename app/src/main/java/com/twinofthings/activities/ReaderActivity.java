@@ -2,6 +2,7 @@ package com.twinofthings.activities;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -102,6 +103,8 @@ public class ReaderActivity extends Activity {
     public static final String TAG = ReaderActivity.class.getSimpleName();
     private static final String SCAN_FRAGMENT_TAG = "scan_fragment_tag";
     private static final String CREATE_FRAGMENT_TAG = "create_twin_fragment_tag";
+
+    private ActionBar mActionBar;
 
     private IKeyData objKEY_2KTDES_ULC = null;
     private IKeyData objKEY_2KTDES = null;
@@ -353,6 +356,11 @@ public class ReaderActivity extends Activity {
 		/* Get text view handle to be used further */
         initializeView();
 
+        mActionBar = getActionBar();
+    }
+
+    public void setActionBarTitle(int title){
+        mActionBar.setTitle(title);
     }
 
     @Override

@@ -23,7 +23,4 @@
     <string name="create_twin_activity_title">Create Digital Twin</string>
     <string name="scan_activity_title">Scanning</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
 </resources>
