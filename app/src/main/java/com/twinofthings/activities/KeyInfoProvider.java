@@ -58,7 +58,7 @@ public class KeyInfoProvider {
      * @param keyType
      * @param key
      */
-    public void setKey(final String alias, final EnumKeyType keyType, final byte[] key){
+    public void setKey(final String alias, final SampleAppKeys.EnumKeyType keyType, final byte[] key){
         if(alias != null && key != null)
             mKeystoreHelper.storeKey(key, alias, keyType);
     }

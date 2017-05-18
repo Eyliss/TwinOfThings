@@ -10,4 +10,6 @@
     <string name="checkbox_text">Allow write operations.</string>
     <string name="write_ops_title">"Overwrite warning!!"</string>
     <string name="write_ops_message">Please note by selecting this option application writes sample data to the tapped card if the card key is factory default</string>
+    <string name="splash_text">EVERY PRODUCT /n HAS ITS OWN STORY</string>
+
 </resources>

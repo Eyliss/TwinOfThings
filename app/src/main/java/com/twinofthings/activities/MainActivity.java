@@ -34,7 +34,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.twinofthings.R;
+import com.nxp.mifaresdksample.R;
 import com.nxp.nfclib.CardType;
 import com.nxp.nfclib.CustomModules;
 import com.nxp.nfclib.KeyType;
@@ -375,7 +375,7 @@ public class MainActivity extends Activity {
             System.arraycopy(SampleAppKeys.KEY_2KTDES_ULC, 0, ulc24Keys, SampleAppKeys.KEY_2KTDES_ULC.length, 8);
             infoProvider.setKey(ALIAS_KEY_2KTDES_ULC, SampleAppKeys.EnumKeyType.EnumDESKey, ulc24Keys);
 
-            infoProvider.setKey(ALIAS_KEY_2KTDES, EnumKeyType.EnumDESKey, SampleAppKeys.KEY_2KTDES);
+            infoProvider.setKey(ALIAS_KEY_2KTDES, SampleAppKeys.EnumKeyType.EnumDESKey, SampleAppKeys.KEY_2KTDES);
             infoProvider.setKey(ALIAS_KEY_AES128, SampleAppKeys.EnumKeyType.EnumAESKey, SampleAppKeys.KEY_AES128);
             infoProvider.setKey(ALIAS_KEY_AES128_ZEROES, SampleAppKeys.EnumKeyType.EnumAESKey, SampleAppKeys.KEY_AES128_ZEROS);
             infoProvider.setKey(ALIAS_DEFAULT_FF, SampleAppKeys.EnumKeyType.EnumMifareKey, SampleAppKeys.KEY_DEFAULT_FF);
@@ -415,7 +415,7 @@ public class MainActivity extends Activity {
             }
         };
 
-        mImageView.setImageResource(R.drawable.product_overview);
+//        mImageView.setImageResource(R.drawable.product_overview);
     }
 
 
@@ -428,10 +428,6 @@ public class MainActivity extends Activity {
         tv = (TextView) findViewById(R.id.tvLog);
         tv.setMovementMethod(new ScrollingMovementMethod());
         tv.setText(R.string.info_string);
-        Typeface face = Typeface.createFromAsset(getAssets(),
-                "fonts/AvenirNextLTPro-MediumCn.otf");
-        tv.setTypeface(face);
-        tv.setTextColor(Color.BLACK);
 
 		/* Get image view handle to be used further */
         mImageView = (ImageView) findViewById(R.id.cardSnap);
@@ -452,9 +448,6 @@ public class MainActivity extends Activity {
 
                     // Setting Dialog Message
                     alertDialog.setMessage(getString(R.string.write_ops_message));
-
-                    // Setting Icon to Dialog
-                    alertDialog.setIcon(R.drawable.nxp_logo);
 
                     // Setting Positive "Yes" Button
                     alertDialog.setPositiveButton("Allow",
@@ -848,7 +841,6 @@ public class MainActivity extends Activity {
                 mCardType = CardType.DESFireEV2;
                 showMessage("DESFireEV2 Card detected.", 't');
                 tv.setText(" ");
-                showImageSnap(R.drawable.desfire_ev2);
                 showMessage("Card Detected : DESFireEV2", 'n');
                 desFireEV2 = DESFireFactory.getInstance().getDESFireEV2(libInstance.getCustomModules());
                 try {
@@ -869,11 +861,6 @@ public class MainActivity extends Activity {
                 showMessage("Card Detected :" + plusSL0.getType().getTagName(), 'n');
                 showMessage("Sub Type :" + plusSL0.getPlusType(), 'n');
 
-                if (plusSL0.getPlusType() == IPlus.SubType.PLUS_SE) {
-                    showImageSnap(R.drawable.plusse);
-                } else {
-                    showImageSnap(R.drawable.plus);
-                }
                 // code commented because the operations are irreversible.
                 //plusSL0.writePerso(0x9000,default_ff_key); // similarly fill all the mandatory keys.
                 //plusSL0.commitPerso();
@@ -883,7 +870,6 @@ public class MainActivity extends Activity {
                 mCardType = CardType.PlusSL1;
                 showMessage("Plus SL1 Card detected.", 't');
                 tv.setText(" ");
-                showImageSnap(R.drawable.plus);
                 Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
                 MifareClassic obj = MifareClassic.get(tag);
                 if (obj != null) {
@@ -891,7 +877,6 @@ public class MainActivity extends Activity {
                     plusSL1CardLogic();
                 } else {
                     plusSL1 = PlusSL1Factory.getInstance().getPlusSL1(libInstance.getCustomModules());
-                    showImageSnap(R.drawable.plus);
                     tv.setText(" ");
                     showMessage("Card Detected : " + plusSL1.getType().getTagName(), 'n');
                     showMessage("Plus SL1 card's Classic compatible methods not available on this device!", 'n');
@@ -922,7 +907,6 @@ public class MainActivity extends Activity {
                 mCardType = CardType.PlusSL0;
                 showMessage("Plus EV1 SL0 Card detected.", 't');
                 tv.setText(" ");
-                showImageSnap(R.drawable.plusev1);
 
                 plusEV1SL0 = PlusFactory.getInstance().getPlusEV1SL0(libInstance.getCustomModules());
                 try {
@@ -942,7 +926,6 @@ public class MainActivity extends Activity {
                 mCardType = CardType.PlusEV1SL1;
                 showMessage("Plus EV1 SL1 Card detected.", 't');
                 tv.setText(" ");
-                showImageSnap(R.drawable.plusev1);
                 tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
                 obj = MifareClassic.get(tag);
                 if (obj != null) {
@@ -950,7 +933,6 @@ public class MainActivity extends Activity {
                     plusEV1SL1CardLogic();
                 } else {
                     plusEV1SL1 = PlusSL1Factory.getInstance().getPlusEV1SL1(libInstance.getCustomModules());
-                    showImageSnap(R.drawable.plus);
                     tv.setText(" ");
                     showMessage("Card Detected : " + plusEV1SL1.getType().getTagName(), 'n');
                     showMessage("Plus SL1 card's Classic compatible methods not available on this device!", 'n');
@@ -1044,11 +1026,6 @@ public class MainActivity extends Activity {
 
         showMessage("Card Detected : " + plusSL3.getType().getTagName(), 'n');
         showMessage("Sub Type : " + plusSL3.getPlusType(), 'n');
-        if (plusSL3.getPlusType() == IPlus.SubType.PLUS_SE) {
-            showImageSnap(R.drawable.plusse);
-        } else {
-            showImageSnap(R.drawable.plus);
-        }
 
         if (plusSL3.getCardDetails().securityLevel.equals("Security Level 3")) {
             try {
@@ -1110,7 +1087,6 @@ public class MainActivity extends Activity {
                 (byte) 0x00, (byte) 0x06, (byte) 0xF9, (byte) 0x06, (byte) 0x00};
 
         tv.setText(" ");
-        showImageSnap(R.drawable.plusev1);
         showMessage("Card Detected : " + plusEV1SL3.getType().getTagName(), 'n');
         try {
 
@@ -1156,7 +1132,6 @@ public class MainActivity extends Activity {
 
 
         tv.setText(" ");
-        showImageSnap(R.drawable.ultralight_ev1);
         showMessage("Card Detected : " + ultralightEV1.getType().getTagName(), 'n');
 
 
@@ -1210,7 +1185,6 @@ public class MainActivity extends Activity {
     private void ultralightcCardLogic() {
 
         tv.setText(" ");
-        showImageSnap(R.drawable.ultralight_c);
         showMessage("Card Detected : " + ultralightC.getType().getTagName(), 'n');
 
         try {
@@ -1240,7 +1214,6 @@ public class MainActivity extends Activity {
     private void ultralightCardLogic() {
 
         tv.setText(" ");
-        showImageSnap(R.drawable.ultralight);
         showMessage("Card Detected : " + ultralightBase.getType().getTagName(), 'n');
 
         try {
@@ -1261,7 +1234,6 @@ public class MainActivity extends Activity {
 
     private void ultralightNanoCardLogic() {
         tv.setText(" ");
-        showImageSnap(R.drawable.ultralight_nano);
         showMessage("Card Detected : " + ultralightNano.getType().getTagName(), 'n');
 
         try {
@@ -1283,7 +1255,6 @@ public class MainActivity extends Activity {
      * MIFARE Plus SL1 Card Logic.
      */
     private void plusSL1CardLogic() {
-        showImageSnap(R.drawable.plus);
         tv.setText(" ");
         showMessage("Card Detected : " + plusSL1.getType().getTagName(), 'n');
         // ******* Note that all the classic APIs work well with Plus Security
@@ -1324,7 +1295,6 @@ public class MainActivity extends Activity {
 
 
     private void plusEV1SL1CardLogic() {
-        showImageSnap(R.drawable.plus);
         tv.setText(" ");
 
 
@@ -1355,7 +1325,6 @@ public class MainActivity extends Activity {
     protected void classicCardLogic() {
 
         tv.setText(" ");
-        showImageSnap(R.drawable.classic);
         showMessage("Card Detected : " + mifareClassic.getType().getTagName(), 'n');
 
         int blockTorw = DEFAULT_SECTOR_CLASSIC;
@@ -1403,7 +1372,6 @@ public class MainActivity extends Activity {
     protected void classicCardEV1Logic() {
 
         tv.setText(" ");
-        showImageSnap(R.drawable.classicev1);
         showMessage("Card Detected : " + mifareClassicEv1.getType().getTagName(), 'n');
 
 
@@ -1493,7 +1461,6 @@ public class MainActivity extends Activity {
         int fileNo_2 = 1;
 
         tv.setText(" ");
-        showImageSnap(R.drawable.desfire_ev1);
         showMessage("Card Detected : " + desFireEV1.getType().getTagName(), 'n');
 
         try {
@@ -1654,7 +1621,6 @@ public class MainActivity extends Activity {
         int fileNo = 0;
 
         tv.setText(" ");
-        showImageSnap(R.drawable.desfire_ev2);
         showMessage("Card Detected : " + desFireEV2.getType().getTagName(), 'n');
 
         try {
@@ -1725,7 +1691,6 @@ public class MainActivity extends Activity {
     private void ntagCardLogic(final INTag tag) {
 
         tv.setText(" ");
-        showImageSnap(R.drawable.ntag_p);
         showMessage("Card Detected : " + tag.getType().getTagName(), 'n');
 
         try {
@@ -1795,7 +1760,6 @@ public class MainActivity extends Activity {
         byte[] out = null;
 
         tv.setText(" ");
-        showImageSnap(R.drawable.icode_p);
         showMessage("Card Detected : " + icodeSLI.getType().getTagName(), 'n');
         try {
 
@@ -1847,7 +1811,6 @@ public class MainActivity extends Activity {
         byte[] out = null;
 
         tv.setText(" ");
-        showImageSnap(R.drawable.icode_p);
         showMessage("Card Detected : " + icodeSLIS.getType().getTagName(), 'n');
         showMessage("Uid: " + Utilities.dumpBytes(icodeSLIS.getUID()), 'd');
         out = icodeSLIS.readSingleBlock(ICode.NFCV_FLAG_ADDRESS,
@@ -1895,7 +1858,6 @@ public class MainActivity extends Activity {
         byte[] out = null;
 
         tv.setText(" ");
-        showImageSnap(R.drawable.icode_p);
         showMessage("Card Detected : " + icodeSLIL.getType().getTagName(), 'n');
         try {
 
@@ -1944,7 +1906,6 @@ public class MainActivity extends Activity {
         byte[] out = null;
 
         tv.setText(" ");
-        showImageSnap(R.drawable.icode_p);
         showMessage("Card Detected : " + icodeSLIX.getType().getTagName(), 'n');
         try {
 
@@ -1995,7 +1956,6 @@ public class MainActivity extends Activity {
         byte[] out = null;
 
         tv.setText(" ");
-        showImageSnap(R.drawable.icode_p);
         showMessage("Card Detected : " + icodeSLIXS.getType().getTagName(), 'n');
         try {
 
@@ -2046,7 +2006,6 @@ public class MainActivity extends Activity {
         byte[] out = null;
 
         tv.setText(" ");
-        showImageSnap(R.drawable.icode_p);
         showMessage("Card Detected : " + icodeSLIXL.getType().getTagName(), 'n');
         try {
 
@@ -2095,7 +2054,6 @@ public class MainActivity extends Activity {
     private void iCodeSLIX2CardLogic() {
         byte[] out = null;
         tv.setText(" ");
-        showImageSnap(R.drawable.icode_p);
         showMessage("Card Detected : " + icodeSLIX2.getType().getTagName(), 'n');
         try {
             // UID
@@ -2143,7 +2101,6 @@ public class MainActivity extends Activity {
         byte[] out = null;
         byte[] bytes = null;
         tv.setText(" ");
-        showImageSnap(R.drawable.icode_p);
         showMessage("Card Detected : " + icodeDNA.getType().getTagName(), 'n');
         try {
             // UID
@@ -2262,14 +2219,14 @@ public class MainActivity extends Activity {
         mImageView.getLayoutParams().width = (size.x * 2) / 3;
         mImageView.getLayoutParams().height = size.y / 3;
         Handler mHandler = new Handler();
-        mHandler.postDelayed(new Runnable() {
-            public void run() {
-                mImageView.setImageResource(cardTypeId);
-                mImageView.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoomnrotate));
-            }
-        }, 1250);
-        mImageView.setImageResource(R.drawable.product_overview);
-        mImageView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.rotate));
+//        mHandler.postDelayed(new Runnable() {
+//            public void run() {
+//                mImageView.setImageResource(cardTypeId);
+//                mImageView.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoomnrotate));
+//            }
+//        }, 1250);
+//        mImageView.setImageResource(R.drawable.product_overview);
+//        mImageView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.rotate));
     }
 
     /**
@@ -2381,7 +2338,7 @@ public class MainActivity extends Activity {
 
         alert.setMessage(alertMessage);
 
-        alert.setIcon(R.drawable.product_overview);
+//        alert.setIcon(R.drawable.product_overview);
         alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             public void onClick(final DialogInterface dialog,
                                 final int whichButton) {
