@@ -1,14 +1,11 @@
 package com.twinofthings.activities;
 
-import com.nxp.mifaresdksample.R;
+import com.twinofthings.R;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Display;
-import android.widget.ImageView;
 
 /**
  * @author nxp70496
