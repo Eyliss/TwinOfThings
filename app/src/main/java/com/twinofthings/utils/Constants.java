@@ -1,10 +1,18 @@
 package com.twinofthings.utils;
 
-/**
- * Created by Eyliss on 5/18/17.
- */
+import com.google.gson.annotations.SerializedName;
 
+/**
+ * Created by Eyliss on 7/6/16.
+ */
 public class Constants {
+    public final static String JSON_ID = "tx_id";
+    public final static String JSON_METADATA = "metadata";
+    public final static String JSON_NAME = "name";
+    public final static String JSON_DESC = "short_desc";
+    public final static String JSON_USER_ID = "user_id";
+    public final static String JSON_TIMESTAMP = "timestamp";
+    public final static String JSON_LOCATION = "location";
 
     public static String JSON_STATUS = "status";
     public static String JSON_DATA = "data";

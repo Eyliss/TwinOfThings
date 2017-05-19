@@ -49,4 +49,16 @@ public interface RCApiService {
     Call<RCApiResponse> validate(
           @Body JsonObject jsonObject
     );
+
+    //Send signature
+    @POST("validate-tx")
+    Call<RCApiResponse> validateTransaction(
+          @Body JsonObject jsonObject
+    );
+
+    //Send signature
+    @POST("provision")
+    Call<RCApiResponse> provision(
+          @Body JsonObject jsonObject
+    );
 }
