@@ -3,6 +3,8 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
         android:background="@drawable/purple_background">
 
     <LinearLayout
@@ -22,17 +24,17 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.9"
                 android:background="@android:color/white" android:weightSum="1">
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/brand"
-                    android:gravity="left"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:padding="@dimen/section_padding"
-                    android:layout_margin="@dimen/separator_height"
-                    android:drawableLeft="@drawable/ic_brand"
-                    android:drawablePadding="@dimen/activity_horizontal_margin"
-                    android:hint="@string/brand"/>
+            <!--<EditText-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/brand"-->
+                    <!--android:gravity="left"-->
+                    <!--style="@style/TextAppearance.AppCompat.Medium"-->
+                    <!--android:padding="@dimen/section_padding"-->
+                    <!--android:layout_margin="@dimen/separator_height"-->
+                    <!--android:drawableLeft="@drawable/ic_brand"-->
+                    <!--android:drawablePadding="@dimen/activity_horizontal_margin"-->
+                    <!--android:hint="@string/brand"/>-->
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -63,6 +65,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/timestamp"
+                        android:datePickerMode="spinner"
+                        android:calendarViewShown="false"
                 android:background="@android:color/transparent"/>
             </LinearLayout>
             <EditText
@@ -89,28 +93,37 @@
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/material"
+                    android:id="@+id/twin_location"
                     android:gravity="left"
                     style="@style/TextAppearance.AppCompat.Medium"
                     android:padding="@dimen/section_padding"
                     android:layout_margin="@dimen/separator_height"
-                    android:drawableLeft="@drawable/ic_material"
+                    android:drawableLeft="@android:drawable/ic_dialog_map"
                     android:drawablePadding="@dimen/activity_horizontal_margin"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/color"
-                    android:gravity="left"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:padding="@dimen/section_padding"
-                    android:layout_margin="@dimen/separator_height"
-                    android:drawableLeft="@drawable/ic_color"
-                    android:drawablePadding="@dimen/activity_horizontal_margin"/>
+            <!--<EditText-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/material"-->
+                    <!--android:gravity="left"-->
+                    <!--style="@style/TextAppearance.AppCompat.Medium"-->
+                    <!--android:padding="@dimen/section_padding"-->
+                    <!--android:layout_margin="@dimen/separator_height"-->
+                    <!--android:drawableLeft="@drawable/ic_material"-->
+                    <!--android:drawablePadding="@dimen/activity_horizontal_margin"/>-->
+            <!--<EditText-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/color"-->
+                    <!--android:gravity="left"-->
+                    <!--style="@style/TextAppearance.AppCompat.Medium"-->
+                    <!--android:padding="@dimen/section_padding"-->
+                    <!--android:layout_margin="@dimen/separator_height"-->
+                    <!--android:drawableLeft="@drawable/ic_color"-->
+                    <!--android:drawablePadding="@dimen/activity_horizontal_margin"/>-->
             <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/section_padding"
+                    android:layout_height="200dp"
                     android:layout_margin="@dimen/separator_height">
                 <EditText
                         android:layout_width="match_parent"

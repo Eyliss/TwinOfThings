@@ -69,6 +69,7 @@
         <activity
                 android:name=".activities.CreateDigitalTwinActivity"
                 android:label="@string/create_twin_activity_title"
+                android:windowSoftInputMode="adjustPan"
                 android:parentActivityName=".activities.MainActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
@@ -77,6 +78,7 @@
         <activity
                 android:name=".activities.TwinCreatedActivity"
                 android:label="@string/create_twin_activity_title"
+                android:windowSoftInputMode="adjustPan"
                 android:parentActivityName=".activities.MainActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
