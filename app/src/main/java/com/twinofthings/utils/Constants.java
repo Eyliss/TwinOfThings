@@ -22,6 +22,8 @@ public class Constants {
     public static String JSON_UNCONFIRMED_BALANCE = "unconfirmed_balance";
 
     public static String INTENT_PROCESS_TYPE = "process_type";
+    public static String INTENT_TRANSACTION = "transaction";
+
     public static String SCAN = "scan";
     public static String CREATE_TWIN = "create_twin";
 

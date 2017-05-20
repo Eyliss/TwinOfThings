@@ -190,7 +190,7 @@
                         android:text="Some comment about the product"/>
             </LinearLayout>
             <Button
-                    android:id="@+id/scan_tag_button"
+                    android:id="@+id/back_to_start"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
