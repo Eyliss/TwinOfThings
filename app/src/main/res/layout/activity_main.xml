@@ -35,7 +35,7 @@
                 android:textColor="@android:color/white"/>
         <Button
                 android:id="@+id/create_twin_button"
-                android:layout_width="wrap_content"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:drawableLeft="@drawable/ic_button_create_twin"
@@ -48,14 +48,14 @@
                 android:layout_gravity="center"/>
         <Button
                 android:id="@+id/scan_tag_button"
-                android:layout_width="wrap_content"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:drawableLeft="@drawable/ic_scan_tag_button"
                 android:drawableTint="@android:color/white"
                 android:drawablePadding="10dp"
                 android:background="@drawable/button_white_border"
-                android:text="@string/create_twin_button_text"
+                android:text="@string/scan_tag_button_text"
                 android:textColor="@android:color/white"
                 android:layout_gravity="center"/>
     </LinearLayout>

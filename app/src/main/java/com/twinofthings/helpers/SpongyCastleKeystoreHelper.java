@@ -1,4 +1,4 @@
-package com.twinofthings.activities;
+package com.twinofthings.helpers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -40,7 +40,7 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-import com.twinofthings.activities.SampleAppKeys.EnumKeyType;
+import com.twinofthings.helpers.SampleAppKeys.EnumKeyType;
 
 /**
  * Created by NXP on 6/28/2016.

@@ -1,4 +1,4 @@
-package com.twinofthings.activities;
+package com.twinofthings.helpers;
 
 /**
  * Keys used by the Sample Application are declared here.

@@ -1,4 +1,4 @@
-package com.twinofthings.activities;
+package com.twinofthings.helpers;
 
 import android.content.Context;
 

@@ -18,7 +18,6 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         mCreateTwinButton = (Button)findViewById(R.id.create_twin_button);
         mCreateTwinButton.setOnClickListener(new View.OnClickListener() {

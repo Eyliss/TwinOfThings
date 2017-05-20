@@ -2,6 +2,7 @@ package com.twinofthings.fragments;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ public class CreateTwinFragment extends Fragment {
     private ImageView mCreateTwinIcon;
     private TextView mCreateTwinTitle;
     private TextView mCreateTwinDescription;
+    private Button mEnterData;
 
     public CreateTwinFragment() {
         // Required empty public constructor
@@ -44,11 +46,18 @@ public class CreateTwinFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_create_twin, container, false);
 
         //Bind views
-        mCloseButton = (ImageButton)rootView.findViewById(R.id.close_button);
         mCreateTwinIcon = (ImageView) rootView.findViewById(R.id.creating_icon);
         mCreateTwinTitle = (TextView) rootView.findViewById(R.id.creating_title);
         mCreateTwinDescription = (TextView) rootView.findViewById(R.id.creating_description);
+        mEnterData = (Button)rootView.findViewById(R.id.btn_enter_product_data);
+        mCloseButton = (ImageButton)rootView.findViewById(R.id.close_button);
 
+        mEnterData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((ReaderActivity)getActivity()).goToCreateDigitalTwin();
+            }
+        });
         mCloseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,9 +65,21 @@ public class CreateTwinFragment extends Fragment {
             }
         });
 
-        ((ReaderActivity) getActivity()).setActionBarTitle(R.string.scan_activity_title);
+        ((ReaderActivity) getActivity()).setActionBarTitle(R.string.create_twin_activity_title);
 
         return rootView;
+    }
+
+    public void startCreation(){
+        modifyUI();
+    }
+
+    private void modifyUI(){
+        mCreateTwinIcon.setImageResource(R.drawable.ic_scan_success);
+        mCreateTwinTitle.setText(R.string.scanning_successful);
+        mCreateTwinTitle.setTextColor(getResources().getColor(android.R.color.holo_blue_bright));
+        mCloseButton.setVisibility(View.GONE);
+        mEnterData.setVisibility(View.VISIBLE);
     }
 
     @Override

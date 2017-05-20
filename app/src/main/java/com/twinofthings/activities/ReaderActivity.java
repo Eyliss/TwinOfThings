@@ -2,7 +2,6 @@ package com.twinofthings.activities;
 
 import android.Manifest;
 import android.annotation.TargetApi;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
@@ -19,8 +18,12 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.Display;
+import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -78,8 +81,12 @@ import com.nxp.nfclib.ultralight.UltralightFactory;
 import com.nxp.nfclib.utils.NxpLogUtils;
 import com.nxp.nfclib.utils.Utilities;
 import com.twinofthings.R;
+import com.twinofthings.api.RCApiManager;
+import com.twinofthings.api.RCApiResponse;
 import com.twinofthings.fragments.CreateTwinFragment;
 import com.twinofthings.fragments.ScanFragment;
+import com.twinofthings.helpers.KeyInfoProvider;
+import com.twinofthings.helpers.SampleAppKeys;
 import com.twinofthings.utils.Constants;
 
 import java.io.File;
@@ -97,6 +104,10 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ReaderActivity extends Activity {
 
 //    private Tag tag;
@@ -105,8 +116,11 @@ public class ReaderActivity extends Activity {
     private static final String SCAN_FRAGMENT_TAG = "scan_fragment_tag";
     private static final String CREATE_FRAGMENT_TAG = "create_twin_fragment_tag";
 
-    private ActionBar mActionBar;
     private Fragment mFragment;
+
+    private String publicKey = "";
+    private String signature = "";
+    private String challenge = "";
 
     private IKeyData objKEY_2KTDES_ULC = null;
     private IKeyData objKEY_2KTDES = null;
@@ -316,6 +330,9 @@ public class ReaderActivity extends Activity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reader);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
 
         boolean readPermission = (ContextCompat.checkSelfPermission(ReaderActivity.this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
@@ -357,12 +374,21 @@ public class ReaderActivity extends Activity {
 
 		/* Get text view handle to be used further */
         initializeView();
+    }
 
-        mActionBar = getActionBar();
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void setActionBarTitle(int title){
-        mActionBar.setTitle(title);
+        getActionBar().setTitle(title);
     }
 
     public void finishProcess(){
@@ -1385,7 +1411,7 @@ public class ReaderActivity extends Activity {
         int fileNo = 0;
         int fileNo_2 = 1;
 
-        tv.setText(" ");
+        startProcess();
         showMessage("Card Detected : " + desFireEV1.getType().getTagName(), 'n');
 
         try {
@@ -1429,7 +1455,7 @@ public class ReaderActivity extends Activity {
                 // 0 to 52 bytes : datas to write
 
                 desFireEV1.writeData(0, 0, pubKey);
-
+                publicKey = Utilities.dumpBytes(desFireEV1.readData(0, 0,64));
                 showMessage(
                         "Pub Key read from the card : "
                                 + Utilities.dumpBytes(desFireEV1.readData(0, 0,
@@ -1468,6 +1494,7 @@ public class ReaderActivity extends Activity {
 
 
                 desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, objKEY_2KTDES);
+                challenge = Utilities.dumpBytes(desFireEV1.readData(1, 0,32));
                 showMessage(
                         "HashMsg Read from the card : "
                                 + Utilities.dumpBytes(desFireEV1.readData(1, 0,
@@ -2131,30 +2158,6 @@ public class ReaderActivity extends Activity {
     }
 
     /**
-     * Update the card image on the screen.
-     *
-     * @param cardTypeId resource image id of the card image
-     */
-
-    private void showImageSnap(final int cardTypeId) {
-
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        mImageView.getLayoutParams().width = (size.x * 2) / 3;
-        mImageView.getLayoutParams().height = size.y / 3;
-        Handler mHandler = new Handler();
-//        mHandler.postDelayed(new Runnable() {
-//            public void run() {
-//                mImageView.setImageResource(cardTypeId);
-//                mImageView.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoomnrotate));
-//            }
-//        }, 1250);
-//        mImageView.setImageResource(R.drawable.product_overview);
-//        mImageView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.rotate));
-    }
-
-    /**
      * This will display message in toast or logcat or on screen or all three.
      *
      * @param str   String to be logged or displayed
@@ -2173,20 +2176,14 @@ public class ReaderActivity extends Activity {
                 NxpLogUtils.i(TAG, "\n" + str);
                 break;
             case 'd':
-                tv.setText(tv.getText() + "\n-----------------------------------\n"
-                        + str);
                 break;
             case 'a':
                 Toast.makeText(ReaderActivity.this, "\n" + str, Toast.LENGTH_SHORT)
                         .show();
                 NxpLogUtils.i(TAG, "\n" + str);
-                tv.setText(tv.getText() + "\n-----------------------------------\n"
-                        + str);
                 break;
             case 'n':
                 NxpLogUtils.i(TAG, "Dump Data: " + str);
-                tv.setText(tv.getText() + "\n-----------------------------------\n"
-                        + str);
                 break;
             default:
                 break;
@@ -2247,5 +2244,43 @@ public class ReaderActivity extends Activity {
             }
         }
 
+    }
+
+    private void startProcess(){
+        if(mFragment instanceof ScanFragment){
+            ((ScanFragment)mFragment).startScan();
+            validateTransaction();
+        }else{
+            ((CreateTwinFragment)mFragment).startCreation();
+        }
+    }
+
+    private void validateTransaction(){
+        RCApiManager.validate(publicKey,signature,challenge, new Callback<RCApiResponse>() {
+            @Override
+            public void onResponse(Call<RCApiResponse> call, Response<RCApiResponse> response) {
+                showScannedTwinInformation();
+            }
+
+            @Override
+            public void onFailure(Call<RCApiResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void showScannedTwinInformation(){
+        Intent intent = new Intent(ReaderActivity.this,ScannedTwinActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void goToCreateDigitalTwin(){
+        Intent intent = new Intent(ReaderActivity.this,CreateDigitalTwinActivity.class);
+        intent.putExtra(Constants.INTENT_PUB_KEY,publicKey);
+        intent.putExtra(Constants.INTENT_SIGNATURE,signature);
+        intent.putExtra(Constants.INTENT_CHALLENGE,challenge);
+        startActivity(intent);
+        finish();
     }
 }

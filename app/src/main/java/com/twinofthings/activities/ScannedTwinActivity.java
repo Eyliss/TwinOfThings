@@ -2,7 +2,10 @@ package com.twinofthings.activities;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v4.app.NavUtils;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -30,6 +33,7 @@ public class ScannedTwinActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanned_twin);
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
         mTransaction = getIntent().getParcelableExtra(Constants.INTENT_TRANSACTION);
         bindViews();
@@ -65,5 +69,16 @@ public class ScannedTwinActivity extends Activity {
         mOwner.setText(mTransaction.getMetadata().getUserId());
         mObjectId.setText(mTransaction.getId());
         mComments.setText(mTransaction.getMetadata().getDescription());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
