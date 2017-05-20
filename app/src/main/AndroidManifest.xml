@@ -60,7 +60,7 @@
         </activity>
         <activity
                 android:name=".activities.ScannedTwinActivity"
-                android:label="@string/title_activity_scanned_twin"
+                android:label="@string/scan_activity_title"
                 android:parentActivityName=".activities.MainActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
@@ -68,7 +68,15 @@
         </activity>
         <activity
                 android:name=".activities.CreateDigitalTwinActivity"
-                android:label="@string/title_activity_create_digital_twin"
+                android:label="@string/create_twin_activity_title"
+                android:parentActivityName=".activities.MainActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.twinofthings.activities.MainActivity"/>
+        </activity>
+        <activity
+                android:name=".activities.TwinCreatedActivity"
+                android:label="@string/create_twin_activity_title"
                 android:parentActivityName=".activities.MainActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"

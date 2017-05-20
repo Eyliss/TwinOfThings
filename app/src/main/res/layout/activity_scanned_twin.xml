@@ -1,49 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/purple_background"
-        tools:context="com.twinofthings.activities.ScannedTwinActivity"
-        android:orientation="vertical"
->
+        android:background="@drawable/purple_background">
     <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.2">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_registered_date"
-                android:gravity="center"
-                android:text="Registered 01/07"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_pup_id"
-                android:gravity="center"
-                android:text="Pup. ID 123456789"/>
-    </LinearLayout>
-    <LinearLayout
+            android:layout_height="wrap_content"
+            android:background="@drawable/purple_background"
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.8"
-            android:background="@android:color/white">
-        <TextView
-                android:id="@+id/tv_product_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Omega"
-                android:textAllCaps="true"/>
-        <TextView
-                android:id="@+id/tv_product_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Speedmaster speedy Tuesday"/>
+    >
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_registered_date"
+                    android:gravity="center"
+                    android:text="Registered 01/07"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_pup_id"
+                    android:gravity="center"
+                    android:text="Pup. ID 123456789"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"
+                android:background="@android:color/white">
+            <TextView
+                    android:id="@+id/tv_product_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Omega"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/section_vertical_margin"
+                    android:layout_gravity="center"
+                    android:textAllCaps="true"/>
+            <TextView
+                    android:id="@+id/tv_product_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    android:gravity="center"
+                    android:text="Speedmaster speedy Tuesday"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginTop="@dimen/section_vertical_margin"
+                    android:text="@string/product_info"
+                    android:textColor="@android:color/holo_green_light"/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/very_light_grey"
+                    android:padding="@dimen/section_padding"
+                    android:layout_margin="@dimen/separator_height">
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="@string/owner"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:drawableLeft="@drawable/ic_owner"
+                        android:drawablePadding="@dimen/activity_horizontal_margin"/>
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_owner"
+                        android:gravity="left"
+                        android:textColor="@android:color/black"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:text="Omega AG"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/very_light_grey"
+                    android:padding="@dimen/section_padding"
+                    android:layout_margin="@dimen/separator_height">
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="@string/object_id"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:drawableLeft="@drawable/ic_owner"
+                        android:drawablePadding="@dimen/activity_horizontal_margin"/>
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_object_id"
+                        android:gravity="left"
+                        android:textColor="@android:color/black"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:text="Omega AG"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/very_light_grey"
+                    android:padding="@dimen/section_padding"
+                    android:layout_margin="@dimen/separator_height">
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="@string/material"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:drawableLeft="@drawable/ic_material"
+                        android:drawablePadding="@dimen/activity_horizontal_margin"/>
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_material"
+                        android:gravity="left"
+                        android:textColor="@android:color/black"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:text="Omega AG"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/very_light_grey"
+                    android:padding="@dimen/section_padding"
+                    android:layout_margin="@dimen/separator_height">
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="@string/color"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:drawableStart="@drawable/ic_color"
+                        android:drawablePadding="@dimen/activity_horizontal_margin"/>
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_color"
+                        android:gravity="start"
+                        android:textColor="@android:color/black"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:text="Omega AG"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/very_light_grey"
+                    android:padding="@dimen/section_padding"
+                    android:layout_margin="@dimen/separator_height">
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="@string/comments"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"/>
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_comments"
+                        android:gravity="start"
+                        android:textColor="@android:color/black"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:text="Some comment about the product"/>
+            </LinearLayout>
+            <Button
+                    android:id="@+id/scan_tag_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:background="@drawable/button_purple_border"
+                    android:text="@string/back_to_start_button_text"
+                    android:textColor="@android:color/holo_purple"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/separator_height"/>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>
