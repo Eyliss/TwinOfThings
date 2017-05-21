@@ -19,4 +19,8 @@ public class RCApiResponse<T> {
         return message;
     }
 
+    public boolean isSuccessful(){
+        return Boolean.parseBoolean(status);
+    }
+
 }

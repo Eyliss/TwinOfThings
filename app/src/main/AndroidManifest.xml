@@ -45,7 +45,8 @@
         </activity>
         <activity
                 android:name=".activities.ReaderActivity"
-                android:screenOrientation="portrait">
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Translucent">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="com.twinofthings.activities.MainActivity"/>
@@ -62,7 +63,8 @@
         <activity
                 android:name=".activities.ScannedTwinActivity"
                 android:label="@string/scan_activity_title"
-                android:parentActivityName=".activities.MainActivity">
+                android:parentActivityName=".activities.MainActivity"
+                android:theme="@android:style/Theme.Translucent">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="com.twinofthings.activities.MainActivity"/>
@@ -71,7 +73,8 @@
                 android:name=".activities.CreateDigitalTwinActivity"
                 android:label="@string/create_twin_activity_title"
                 android:windowSoftInputMode="adjustPan"
-                android:parentActivityName=".activities.MainActivity">
+                android:parentActivityName=".activities.MainActivity"
+                android:theme="@android:style/Theme.Translucent">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="com.twinofthings.activities.MainActivity"/>
@@ -80,6 +83,7 @@
                 android:name=".activities.TwinCreatedActivity"
                 android:label="@string/create_twin_activity_title"
                 android:windowSoftInputMode="adjustPan"
+                android:theme="@android:style/Theme.Translucent"
                 android:parentActivityName=".activities.MainActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"

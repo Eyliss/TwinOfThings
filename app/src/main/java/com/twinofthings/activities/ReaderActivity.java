@@ -1,5 +1,7 @@
 package com.twinofthings.activities;
 
+import com.google.gson.Gson;
+
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -88,6 +90,7 @@ import com.twinofthings.fragments.CreateTwinFragment;
 import com.twinofthings.fragments.ScanFragment;
 import com.twinofthings.helpers.KeyInfoProvider;
 import com.twinofthings.helpers.SampleAppKeys;
+import com.twinofthings.models.Transaction;
 import com.twinofthings.utils.Constants;
 
 import java.io.File;
@@ -2263,8 +2266,15 @@ public class ReaderActivity extends Activity {
         RCApiManager.validate(publicKey,signature,challenge, new Callback<RCApiResponse>() {
             @Override
             public void onResponse(Call<RCApiResponse> call, Response<RCApiResponse> response) {
-
-                showScannedTwinInformation();
+                RCApiResponse kabinettApiResponse = response.body();
+                if(kabinettApiResponse.isSuccessful()){
+                    Gson gson = new Gson();
+                    Intent intent = new Intent(ReaderActivity.this,ScannedTwinActivity.class);
+                    String transaction = gson.toJson(kabinettApiResponse.getData());
+                    intent.putExtra(Constants.INTENT_TRANSACTION,transaction);
+                    startActivity(intent);
+                    finish();
+                }
             }
 
             @Override
@@ -2272,12 +2282,6 @@ public class ReaderActivity extends Activity {
 
             }
         });
-    }
-
-    private void showScannedTwinInformation(){
-        Intent intent = new Intent(ReaderActivity.this,ScannedTwinActivity.class);
-        startActivity(intent);
-        finish();
     }
 
     public void goToCreateDigitalTwin(){

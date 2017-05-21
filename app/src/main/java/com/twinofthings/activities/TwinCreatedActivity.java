@@ -1,6 +1,7 @@
 package com.twinofthings.activities;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v4.app.NavUtils;
@@ -21,6 +22,8 @@ public class TwinCreatedActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_twin_created);
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setBackgroundDrawable(new ColorDrawable(getResources()
+              .getColor(android.R.color.transparent)));
 
         mBackButton = (Button)findViewById(R.id.back_to_start);
         mBackButton.setOnClickListener(new View.OnClickListener() {

@@ -1,5 +1,8 @@
 package com.twinofthings.activities;
 
+import com.google.gson.Gson;
+
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v4.app.NavUtils;
@@ -33,12 +36,16 @@ public class ScannedTwinActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanned_twin);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getActionBar().setBackgroundDrawable(new ColorDrawable(getResources()
+              .getColor(android.R.color.transparent)));
 
-        mTransaction = getIntent().getParcelableExtra(Constants.INTENT_TRANSACTION);
+        Gson gson = new Gson();
+        String post = getIntent().getExtras().getString(Constants.INTENT_TRANSACTION);
+        mTransaction = gson.fromJson(post, Transaction.class);
+
         bindViews();
 
-        setProductInfo();
+//        setProductInfo();
 
     }
 
