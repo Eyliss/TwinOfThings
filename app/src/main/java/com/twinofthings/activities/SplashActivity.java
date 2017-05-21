@@ -22,7 +22,7 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         Fabric.with(this, new Crashlytics());
-        
+
         new Handler().postDelayed(new Runnable() {
  
             @Override

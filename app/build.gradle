@@ -41,7 +41,10 @@ repositories {
             username "sdkuser"
             password "taplinx"
         }
-        url "http://maven.taplinx.nxp.com/nexus/content/repositories/taplinx/",
+        url "http://maven.taplinx.nxp.com/nexus/content/repositories/taplinx/"
+    }
+
+    maven {
         url 'https://maven.fabric.io/public'
     }
 }
