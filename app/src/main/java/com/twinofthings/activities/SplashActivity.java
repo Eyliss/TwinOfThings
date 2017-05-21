@@ -1,11 +1,14 @@
 package com.twinofthings.activities;
 
+import com.crashlytics.android.Crashlytics;
 import com.twinofthings.R;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import io.fabric.sdk.android.Fabric;
 
 /**
  * @author nxp70496

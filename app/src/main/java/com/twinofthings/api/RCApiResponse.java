@@ -5,7 +5,7 @@ public class RCApiResponse<T> {
     private String status;
     private Object data;
     private String message = "";
-
+    private String error = "";
 
     public String getStatus(){
         return status;
