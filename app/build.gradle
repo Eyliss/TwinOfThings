@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 25
@@ -40,7 +41,8 @@ repositories {
             username "sdkuser"
             password "taplinx"
         }
-        url "http://maven.taplinx.nxp.com/nexus/content/repositories/taplinx/"
+        url "http://maven.taplinx.nxp.com/nexus/content/repositories/taplinx/",
+        url 'https://maven.fabric.io/public'
     }
 }
 
@@ -65,4 +67,7 @@ dependencies {
     compile 'com.google.android.gms:play-services:10.2.6'
 
     testCompile 'junit:junit:4.12'
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
+        transitive = true;
+    }
 }

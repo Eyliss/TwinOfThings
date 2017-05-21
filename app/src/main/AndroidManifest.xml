@@ -28,6 +28,10 @@
             android:logo="@mipmap/ic_launcher"
             android:theme="@android:style/Theme.DeviceDefault.Light"
             tools:replace="android:allowBackup">
+        <meta-data
+                android:name="io.fabric.ApiKey"
+                android:value="d1b8bb24902f0824b0e51e8c8a522bc3b7dc12c9"
+        />
         <activity
                 android:name=".activities.SplashActivity"
                 android:screenOrientation="portrait"
