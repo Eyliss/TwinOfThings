@@ -78,6 +78,7 @@ public class CreateTwinFragment extends Fragment {
         mCreateTwinIcon.setImageResource(R.drawable.ic_scan_success);
         mCreateTwinTitle.setText(R.string.scanning_successful);
         mCreateTwinTitle.setTextColor(getResources().getColor(android.R.color.holo_blue_bright));
+        mCreateTwinTitle.setVisibility(View.GONE);
         mCloseButton.setVisibility(View.GONE);
         mEnterData.setVisibility(View.VISIBLE);
     }

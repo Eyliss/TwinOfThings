@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
+import android.graphics.drawable.ColorDrawable;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
@@ -331,7 +332,8 @@ public class ReaderActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reader);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getActionBar().setBackgroundDrawable(new ColorDrawable(getResources()
+              .getColor(android.R.color.transparent)));
 
 
         boolean readPermission = (ContextCompat.checkSelfPermission(ReaderActivity.this,
@@ -1541,8 +1543,9 @@ public class ReaderActivity extends Activity {
                 desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
                 desFireEV1.writeData(0, 0, privKey);
 
+                signature = Utilities.dumpBytes(desFireEV1.readData(0, 0,64));
                 showMessage(
-                        "Priv Key read from the card : "
+                        "Signature Key read from the card : "
                                 + Utilities.dumpBytes(desFireEV1.readData(0, 0,
                                 64)), 'd');
 
@@ -2176,6 +2179,7 @@ public class ReaderActivity extends Activity {
                 NxpLogUtils.i(TAG, "\n" + str);
                 break;
             case 'd':
+                NxpLogUtils.i(TAG, "Data: " + str);
                 break;
             case 'a':
                 Toast.makeText(ReaderActivity.this, "\n" + str, Toast.LENGTH_SHORT)

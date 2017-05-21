@@ -64,7 +64,7 @@
                 <DatePicker
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/timestamp"
+                        android:id="@+id/dp_timestamp"
                         android:datePickerMode="spinner"
                         android:calendarViewShown="false"
                 android:background="@android:color/transparent"/>
@@ -80,16 +80,16 @@
                     android:drawableLeft="@drawable/ic_owner"
                     android:drawablePadding="@dimen/activity_horizontal_margin"
                     android:hint="@string/owner"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/twin_id"
-                    android:gravity="left"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:padding="@dimen/section_padding"
-                    android:layout_margin="@dimen/separator_height"
-                    android:drawableLeft="@drawable/ic_id"
-                    android:drawablePadding="@dimen/activity_horizontal_margin"/>
+            <!--<EditText-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/twin_id"-->
+                    <!--android:gravity="left"-->
+                    <!--style="@style/TextAppearance.AppCompat.Medium"-->
+                    <!--android:padding="@dimen/section_padding"-->
+                    <!--android:layout_margin="@dimen/separator_height"-->
+                    <!--android:drawableLeft="@drawable/ic_id"-->
+                    <!--android:drawablePadding="@dimen/activity_horizontal_margin"/>-->
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tv_comments"
+                        android:id="@+id/comments"
                         android:gravity="start"
                         android:textColor="@android:color/black"
                         style="@style/TextAppearance.AppCompat.Medium"
@@ -136,7 +136,7 @@
                         android:layout_marginStart="@dimen/activity_horizontal_margin"/>
             </LinearLayout>
             <Button
-                    android:id="@+id/scan_tag_button"
+                    android:id="@+id/create_digital_twin_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/create_twin_button_bg"
