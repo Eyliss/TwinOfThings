@@ -1,9 +1,23 @@
 package com.twinofthings.activities;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
+
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NavUtils;
+import android.support.v4.content.ContextCompat;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -18,14 +32,19 @@ import com.twinofthings.api.RCApiManager;
 import com.twinofthings.api.RCApiResponse;
 import com.twinofthings.utils.Constants;
 
+import java.io.IOException;
 import java.sql.Time;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CreateDigitalTwinActivity extends Activity {
+public class CreateDigitalTwinActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+
+    public final static int REQUEST_LOCATION_PERMISSION = 0x17;
 
     private String publicKey;
     private String challenge;
@@ -37,6 +56,9 @@ public class CreateDigitalTwinActivity extends Activity {
     private TextView mLocation;
     private EditText mComments;
     private Button mCreateTwin;
+    private Location mLastLocation;
+
+    private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,17 +85,38 @@ public class CreateDigitalTwinActivity extends Activity {
                 sendTwinDataToServer();
             }
         });
+
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                  .addConnectionCallbacks(this)
+                  .addOnConnectionFailedListener(this)
+                  .addApi(LocationServices.API)
+                  .build();
+        }
     }
 
-    private void sendTwinDataToServer(){
+    protected void onStart() {
+        mGoogleApiClient.connect();
+        super.onStart();
+    }
+
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+
+
+    private void sendTwinDataToServer() {
         String name = mName.getText().toString();
         String timestamp = getDateFromDatePicker();
         String owner = mOwner.getText().toString();
+        String location = getLocationName();
+        String comments = mComments.getText().toString();
 
-        RCApiManager.provision(publicKey,signature,challenge, , new Callback<RCApiResponse>() {
+        RCApiManager.provision(publicKey, signature, challenge, name, comments, owner, timestamp, location,new Callback<RCApiResponse>() {
             @Override
             public void onResponse(Call<RCApiResponse> call, Response<RCApiResponse> response) {
-                showScannedTwinInformation();
+                onTwinCreatedSuccessfully();
             }
 
             @Override
@@ -83,12 +126,18 @@ public class CreateDigitalTwinActivity extends Activity {
         });
     }
 
-    public String getDateFromDatePicker(){
+    private void onTwinCreatedSuccessfully(){
+        Intent intent = new Intent(CreateDigitalTwinActivity.this,TwinCreatedActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public String getDateFromDatePicker() {
         int day = mDatePicker.getDayOfMonth();
         int month = mDatePicker.getMonth();
-        int year =  mDatePicker.getYear();
+        int year = mDatePicker.getYear();
 
-        return day+"/"+month+"/"+year;
+        return day + "/" + month + "/" + year;
     }
 
     @Override
@@ -100,5 +149,70 @@ public class CreateDigitalTwinActivity extends Activity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        int fineLocationPermissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        int coarseLocationPermissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
+
+        if (fineLocationPermissionCheck != PackageManager.PERMISSION_GRANTED && coarseLocationPermissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                  this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_LOCATION_PERMISSION);
+        } else {
+            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        boolean permissionsGranted = true;
+        if (requestCode == REQUEST_LOCATION_PERMISSION) {
+            if (grantResults.length == permissions.length) {
+                for (int result : grantResults) {
+                    if (result != PackageManager.PERMISSION_GRANTED) {
+                        permissionsGranted = false;
+                        break;
+                    }
+                }
+                if (permissionsGranted) {
+                    try {
+                        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+                    } catch (SecurityException e) {
+                        //Do nothing
+                    }
+                }
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    private String getLocationName(){
+        String city = "";
+        if(mLastLocation != null){
+            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            List<Address> addresses = null; // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+            try {
+                addresses = geocoder.getFromLocation(mLastLocation.getLatitude(), mLastLocation.getLongitude(), 1);
+                if (!addresses.isEmpty()) {
+                    city = addresses.get(0).getLocality();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return city;
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        
     }
 }
