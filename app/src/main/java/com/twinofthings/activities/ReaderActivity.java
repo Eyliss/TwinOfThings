@@ -2279,6 +2279,9 @@ public class ReaderActivity extends Activity {
                     intent.putExtra(Constants.INTENT_TRANSACTION,transaction);
                     startActivity(intent);
                     finish();
+                }else{
+                    Toast.makeText(ReaderActivity.this, kabinettApiResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    ((ScanFragment)mFragment).stopScan();
                 }
             }
 

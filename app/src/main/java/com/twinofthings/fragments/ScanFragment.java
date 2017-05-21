@@ -63,16 +63,20 @@ public class ScanFragment extends Fragment {
     }
 
     public void startScan(){
-        modifyUI();
-    }
-
-    private void modifyUI(){
         mScanIcon.setImageResource(R.drawable.ic_scan_success);
         mScanTitle.setText(R.string.scanning_successful);
         mScanTitle.setTextColor(getResources().getColor(android.R.color.holo_blue_bright));
         mScanDescription.setText(R.string.loading);
         mProgressBar.setVisibility(View.VISIBLE);
         mProgressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(android.R.color.holo_blue_bright), PorterDuff.Mode.MULTIPLY);
+    }
+
+    public void stopScan(){
+        mScanIcon.setImageResource(R.drawable.ic_scan);
+        mScanTitle.setText(R.string.scanning_tag_title);
+        mScanTitle.setTextColor(getResources().getColor(android.R.color.white));
+        mScanDescription.setText(R.string.scanning_tag_description);
+        mProgressBar.setVisibility(View.GONE);
     }
 
     @Override
