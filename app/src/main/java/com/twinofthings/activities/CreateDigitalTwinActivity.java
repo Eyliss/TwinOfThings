@@ -5,8 +5,10 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
 import android.location.Geocoder;
@@ -20,6 +22,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -57,16 +60,19 @@ public class CreateDigitalTwinActivity extends Activity implements GoogleApiClie
     private EditText mComments;
     private Button mCreateTwin;
     private Location mLastLocation;
+    private String locationName;
 
     private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+
         setContentView(R.layout.activity_create_digital_twin);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setBackgroundDrawable(new ColorDrawable(getResources()
-              .getColor(android.R.color.transparent)));
+        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         publicKey = getIntent().getStringExtra(Constants.INTENT_PUB_KEY);
         challenge = getIntent().getStringExtra(Constants.INTENT_SIGNATURE);
@@ -85,6 +91,9 @@ public class CreateDigitalTwinActivity extends Activity implements GoogleApiClie
                 sendTwinDataToServer();
             }
         });
+
+        locationName = getLocationName();
+        mLocation.setText(locationName);
 
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -110,8 +119,8 @@ public class CreateDigitalTwinActivity extends Activity implements GoogleApiClie
         String name = mName.getText().toString();
         String timestamp = getDateFromDatePicker();
         String owner = mOwner.getText().toString();
-        String location = getLocationName();
         String comments = mComments.getText().toString();
+        String location = mLocation.getText().toString();
 
         RCApiManager.provision(publicKey, signature, challenge, name, comments, owner, timestamp, location,new Callback<RCApiResponse>() {
             @Override
