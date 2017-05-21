@@ -125,6 +125,7 @@ public class CreateDigitalTwinActivity extends Activity implements GoogleApiClie
         RCApiManager.provision(publicKey, signature, challenge, name, comments, owner, timestamp, location,new Callback<RCApiResponse>() {
             @Override
             public void onResponse(Call<RCApiResponse> call, Response<RCApiResponse> response) {
+                RCApiResponse body = response.body();
                 onTwinCreatedSuccessfully();
             }
 
