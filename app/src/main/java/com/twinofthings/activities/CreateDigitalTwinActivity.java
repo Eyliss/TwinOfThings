@@ -213,6 +213,6 @@ public class CreateDigitalTwinActivity extends Activity implements GoogleApiClie
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        
+
     }
 }

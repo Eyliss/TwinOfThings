@@ -2263,6 +2263,7 @@ public class ReaderActivity extends Activity {
         RCApiManager.validate(publicKey,signature,challenge, new Callback<RCApiResponse>() {
             @Override
             public void onResponse(Call<RCApiResponse> call, Response<RCApiResponse> response) {
+
                 showScannedTwinInformation();
             }
 

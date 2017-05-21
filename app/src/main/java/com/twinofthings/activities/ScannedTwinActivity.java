@@ -54,11 +54,11 @@ public class ScannedTwinActivity extends Activity {
         mRegisteredDate = (TextView)findViewById(R.id.tv_registered_date);
         mId = (TextView)findViewById(R.id.tv_pup_id);
         mName = (TextView)findViewById(R.id.tv_product_name);
-        mDescription = (TextView)findViewById(R.id.tv_product_description);
+//        mDescription = (TextView)findViewById(R.id.tv_product_description);
         mOwner = (TextView)findViewById(R.id.tv_owner);
         mObjectId = (TextView)findViewById(R.id.tv_object_id);
-        mMaterial = (TextView)findViewById(R.id.tv_material);
-        mColor = (TextView)findViewById(R.id.tv_color);
+//        mMaterial = (TextView)findViewById(R.id.tv_material);
+//        mColor = (TextView)findViewById(R.id.tv_color);
         mComments = (TextView)findViewById(R.id.tv_comments);
     }
 
