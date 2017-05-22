@@ -8,12 +8,12 @@ import com.twinofthings.utils.Constants;
 public class Transaction {
 
     @SerializedName(Constants.JSON_ID)
-    private int id;
+    private String id;
 
     @SerializedName(Constants.JSON_METADATA)
     private Metadata metadata;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

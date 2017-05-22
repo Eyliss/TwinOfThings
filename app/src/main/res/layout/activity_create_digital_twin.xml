@@ -121,7 +121,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/very_light_grey"
-                    android:layout_margin="@dimen/separator_height">
+                    android:layout_margin="@dimen/separator_height"
+                    android:padding="5dp">
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="100dp"

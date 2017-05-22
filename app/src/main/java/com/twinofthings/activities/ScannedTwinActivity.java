@@ -39,16 +39,16 @@ public class ScannedTwinActivity extends Activity {
 
         setContentView(R.layout.activity_scanned_twin);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#330000ff")));
-        getActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.parseColor("#550000ff")));
+        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         Gson gson = new Gson();
-//        String post = getIntent().getExtras().getString(Constants.INTENT_TRANSACTION);
-//        mTransaction = gson.fromJson(post, Transaction.class);
+        String post = getIntent().getExtras().getString(Constants.INTENT_TRANSACTION);
+        mTransaction = gson.fromJson(post, Transaction.class);
 
         bindViews();
 
-//        setProductInfo();
+        setProductInfo();
 
     }
 
@@ -71,10 +71,12 @@ public class ScannedTwinActivity extends Activity {
 
     private void setProductInfo(){
 
-        mRegisteredDate.setText(mTransaction.getMetadata().getTimestamp());
-        mId.setText(mTransaction.getId());
+        mId.setText("Pup. ID: "+mTransaction.getId());
+        mRegisteredDate.setText("Registered "+mTransaction.getMetadata().getTimestamp());
+        mName.setText(mTransaction.getMetadata().getName());
         mOwner.setText(mTransaction.getMetadata().getUserId());
         mComments.setText(mTransaction.getMetadata().getDescription());
+        mLocation.setText(mTransaction.getMetadata().getLocation());
     }
 
     @Override

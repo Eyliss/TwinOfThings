@@ -71,8 +71,8 @@ public class CreateDigitalTwinActivity extends Activity implements GoogleApiClie
 
         setContentView(R.layout.activity_create_digital_twin);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#330000ff")));
-        getActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.parseColor("#550000ff")));
+        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         publicKey = getIntent().getStringExtra(Constants.INTENT_PUB_KEY);
         signature = getIntent().getStringExtra(Constants.INTENT_SIGNATURE);

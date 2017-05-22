@@ -27,8 +27,8 @@ public class TwinCreatedActivity extends Activity {
 
         setContentView(R.layout.activity_twin_created);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#330000ff")));
-        getActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.parseColor("#550000ff")));
+        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         mBackButton = (Button)findViewById(R.id.back_to_start);
         mBackButton.setOnClickListener(new View.OnClickListener() {

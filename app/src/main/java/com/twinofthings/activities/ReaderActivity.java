@@ -2288,18 +2288,18 @@ public class ReaderActivity extends Activity {
         RCApiManager.validate(publicKey,signature,challenge, new Callback<RCApiResponse>() {
             @Override
             public void onResponse(Call<RCApiResponse> call, Response<RCApiResponse> response) {
-//                RCApiResponse kabinettApiResponse = response.body();
-//                if(kabinettApiResponse.isSuccessful()){
-//                    Gson gson = new Gson();
+                RCApiResponse apiResponse = response.body();
+                if(apiResponse.isSuccessful()){
+                    Gson gson = new Gson();
                     Intent intent = new Intent(ReaderActivity.this,ScannedTwinActivity.class);
-//                    String transaction = gson.toJson(kabinettApiResponse.getData());
-//                    intent.putExtra(Constants.INTENT_TRANSACTION,transaction);
+                    String transaction = gson.toJson(apiResponse.getData());
+                    intent.putExtra(Constants.INTENT_TRANSACTION,transaction);
                     startActivity(intent);
-//                    finish();
-//                }else{
-//                    Toast.makeText(ReaderActivity.this, kabinettApiResponse.getMessage(), Toast.LENGTH_SHORT).show();
-//                    ((ScanFragment)mFragment).stopScan();
-//                }
+                    finish();
+                }else{
+                    Toast.makeText(ReaderActivity.this, apiResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    ((ScanFragment)mFragment).stopScan();
+                }
             }
 
             @Override
