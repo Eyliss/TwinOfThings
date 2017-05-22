@@ -42,6 +42,7 @@ import com.nxp.nfclib.NxpNfcLib;
 import com.nxp.nfclib.classic.ClassicFactory;
 import com.nxp.nfclib.classic.IMFClassic;
 import com.nxp.nfclib.classic.IMFClassicEV1;
+import com.nxp.nfclib.defaultimpl.KeyData;
 import com.nxp.nfclib.desfire.DESFireFactory;
 import com.nxp.nfclib.desfire.DESFireFile;
 import com.nxp.nfclib.desfire.EV1ApplicationKeySettings;
@@ -100,6 +101,7 @@ import java.io.File;
 import java.nio.charset.Charset;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
+import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Locale;
@@ -1390,6 +1392,17 @@ public class ReaderActivity extends Activity {
      */
     private void desfireEV1CardLogic() {
 
+        byte[] myKey = new byte[] {
+              (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00,
+              (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00,
+              (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00,
+              (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00,
+              (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00};
+
+        Key key = new SecretKeySpec(myKey, "DESede");
+        KeyData keyData = new KeyData();
+        keyData.setKey( key);
+
         byte[] appId = new byte[]{0x12, 0x00, 0x00};
         byte[] appId_2 = new byte[]{0x03, 0x02, 0x01};
 
@@ -1399,23 +1412,23 @@ public class ReaderActivity extends Activity {
 
 
         byte[] pubKey = new byte[]{(byte) 0xD7, (byte) 0x3B, (byte) 0x76, (byte) 0x3B, (byte) 0x16, (byte) 0x3E, (byte) 0x82, (byte) 0x5A, (byte) 0xA0, (byte) 0xD2,
-                (byte) 0xCC, (byte) 0x39, (byte) 0x48, (byte) 0x8D, (byte) 0x42, (byte) 0x69, (byte) 0xA2, (byte) 0x13, (byte) 0x52, (byte) 0x7A,
-                (byte) 0x5B, (byte) 0x4D, (byte) 0xB1, (byte) 0xE6, (byte) 0xBC, (byte) 0x1E, (byte) 0xD1, (byte) 0x24, (byte) 0xE0, (byte) 0x15,
-                (byte) 0x81, (byte) 0x1B, (byte) 0x06, (byte) 0x84, (byte) 0x22, (byte) 0xC8, (byte) 0x6B, (byte) 0x59, (byte) 0x3E, (byte) 0x89,
-                (byte) 0xD3, (byte) 0x6C, (byte) 0x25, (byte) 0xB5, (byte) 0xC3, (byte) 0x4B, (byte) 0xAC, (byte) 0xAA, (byte) 0x94, (byte) 0x61,
-                (byte) 0x14, (byte) 0xAC, (byte) 0x4D, (byte) 0x69, (byte) 0xCB, (byte) 0xC8, (byte) 0x1E, (byte) 0x67, (byte) 0xA4, (byte) 0xF8,
-                (byte) 0xD6, (byte) 0xC0, (byte) 0x5C, (byte) 0xCE};
+              (byte) 0xCC, (byte) 0x39, (byte) 0x48, (byte) 0x8D, (byte) 0x42, (byte) 0x69, (byte) 0xA2, (byte) 0x13, (byte) 0x52, (byte) 0x7A,
+              (byte) 0x5B, (byte) 0x4D, (byte) 0xB1, (byte) 0xE6, (byte) 0xBC, (byte) 0x1E, (byte) 0xD1, (byte) 0x24, (byte) 0xE0, (byte) 0x15,
+              (byte) 0x81, (byte) 0x1B, (byte) 0x06, (byte) 0x84, (byte) 0x22, (byte) 0xC8, (byte) 0x6B, (byte) 0x59, (byte) 0x3E, (byte) 0x89,
+              (byte) 0xD3, (byte) 0x6C, (byte) 0x25, (byte) 0xB5, (byte) 0xC3, (byte) 0x4B, (byte) 0xAC, (byte) 0xAA, (byte) 0x94, (byte) 0x61,
+              (byte) 0x14, (byte) 0xAC, (byte) 0x4D, (byte) 0x69, (byte) 0xCB, (byte) 0xC8, (byte) 0x1E, (byte) 0x67, (byte) 0xA4, (byte) 0xF8,
+              (byte) 0xD6, (byte) 0xC0, (byte) 0x5C, (byte) 0xCE};
         byte[] hashMsg = new byte[]{(byte) 0x65, (byte) 0xB9, (byte) 0x69, (byte) 0xEB, (byte) 0xF9, (byte) 0x28, (byte) 0xFC, (byte) 0xF2, (byte) 0x75, (byte) 0x36,
-                (byte) 0xAF, (byte) 0xA2, (byte) 0x8D, (byte) 0x79, (byte) 0x74, (byte) 0x3D, (byte) 0x4B, (byte) 0x99, (byte) 0xA3, (byte) 0x0A,
-                (byte) 0xF4, (byte) 0xB2, (byte) 0xF3, (byte) 0x3A, (byte) 0x01, (byte) 0x90, (byte) 0x19, (byte) 0xCA, (byte) 0xB3, (byte) 0x44,
-                (byte) 0x70, (byte) 0x5A};
+              (byte) 0xAF, (byte) 0xA2, (byte) 0x8D, (byte) 0x79, (byte) 0x74, (byte) 0x3D, (byte) 0x4B, (byte) 0x99, (byte) 0xA3, (byte) 0x0A,
+              (byte) 0xF4, (byte) 0xB2, (byte) 0xF3, (byte) 0x3A, (byte) 0x01, (byte) 0x90, (byte) 0x19, (byte) 0xCA, (byte) 0xB3, (byte) 0x44,
+              (byte) 0x70, (byte) 0x5A};
         byte[] privKey = new byte[]{(byte) 0x2D, (byte) 0x45, (byte) 0x2F, (byte) 0x6E, (byte) 0x5F, (byte) 0x36, (byte) 0x23, (byte) 0x8D, (byte) 0x32, (byte) 0xBF,
-                (byte) 0xA7, (byte) 0xEA, (byte) 0x7C, (byte) 0x67, (byte) 0xE7, (byte) 0x1C, (byte) 0xBE, (byte) 0xCA, (byte) 0x2D, (byte) 0x8F,
-                (byte) 0xD1, (byte) 0xC9, (byte) 0x45, (byte) 0x3A, (byte) 0x5C, (byte) 0x23, (byte) 0x0B, (byte) 0x87, (byte) 0x7E, (byte) 0x45,
-                (byte) 0xC1, (byte) 0x31, (byte) 0x3F, (byte) 0x20, (byte) 0x26, (byte) 0x68, (byte) 0xBA, (byte) 0x34, (byte) 0x7C, (byte) 0x04,
-                (byte) 0xE5, (byte) 0xDD, (byte) 0x30, (byte) 0x6C, (byte) 0xE0, (byte) 0x55, (byte) 0x94, (byte) 0xE8, (byte) 0x82, (byte) 0xCB,
-                (byte) 0xA1, (byte) 0xC8, (byte) 0x48, (byte) 0xB6, (byte) 0x42, (byte) 0xC7, (byte) 0x55, (byte) 0x6C, (byte) 0xFD, (byte) 0x46,
-                (byte) 0xF1, (byte) 0x08, (byte) 0x09, (byte) 0x52};
+              (byte) 0xA7, (byte) 0xEA, (byte) 0x7C, (byte) 0x67, (byte) 0xE7, (byte) 0x1C, (byte) 0xBE, (byte) 0xCA, (byte) 0x2D, (byte) 0x8F,
+              (byte) 0xD1, (byte) 0xC9, (byte) 0x45, (byte) 0x3A, (byte) 0x5C, (byte) 0x23, (byte) 0x0B, (byte) 0x87, (byte) 0x7E, (byte) 0x45,
+              (byte) 0xC1, (byte) 0x31, (byte) 0x3F, (byte) 0x20, (byte) 0x26, (byte) 0x68, (byte) 0xBA, (byte) 0x34, (byte) 0x7C, (byte) 0x04,
+              (byte) 0xE5, (byte) 0xDD, (byte) 0x30, (byte) 0x6C, (byte) 0xE0, (byte) 0x55, (byte) 0x94, (byte) 0xE8, (byte) 0x82, (byte) 0xCB,
+              (byte) 0xA1, (byte) 0xC8, (byte) 0x48, (byte) 0xB6, (byte) 0x42, (byte) 0xC7, (byte) 0x55, (byte) 0x6C, (byte) 0xFD, (byte) 0x46,
+              (byte) 0xF1, (byte) 0x08, (byte) 0x09, (byte) 0x52};
 
         int timeOut = 1000;
         int fileNo = 0;
@@ -1427,36 +1440,36 @@ public class ReaderActivity extends Activity {
         try {
             desFireEV1.getReader().setTimeout(timeOut);
             showMessage(
-                    "Version of the Card : "
-                            + Utilities.dumpBytes(desFireEV1.getVersion()),
-                    'd');
+                  "Version of the Card : "
+                        + Utilities.dumpBytes(desFireEV1.getVersion()),
+                  'd');
             showMessage(
-                    "Existing Applications Ids : " + Arrays.toString(desFireEV1.getApplicationIDs()),
-                    'd');
+                  "Existing Applications Ids : " + Arrays.toString(desFireEV1.getApplicationIDs()),
+                  'd');
 
             desFireEV1.selectApplication(0);
 
-            desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, objKEY_2KTDES);
+            desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
 
-            /* Do the following only if write checkbox is selected */
+        /* Do the following only if write checkbox is selected */
             if (bWriteAllowed) {
-                desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, objKEY_2KTDES);
+                desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
                 desFireEV1.format();
                 EV1ApplicationKeySettings.Builder appsetbuilder = new EV1ApplicationKeySettings.Builder();
 
                 EV1ApplicationKeySettings appsettings = appsetbuilder.setAppKeySettingsChangeable(true)
-                        .setAppMasterKeyChangeable(true)
-                        .setAuthenticationRequiredForApplicationManagement(false)
-                        .setAuthenticationRequiredForDirectoryConfigurationData(false)
-                        .setKeyTypeOfApplicationKeys(KeyType.TWO_KEY_THREEDES).build();
+                      .setAppMasterKeyChangeable(true)
+                      .setAuthenticationRequiredForApplicationManagement(false)
+                      .setAuthenticationRequiredForDirectoryConfigurationData(false)
+                      .setKeyTypeOfApplicationKeys(KeyType.TWO_KEY_THREEDES).build();
 
                 desFireEV1.createApplication(appId, appsettings);
                 desFireEV1.selectApplication(appId);
 
                 desFireEV1.createFile(fileNo, new DESFireFile.StdDataFileSettings(
-                        IDESFireEV1.CommunicationType.Plain, (byte)0x00, (byte)0, (byte)0, (byte)0, fileSize_pubKey));
+                      IDESFireEV1.CommunicationType.Plain, (byte)0x00, (byte)0, (byte)0, (byte)0, fileSize_pubKey));
 
-                desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, objKEY_2KTDES);
+                desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
 
                 // writeData command:
                 // 1 byte : file number
@@ -1467,95 +1480,95 @@ public class ReaderActivity extends Activity {
                 desFireEV1.writeData(0, 0, pubKey);
                 publicKey = Utilities.dumpBytes(desFireEV1.readData(0, 0,64));
                 showMessage(
-                        "Pub Key read from the card : "
-                                + Utilities.dumpBytes(desFireEV1.readData(0, 0,
-                                64)), 'd');
+                      "Pub Key read from the card : "
+                            + Utilities.dumpBytes(desFireEV1.readData(0, 0,
+                            64)), 'd');
 
                 //desFireEV1.selectApplication(0);
 
-                /*readAccess - Take values from 0x00 to 0xF.
-                0xE : free access.
-                0xF : read access denied.
-                0x00 to 0x0d -- authentication required with the key number for read access.
+            /*readAccess - Take values from 0x00 to 0xF.
+            0xE : free access.
+            0xF : read access denied.
+            0x00 to 0x0d -- authentication required with the key number for read access.
 
-                writeAccess - Take values from 0x00 to 0xF.
-                0xE : free access.
-                0xF : read access denied.
-                0x00 to 0x0d -- authentication required with the key number for write access.
+            writeAccess - Take values from 0x00 to 0xF.
+            0xE : free access.
+            0xF : read access denied.
+            0x00 to 0x0d -- authentication required with the key number for write access.
 
-                readWriteAccess - Take values from 0x00 to 0xF.
-                0xE : free access.
-                0xF : read access denied.
-                0x00 to 0x0d -- authentication required with the key number for read and write access.
+            readWriteAccess - Take values from 0x00 to 0xF.
+            0xE : free access.
+            0xF : read access denied.
+            0x00 to 0x0d -- authentication required with the key number for read and write access.
 
-                changeAccess - Take values from 0x00 to 0xF.
-                0xE : free access.
-                0xF : read access denied.
-                0x00 to 0x0d -- authentication required with the key number for changing the access rights of the file.*/
+            changeAccess - Take values from 0x00 to 0xF.
+            0xE : free access.
+            0xF : read access denied.
+            0x00 to 0x0d -- authentication required with the key number for changing the access rights of the file.*/
 
-                desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, objKEY_2KTDES);
+                desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
 
                 desFireEV1.createFile(fileNo_2, new DESFireFile.StdDataFileSettings(
-                        IDESFireEV1.CommunicationType.Plain, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, fileSize_hashMsg));
+                      IDESFireEV1.CommunicationType.Plain, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, fileSize_hashMsg));
 
-                desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, objKEY_2KTDES);
+                desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
 
                 desFireEV1.writeData(1, 0, hashMsg);
 
 
-                desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, objKEY_2KTDES);
+                desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
                 challenge = Utilities.dumpBytes(desFireEV1.readData(1, 0,32));
                 showMessage(
-                        "HashMsg Read from the card : "
-                                + Utilities.dumpBytes(desFireEV1.readData(1, 0,
-                                32)), 'd');
+                      "HashMsg Read from the card : "
+                            + Utilities.dumpBytes(desFireEV1.readData(1, 0,
+                            32)), 'd');
                 showMessage(
-                        "Free Memory of the Card : " + desFireEV1.getFreeMemory(),
-                        'd');
+                      "Free Memory of the Card : " + desFireEV1.getFreeMemory(),
+                      'd');
 
-                /* To write to fiules in encrypted mode via AES128 first authenticate with 3DES.
-                   Then select again the application the file belongs to.
-                 */
+            /* To write to fiules in encrypted mode via AES128 first authenticate with 3DES.
+               Then select again the application the file belongs to.
+             */
 
                 desFireEV1.selectApplication(0);
 
-                desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, objKEY_2KTDES);
+                desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
 
-                /* Then change the setting params for the to be created application .
-                   Especially change the type of the application's key to AES128.
-                 */
+            /* Then change the setting params for the to be created application .
+               Especially change the type of the application's key to AES128.
+             */
 
                 EV1ApplicationKeySettings.Builder appsetbuilder_2 = new EV1ApplicationKeySettings.Builder();
 
                 EV1ApplicationKeySettings appsettings_2 = appsetbuilder_2.setAppKeySettingsChangeable(true)
-                        .setAppMasterKeyChangeable(true)
-                        .setAuthenticationRequiredForApplicationManagement(false)
-                        .setAuthenticationRequiredForDirectoryConfigurationData(false)
-                        .setKeyTypeOfApplicationKeys(KeyType.AES128).build();
+                      .setAppMasterKeyChangeable(true)
+                      .setAuthenticationRequiredForApplicationManagement(false)
+                      .setAuthenticationRequiredForDirectoryConfigurationData(false)
+                      .setKeyTypeOfApplicationKeys(KeyType.AES128).build();
 
-                /* Create the new application with the recently defined application settings .
-                   Then select the new application with its app ID.
-                 */
+            /* Create the new application with the recently defined application settings .
+               Then select the new application with its app ID.
+             */
 
                 desFireEV1.createApplication(appId_2, appsettings_2);
                 desFireEV1.selectApplication(appId_2);
 
-                /* Authenticate again.But this time with the  pre-defined AES128 key.
-                   Then create the new encrypted file and define the permissions for the file.
-                 */
+            /* Authenticate again.But this time with the  pre-defined AES128 key.
+               Then create the new encrypted file and define the permissions for the file.
+             */
 
                 desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
                 desFireEV1.createFile(fileNo, new DESFireFile.StdDataFileSettings(
-                        IDESFireEV1.CommunicationType.Plain, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, fileSize_privKey));
+                      IDESFireEV1.CommunicationType.Plain, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, fileSize_privKey));
 
                 desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
                 desFireEV1.writeData(0, 0, privKey);
 
                 signature = Utilities.dumpBytes(desFireEV1.readData(0, 0,64));
                 showMessage(
-                        "Signature Key read from the card : "
-                                + Utilities.dumpBytes(desFireEV1.readData(0, 0,
-                                64)), 'd');
+                      "Signature Key read from the card : "
+                            + Utilities.dumpBytes(desFireEV1.readData(0, 0,
+                            64)), 'd');
 
             }
 
