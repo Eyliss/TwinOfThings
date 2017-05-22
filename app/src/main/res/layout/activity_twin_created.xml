@@ -13,9 +13,10 @@
             android:text="@string/create_twin_success"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.AppCompat.Medium.Inverse"
+            style="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
             android:layout_centerInParent="true"
+            android:textColor="@android:color/white"
             android:gravity="center"
             android:layout_margin="@dimen/section_vertical_margin"/>
     <Button
