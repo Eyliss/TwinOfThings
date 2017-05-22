@@ -1478,7 +1478,7 @@ public class ReaderActivity extends Activity {
                 // 0 to 52 bytes : datas to write
 
                 desFireEV1.writeData(0, 0, pubKey);
-                publicKey = Utilities.dumpBytes(desFireEV1.readData(0, 0,64));
+//                publicKey = Utilities.dumpBytes(desFireEV1.readData(0, 0,64));
                 showMessage(
                       "Pub Key read from the card : "
                             + Utilities.dumpBytes(desFireEV1.readData(0, 0,
@@ -1517,7 +1517,7 @@ public class ReaderActivity extends Activity {
 
 
                 desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
-                challenge = Utilities.dumpBytes(desFireEV1.readData(1, 0,32));
+//                challenge = Utilities.dumpBytes(desFireEV1.readData(1, 0,32));
                 showMessage(
                       "HashMsg Read from the card : "
                             + Utilities.dumpBytes(desFireEV1.readData(1, 0,
@@ -1564,7 +1564,7 @@ public class ReaderActivity extends Activity {
                 desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
                 desFireEV1.writeData(0, 0, privKey);
 
-                signature = Utilities.dumpBytes(desFireEV1.readData(0, 0,64));
+//                signature = Utilities.dumpBytes(desFireEV1.readData(0, 0,64));
                 showMessage(
                       "Signature Key read from the card : "
                             + Utilities.dumpBytes(desFireEV1.readData(0, 0,

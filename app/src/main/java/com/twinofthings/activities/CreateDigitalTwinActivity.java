@@ -75,8 +75,8 @@ public class CreateDigitalTwinActivity extends Activity implements GoogleApiClie
         getActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         publicKey = getIntent().getStringExtra(Constants.INTENT_PUB_KEY);
-        challenge = getIntent().getStringExtra(Constants.INTENT_SIGNATURE);
-        signature = getIntent().getStringExtra(Constants.INTENT_CHALLENGE);
+        signature = getIntent().getStringExtra(Constants.INTENT_SIGNATURE);
+        challenge = getIntent().getStringExtra(Constants.INTENT_CHALLENGE);
 
         mName = (EditText) findViewById(R.id.product_name);
         mDatePicker = (DatePicker) findViewById(R.id.dp_timestamp);

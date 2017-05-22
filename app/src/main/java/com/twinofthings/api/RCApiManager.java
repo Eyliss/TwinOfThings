@@ -4,8 +4,12 @@ import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import retrofit2.Call;
 import retrofit2.Callback;
+
+import static com.twinofthings.activities.ReaderActivity.TAG;
 
 public class RCApiManager {
 
