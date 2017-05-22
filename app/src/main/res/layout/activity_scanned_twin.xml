@@ -3,8 +3,6 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
         android:layout_marginTop="?android:attr/actionBarSize"
         android:background="@drawable/purple_background">
     <LinearLayout
@@ -17,25 +15,29 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.2">
+                android:layout_weight="0.1">
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
                     android:id="@+id/tv_registered_date"
                     android:gravity="center"
+                    android:textColor="@android:color/white"
                     android:text="Registered 01/07"/>
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
                     android:id="@+id/tv_pup_id"
                     android:gravity="center"
+                    android:textColor="@android:color/white"
                     android:text="Pup. ID 123456789"/>
         </LinearLayout>
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.8"
+                android:layout_weight="0.9"
                 android:background="@android:color/white">
             <TextView
                     android:id="@+id/tv_product_name"
@@ -68,8 +70,7 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/very_light_grey"
-                    android:padding="@dimen/section_padding"
+                    android:padding="@dimen/activity_vertical_margin"
                     android:layout_margin="@dimen/separator_height">
                 <TextView
                         android:layout_width="0dp"
@@ -94,27 +95,26 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/very_light_grey"
-                    android:padding="@dimen/section_padding"
+                    android:padding="@dimen/activity_vertical_margin"
                     android:layout_margin="@dimen/separator_height">
                 <TextView
                         android:layout_width="0dp"
                         android:layout_weight="0.4"
                         android:layout_height="wrap_content"
                         android:gravity="left"
-                        android:text="@string/object_id"
+                        android:text="@string/location"
                         style="@style/TextAppearance.AppCompat.Medium"
-                        android:drawableLeft="@drawable/ic_owner"
+                        android:drawableLeft="@drawable/ic_place_black_24dp"
                         android:drawablePadding="@dimen/activity_horizontal_margin"/>
                 <TextView
                         android:layout_width="0dp"
                         android:layout_weight="0.6"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tv_object_id"
+                        android:id="@+id/tv_location"
                         android:gravity="left"
                         android:textColor="@android:color/black"
                         style="@style/TextAppearance.AppCompat.Medium"
-                        android:text="Omega AG"/>
+                        android:text="Malaga"/>
             </LinearLayout>
             <!--<LinearLayout-->
                     <!--android:orientation="horizontal"-->
@@ -173,7 +173,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/very_light_grey"
-                    android:padding="@dimen/section_padding"
+                    android:padding="@dimen/activity_vertical_margin"
                     android:layout_margin="@dimen/separator_height">
                 <TextView
                         android:layout_width="match_parent"
@@ -201,7 +201,7 @@
                     android:text="@string/back_to_start_button_text"
                     android:textColor="@android:color/holo_purple"
                     android:layout_gravity="center"
-                    android:layout_margin="@dimen/separator_height"/>
+                    android:layout_marginTop="@dimen/section_vertical_margin"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

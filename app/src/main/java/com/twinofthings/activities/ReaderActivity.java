@@ -333,7 +333,7 @@ public class ReaderActivity extends Activity {
 
     private boolean mIsPerformingCardOperations = false;
     private CardType mCardType = CardType.UnknownCard;
-    private String process;
+    private String process = Constants.SCAN;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -342,8 +342,8 @@ public class ReaderActivity extends Activity {
 
         setContentView(R.layout.activity_reader);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#330000ff")));
-        getActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.parseColor("#550000ff")));
+        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
 
         boolean readPermission = (ContextCompat.checkSelfPermission(ReaderActivity.this,
@@ -2284,18 +2284,18 @@ public class ReaderActivity extends Activity {
         RCApiManager.validate(publicKey,signature,challenge, new Callback<RCApiResponse>() {
             @Override
             public void onResponse(Call<RCApiResponse> call, Response<RCApiResponse> response) {
-                RCApiResponse kabinettApiResponse = response.body();
-                if(kabinettApiResponse.isSuccessful()){
-                    Gson gson = new Gson();
+//                RCApiResponse kabinettApiResponse = response.body();
+//                if(kabinettApiResponse.isSuccessful()){
+//                    Gson gson = new Gson();
                     Intent intent = new Intent(ReaderActivity.this,ScannedTwinActivity.class);
-                    String transaction = gson.toJson(kabinettApiResponse.getData());
-                    intent.putExtra(Constants.INTENT_TRANSACTION,transaction);
+//                    String transaction = gson.toJson(kabinettApiResponse.getData());
+//                    intent.putExtra(Constants.INTENT_TRANSACTION,transaction);
                     startActivity(intent);
-                    finish();
-                }else{
-                    Toast.makeText(ReaderActivity.this, kabinettApiResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                    ((ScanFragment)mFragment).stopScan();
-                }
+//                    finish();
+//                }else{
+//                    Toast.makeText(ReaderActivity.this, kabinettApiResponse.getMessage(), Toast.LENGTH_SHORT).show();
+//                    ((ScanFragment)mFragment).stopScan();
+//                }
             }
 
             @Override

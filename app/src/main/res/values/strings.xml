@@ -37,8 +37,9 @@
     <string name="color">Color</string>
     <string name="comments">Comments</string>
     <string name="brand">Brand</string>
+    <string name="location">Location</string>
     <string name="product_name">Product Name</string>
-    <string name="timestamp">Time Stamp</string>
+    <string name="timestamp">Timestamp</string>
     <string name="comments_hint">Your comments here</string>
 
 </resources>

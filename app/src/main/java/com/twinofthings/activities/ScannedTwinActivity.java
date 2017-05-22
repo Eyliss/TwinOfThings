@@ -27,9 +27,7 @@ public class ScannedTwinActivity extends Activity {
     private TextView mName;
     private TextView mDescription;
     private TextView mOwner;
-    private TextView mObjectId;
-    private TextView mMaterial;
-    private TextView mColor;
+    private TextView mLocation;
     private TextView mComments;
 
     private Transaction mTransaction;
@@ -41,12 +39,12 @@ public class ScannedTwinActivity extends Activity {
 
         setContentView(R.layout.activity_scanned_twin);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#330000ff")));
-        getActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.parseColor("#550000ff")));
+        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         Gson gson = new Gson();
-        String post = getIntent().getExtras().getString(Constants.INTENT_TRANSACTION);
-        mTransaction = gson.fromJson(post, Transaction.class);
+//        String post = getIntent().getExtras().getString(Constants.INTENT_TRANSACTION);
+//        mTransaction = gson.fromJson(post, Transaction.class);
 
         bindViews();
 
@@ -66,11 +64,8 @@ public class ScannedTwinActivity extends Activity {
         mRegisteredDate = (TextView)findViewById(R.id.tv_registered_date);
         mId = (TextView)findViewById(R.id.tv_pup_id);
         mName = (TextView)findViewById(R.id.tv_product_name);
-//        mDescription = (TextView)findViewById(R.id.tv_product_description);
+        mLocation = (TextView)findViewById(R.id.tv_location);
         mOwner = (TextView)findViewById(R.id.tv_owner);
-        mObjectId = (TextView)findViewById(R.id.tv_object_id);
-//        mMaterial = (TextView)findViewById(R.id.tv_material);
-//        mColor = (TextView)findViewById(R.id.tv_color);
         mComments = (TextView)findViewById(R.id.tv_comments);
     }
 
@@ -79,7 +74,6 @@ public class ScannedTwinActivity extends Activity {
         mRegisteredDate.setText(mTransaction.getMetadata().getTimestamp());
         mId.setText(mTransaction.getId());
         mOwner.setText(mTransaction.getMetadata().getUserId());
-        mObjectId.setText(mTransaction.getId());
         mComments.setText(mTransaction.getMetadata().getDescription());
     }
 
