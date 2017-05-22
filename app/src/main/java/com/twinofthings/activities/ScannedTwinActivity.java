@@ -39,8 +39,8 @@ public class ScannedTwinActivity extends Activity {
 
         setContentView(R.layout.activity_scanned_twin);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        getActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#330000ff")));
+        getActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.parseColor("#550000ff")));
 
         Gson gson = new Gson();
 //        String post = getIntent().getExtras().getString(Constants.INTENT_TRANSACTION);

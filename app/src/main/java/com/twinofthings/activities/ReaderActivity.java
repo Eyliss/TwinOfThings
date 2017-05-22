@@ -2127,14 +2127,18 @@ public class ReaderActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-        libInstance.stopForeGroundDispatch();
+        if(libInstance != null){
+            libInstance.stopForeGroundDispatch();
+        }
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        libInstance.startForeGroundDispatch();
+        if(libInstance != null){
+            libInstance.startForeGroundDispatch();
+        }
     }
 
     /**
