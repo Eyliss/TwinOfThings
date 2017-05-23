@@ -15,10 +15,9 @@
                   android:layout_centerInParent="true">
         <ImageView
                 android:id="@+id/creating_icon"
-                android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
+                android:layout_width="225dp"
+                   android:layout_height="225dp"
                    android:layout_gravity="center_horizontal|center_vertical"
-                   android:layout_margin="@dimen/activity_horizontal_margin"
                    android:src="@drawable/ic_create_twin"/>
         <TextView
                 android:id="@+id/creating_title"
