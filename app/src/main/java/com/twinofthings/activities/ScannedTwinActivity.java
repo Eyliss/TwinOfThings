@@ -44,7 +44,6 @@ public class ScannedTwinActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Gson gson = new Gson();
         String post = getIntent().getExtras().getString(Constants.INTENT_TRANSACTION);
