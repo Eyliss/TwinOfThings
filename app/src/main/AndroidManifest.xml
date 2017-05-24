@@ -26,7 +26,7 @@
             android:description="@string/app_name"
             android:icon="@mipmap/ic_launcher"
             android:logo="@mipmap/ic_launcher"
-            android:theme="@style/AppTheme"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             tools:replace="android:allowBackup">
         <meta-data
                 android:name="io.fabric.ApiKey"

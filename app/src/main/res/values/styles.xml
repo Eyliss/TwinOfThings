@@ -2,20 +2,19 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:actionBarStyle">@style/Widget.ActionBar</item>
-        <item name="actionBarStyle">@style/Widget.ActionBar</item>
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="colorControlActivated">@android:color/white</item>
+        <item name="colorControlHighlight">@android:color/white</item>
     </style>
-    <style name="Widget.ActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
-        <item name="background">@android:color/transparent</item>
-z        <item name="android:background">@android:color/transparent</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="colorControlNormal">@android:color/white</item>
-    </style>
-
-    <style name="Widget.ActionBar.Transparent">
+    <!-- ToolBar -->
+    <style name="ToolBarStyle" parent="Theme.AppCompat">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
         <item name="android:background">@android:color/transparent</item>
-        <item name="android:displayOptions">showHome|showTitle</item>
-
+        <item name="actionMenuTextColor">@android:color/white</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <!-- Support library compatibility -->
+        <item name="windowActionBarOverlay">true</item>
     </style>
 
 </resources>

@@ -24,6 +24,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Display;
 import android.view.MenuItem;
@@ -95,6 +96,7 @@ import com.twinofthings.helpers.KeyInfoProvider;
 import com.twinofthings.helpers.SampleAppKeys;
 import com.twinofthings.models.Transaction;
 import com.twinofthings.utils.Constants;
+import com.twinofthings.utils.Util;
 
 import java.io.File;
 import java.nio.charset.Charset;
@@ -333,15 +335,18 @@ public class ReaderActivity extends AppCompatActivity {
     private boolean mIsPerformingCardOperations = false;
     private CardType mCardType = CardType.UnknownCard;
     private String process = Constants.SCAN;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
 
         setContentView(R.layout.activity_reader);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
+        // Get a support ActionBar corresponding to this toolbar and enable the Up button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         boolean readPermission = (ContextCompat.checkSelfPermission(ReaderActivity.this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
@@ -1477,10 +1482,9 @@ public class ReaderActivity extends AppCompatActivity {
                 // 0 to 52 bytes : datas to write
 
                 desFireEV1.writeData(0, 0, pubKey);
-//                publicKey = Utilities.dumpBytes(desFireEV1.readData(0, 0,64));
+//                publicKey = Util.bytesToHex(desFireEV1.readData(0, 0,64));
                 showMessage(
-                      "Pub Key read from the card : "
-                            + Utilities.dumpBytes(desFireEV1.readData(0, 0,
+                      "Pub Key read from the card : " + Util.bytesToHex(desFireEV1.readData(0, 0,
                             64)), 'd');
 
                 //desFireEV1.selectApplication(0);
@@ -1516,7 +1520,7 @@ public class ReaderActivity extends AppCompatActivity {
 
 
                 desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
-//                challenge = Utilities.dumpBytes(desFireEV1.readData(1, 0,32));
+//                challenge = Util.bytesToHex(desFireEV1.readData(1, 0,32));
                 showMessage(
                       "HashMsg Read from the card : "
                             + Utilities.dumpBytes(desFireEV1.readData(1, 0,
@@ -1563,7 +1567,7 @@ public class ReaderActivity extends AppCompatActivity {
                 desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
                 desFireEV1.writeData(0, 0, privKey);
 
-//                signature = Utilities.dumpBytes(desFireEV1.readData(0, 0,64));
+//                signature = Util.bytesToHex(desFireEV1.readData(0, 0,64));
                 showMessage(
                       "Signature Key read from the card : "
                             + Utilities.dumpBytes(desFireEV1.readData(0, 0,
