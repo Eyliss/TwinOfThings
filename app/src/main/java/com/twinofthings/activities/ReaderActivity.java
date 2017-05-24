@@ -4,9 +4,6 @@ import com.google.gson.Gson;
 
 import android.Manifest;
 import android.annotation.TargetApi;
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,8 +20,10 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Display;
 import android.view.MenuItem;
@@ -117,7 +116,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ReaderActivity extends Activity {
+public class ReaderActivity extends AppCompatActivity {
 
 //    private Tag tag;
 
@@ -338,12 +337,10 @@ public class ReaderActivity extends Activity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+        requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
 
         setContentView(R.layout.activity_reader);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        getActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         boolean readPermission = (ContextCompat.checkSelfPermission(ReaderActivity.this,
@@ -365,14 +362,16 @@ public class ReaderActivity extends Activity {
                 return;
             }
 
-            if(process.equals(Constants.SCAN)){
-                mFragment = ScanFragment.newInstance();
-                getFragmentManager().beginTransaction()
-                      .add(R.id.fragment_container, mFragment,SCAN_FRAGMENT_TAG).commit();
-            }else{
-                mFragment = CreateTwinFragment.newInstance();
-                getFragmentManager().beginTransaction()
-                      .add(R.id.fragment_container, mFragment,CREATE_FRAGMENT_TAG).commit();
+            if(process != null){
+                if(process.equals(Constants.SCAN)){
+                    mFragment = ScanFragment.newInstance();
+                    getSupportFragmentManager().beginTransaction()
+                          .add(R.id.fragment_container, mFragment,SCAN_FRAGMENT_TAG).commit();
+                }else{
+                    mFragment = CreateTwinFragment.newInstance();
+                    getSupportFragmentManager().beginTransaction()
+                          .add(R.id.fragment_container, mFragment,CREATE_FRAGMENT_TAG).commit();
+                }
             }
         }
 
@@ -400,7 +399,7 @@ public class ReaderActivity extends Activity {
     }
 
     public void setActionBarTitle(int title){
-        getActionBar().setTitle(title);
+        getSupportActionBar().setTitle(title);
     }
 
     public void finishProcess(){

@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -15,7 +16,7 @@ import android.widget.Button;
 import com.twinofthings.R;
 import com.twinofthings.utils.Constants;
 
-public class TwinCreatedActivity extends Activity {
+public class TwinCreatedActivity extends AppCompatActivity {
 
     private Button mBackButton;
     private Button mScanTag;
@@ -23,12 +24,10 @@ public class TwinCreatedActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+        requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
 
         setContentView(R.layout.activity_twin_created);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        getActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mBackButton = (Button)findViewById(R.id.back_to_start);
         mBackButton.setOnClickListener(new View.OnClickListener() {

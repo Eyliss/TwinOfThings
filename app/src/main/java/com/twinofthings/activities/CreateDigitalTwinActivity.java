@@ -5,9 +5,10 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
 import android.Manifest;
-import android.app.ActionBar;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
@@ -20,15 +21,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import com.twinofthings.R;
 import com.twinofthings.api.RCApiManager;
@@ -36,7 +36,6 @@ import com.twinofthings.api.RCApiResponse;
 import com.twinofthings.utils.Constants;
 
 import java.io.IOException;
-import java.sql.Time;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -45,7 +44,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CreateDigitalTwinActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class CreateDigitalTwinActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, DatePickerDialog.OnDateSetListener {
 
     public final static int REQUEST_LOCATION_PERMISSION = 0x17;
 
@@ -54,37 +53,50 @@ public class CreateDigitalTwinActivity extends Activity implements GoogleApiClie
     private String signature;
 
     private EditText mName;
-    private DatePicker mDatePicker;
+    private TextView mTimestamp;
+    private DatePickerDialog mDatePickerDialog;
     private EditText mOwner;
     private TextView mLocation;
     private EditText mComments;
     private Button mCreateTwin;
     private Location mLastLocation;
     private String locationName;
+    private int day;
+    private int month;
+    private int year;
 
     private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+        requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
 
         setContentView(R.layout.activity_create_digital_twin);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        getActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         publicKey = getIntent().getStringExtra(Constants.INTENT_PUB_KEY);
         signature = getIntent().getStringExtra(Constants.INTENT_SIGNATURE);
         challenge = getIntent().getStringExtra(Constants.INTENT_CHALLENGE);
 
+        setupGoogleApliClient();
+
+        setupDatePicker();
+
         mName = (EditText) findViewById(R.id.product_name);
-        mDatePicker = (DatePicker) findViewById(R.id.dp_timestamp);
         mOwner = (EditText) findViewById(R.id.owner);
         mLocation = (TextView) findViewById(R.id.twin_location);
         mComments = (EditText) findViewById(R.id.comments);
-        mCreateTwin = (Button) findViewById(R.id.create_digital_twin_button);
+        mTimestamp = (TextView) findViewById(R.id.tv_timestamp);
+        mTimestamp.setText(getStringDate());
+        mTimestamp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDatePickerDialog.show();
+            }
+        });
 
+        mCreateTwin = (Button) findViewById(R.id.create_digital_twin_button);
         mCreateTwin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +107,9 @@ public class CreateDigitalTwinActivity extends Activity implements GoogleApiClie
         locationName = getLocationName();
         mLocation.setText(locationName);
 
+    }
+
+    private void setupGoogleApliClient(){
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
                   .addConnectionCallbacks(this)
@@ -102,6 +117,15 @@ public class CreateDigitalTwinActivity extends Activity implements GoogleApiClie
                   .addApi(LocationServices.API)
                   .build();
         }
+    }
+
+    private void setupDatePicker(){
+        final Calendar c = Calendar.getInstance();
+        year = c.get(Calendar.YEAR);
+        month = c.get(Calendar.MONTH);
+        day = c.get(Calendar.DAY_OF_MONTH);
+
+        mDatePickerDialog = new DatePickerDialog (this,this,year,month,day);
     }
 
     protected void onStart() {
@@ -117,7 +141,7 @@ public class CreateDigitalTwinActivity extends Activity implements GoogleApiClie
 
     private void sendTwinDataToServer() {
         String name = mName.getText().toString();
-        String timestamp = getDateFromDatePicker();
+        String timestamp = getStringDate();
         String owner = mOwner.getText().toString();
         String comments = mComments.getText().toString();
         String location = mLocation.getText().toString();
@@ -142,10 +166,7 @@ public class CreateDigitalTwinActivity extends Activity implements GoogleApiClie
         finish();
     }
 
-    public String getDateFromDatePicker() {
-        int day = mDatePicker.getDayOfMonth();
-        int month = mDatePicker.getMonth();
-        int year = mDatePicker.getYear();
+    public String getStringDate() {
 
         return day + "/" + month + "/" + year;
     }
@@ -224,5 +245,13 @@ public class CreateDigitalTwinActivity extends Activity implements GoogleApiClie
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        this.year = year;
+        this.month = month;
+        this.day = dayOfMonth;
+        mTimestamp.setText(getStringDate());
     }
 }

@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -19,7 +20,7 @@ import com.twinofthings.R;
 import com.twinofthings.models.Transaction;
 import com.twinofthings.utils.Constants;
 
-public class ScannedTwinActivity extends Activity {
+public class ScannedTwinActivity extends AppCompatActivity {
 
     private Button mBackButton;
     private TextView mRegisteredDate;
@@ -35,12 +36,10 @@ public class ScannedTwinActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+        requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
 
         setContentView(R.layout.activity_scanned_twin);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        getActionBar().setStackedBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Gson gson = new Gson();
         String post = getIntent().getExtras().getString(Constants.INTENT_TRANSACTION);

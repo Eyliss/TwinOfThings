@@ -3,7 +3,6 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?android:attr/actionBarSize"
         android:background="@drawable/purple_background">
     <LinearLayout
             android:layout_width="match_parent"
@@ -67,7 +66,8 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/activity_vertical_margin"
+                    android:padding="10dp"
+                    android:background="@color/very_light_grey"
                     android:layout_margin="@dimen/separator_height">
                 <TextView
                         android:layout_width="0dp"
@@ -77,7 +77,7 @@
                         android:text="@string/owner"
                         style="@style/TextAppearance.AppCompat.Medium"
                         android:drawableLeft="@drawable/ic_owner"
-                        android:drawablePadding="@dimen/activity_horizontal_margin"/>
+                        android:drawablePadding="10dp"/>
                 <TextView
                         android:layout_width="0dp"
                         android:layout_weight="0.6"
@@ -91,7 +91,8 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/activity_vertical_margin"
+                    android:padding="10dp"
+                    android:background="@color/very_light_grey"
                     android:layout_margin="@dimen/separator_height">
                 <TextView
                         android:layout_width="0dp"
@@ -100,8 +101,8 @@
                         android:gravity="left"
                         android:text="@string/location"
                         style="@style/TextAppearance.AppCompat.Medium"
-                        android:drawableLeft="@drawable/ic_place_black_24dp"
-                        android:drawablePadding="@dimen/activity_horizontal_margin"/>
+                        android:drawableLeft="@drawable/ic_my_location"
+                        android:drawablePadding="7dp"/>
                 <TextView
                         android:layout_width="0dp"
                         android:layout_weight="0.6"
@@ -176,7 +177,7 @@
                         android:gravity="start"
                         android:text="@string/comments"
                         style="@style/TextAppearance.AppCompat.Medium"
-                        android:layout_marginStart="@dimen/activity_horizontal_margin"/>
+                        android:layout_marginStart="25dp"/>
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -184,7 +185,7 @@
                         android:gravity="start"
                         android:textColor="@android:color/black"
                         style="@style/TextAppearance.AppCompat.Medium"
-                        android:layout_marginStart="@dimen/activity_horizontal_margin"/>
+                        android:layout_marginStart="25dp"/>
             </LinearLayout>
             <Button
                     android:id="@+id/back_to_start"

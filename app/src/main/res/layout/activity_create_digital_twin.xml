@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?android:attr/actionBarSize"
-        android:background="@drawable/purple_background">
+        android:background="@drawable/purple_background"
+        >
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -17,8 +17,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.9"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
                 android:background="@android:color/white" android:weightSum="1">
             <!--<EditText-->
                     <!--android:layout_width="match_parent"-->
@@ -39,15 +37,15 @@
                     style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_margin="@dimen/separator_height"
                     android:drawableLeft="@drawable/ic_product_name"
-                    android:drawablePadding="@dimen/activity_horizontal_margin"
+                    android:drawablePadding="10dp"
                     android:maxLines="1"
                     android:hint="@string/product_name"/>
             <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/separator_height"
-            >
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp">
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -55,14 +53,13 @@
                         android:text="@string/timestamp"
                         style="@style/TextAppearance.AppCompat.Medium"
                         android:drawableLeft="@drawable/ic_timestamp"
-                        android:drawablePadding="@dimen/activity_horizontal_margin"/>
-                <DatePicker
-                        android:layout_width="wrap_content"
+                        android:drawablePadding="10dp"/>
+                <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/dp_timestamp"
-                        android:datePickerMode="spinner"
-                        android:calendarViewShown="false"
-                android:background="@android:color/transparent"/>
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:padding="@dimen/activity_horizontal_margin"
+                        android:id="@+id/tv_timestamp" android:layout_marginLeft="10dp"/>
             </LinearLayout>
             <EditText
                     android:layout_width="match_parent"
@@ -73,7 +70,7 @@
                     style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_margin="@dimen/separator_height"
                     android:drawableLeft="@drawable/ic_owner"
-                    android:drawablePadding="@dimen/activity_horizontal_margin"
+                    android:drawablePadding="10dp"
                     android:hint="@string/owner"/>
             <!--<EditText-->
                     <!--android:layout_width="match_parent"-->
@@ -93,9 +90,8 @@
                     android:gravity="left"
                     android:maxLines="1"
                     style="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_margin="@dimen/separator_height"
-                    android:drawableLeft="@drawable/ic_place_black_24dp"
-                    android:drawablePadding="@dimen/activity_horizontal_margin"/>
+                    android:drawableLeft="@drawable/ic_my_location"
+                    android:drawablePadding="8dp"/>
             <!--<EditText-->
                     <!--android:layout_width="match_parent"-->
                     <!--android:layout_height="wrap_content"-->
@@ -146,4 +142,4 @@
                     android:layout_marginTop="@dimen/section_vertical_margin"/>
         </LinearLayout>
     </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+</ScrollView>
