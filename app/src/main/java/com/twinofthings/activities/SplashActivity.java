@@ -10,11 +10,6 @@ import android.os.Handler;
 
 import io.fabric.sdk.android.Fabric;
 
-/**
- * @author nxp70496
- *
- * SplashActivity.
- */
 public class SplashActivity extends Activity {
 	
 	/** Splash screen timer.*/

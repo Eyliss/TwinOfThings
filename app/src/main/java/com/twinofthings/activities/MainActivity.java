@@ -19,6 +19,10 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        bindViews();
+    }
+
+    private void bindViews(){
         mCreateTwinButton = (Button)findViewById(R.id.create_twin_button);
         mCreateTwinButton.setOnClickListener(new View.OnClickListener() {
             @Override

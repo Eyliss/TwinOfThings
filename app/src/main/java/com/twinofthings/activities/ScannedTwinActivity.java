@@ -27,7 +27,6 @@ public class ScannedTwinActivity extends AppCompatActivity {
     private TextView mRegisteredDate;
     private TextView mId;
     private TextView mName;
-    private TextView mDescription;
     private TextView mOwner;
     private TextView mLocation;
     private TextView mComments;
@@ -63,7 +62,6 @@ public class ScannedTwinActivity extends AppCompatActivity {
                 ScannedTwinActivity.this.finish();
             }
         });
-
         mRegisteredDate = (TextView)findViewById(R.id.tv_registered_date);
         mId = (TextView)findViewById(R.id.tv_pup_id);
         mName = (TextView)findViewById(R.id.tv_product_name);
@@ -74,8 +72,8 @@ public class ScannedTwinActivity extends AppCompatActivity {
 
     private void setProductInfo(){
 
-        mId.setText("Pup. ID: "+mTransaction.getId());
-        mRegisteredDate.setText("Registered "+mTransaction.getMetadata().getTimestamp());
+        mId.setText(getString(R.string.pup_id,mTransaction.getId()));
+        mRegisteredDate.setText(getString(R.string.registered,mTransaction.getMetadata().getTimestamp()));
         mName.setText(mTransaction.getMetadata().getName());
         mOwner.setText(mTransaction.getMetadata().getUserId());
         mComments.setText(mTransaction.getMetadata().getDescription());

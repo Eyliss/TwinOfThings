@@ -23,6 +23,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -87,6 +88,34 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
 
         setupDatePicker();
 
+        bindViews();
+
+        setDeviceCurrentLocation();
+
+    }
+
+    //Instantiate the google api client and activate location services API
+    private void setupGoogleApliClient(){
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                  .addConnectionCallbacks(this)
+                  .addOnConnectionFailedListener(this)
+                  .addApi(LocationServices.API)
+                  .build();
+        }
+    }
+
+    //Creates a date picker for get timestamp which is activated when the text field is clicked
+    private void setupDatePicker(){
+        final Calendar c = Calendar.getInstance();
+        year = c.get(Calendar.YEAR);
+        month = c.get(Calendar.MONTH);
+        day = c.get(Calendar.DAY_OF_MONTH);
+
+        mDatePickerDialog = new DatePickerDialog (this,this,year,month,day);
+    }
+
+    private void bindViews(){
         mName = (EditText) findViewById(R.id.product_name);
         mOwner = (EditText) findViewById(R.id.owner);
         mLocation = (TextView) findViewById(R.id.twin_location);
@@ -107,29 +136,11 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
                 sendTwinDataToServer();
             }
         });
+    }
 
+    private void setDeviceCurrentLocation(){
         locationName = getLocationName();
         mLocation.setText(locationName);
-
-    }
-
-    private void setupGoogleApliClient(){
-        if (mGoogleApiClient == null) {
-            mGoogleApiClient = new GoogleApiClient.Builder(this)
-                  .addConnectionCallbacks(this)
-                  .addOnConnectionFailedListener(this)
-                  .addApi(LocationServices.API)
-                  .build();
-        }
-    }
-
-    private void setupDatePicker(){
-        final Calendar c = Calendar.getInstance();
-        year = c.get(Calendar.YEAR);
-        month = c.get(Calendar.MONTH);
-        day = c.get(Calendar.DAY_OF_MONTH);
-
-        mDatePickerDialog = new DatePickerDialog (this,this,year,month,day);
     }
 
     protected void onStart() {
@@ -144,6 +155,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
 
 
     private void sendTwinDataToServer() {
+
         String name = mName.getText().toString();
         String timestamp = getStringDate();
         String owner = mOwner.getText().toString();
@@ -229,6 +241,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
 
     }
 
+    //Use geocoding to get the location name from its latitude and longitude
     private String getLocationName(){
         String city = "";
         if(mLastLocation != null){
@@ -237,6 +250,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
             try {
                 addresses = geocoder.getFromLocation(mLastLocation.getLatitude(), mLastLocation.getLongitude(), 1);
                 if (!addresses.isEmpty()) {
+                    Log.d("Create Digital Twin",addresses.toString());
                     city = addresses.get(0).getLocality();
                 }
             } catch (IOException e) {

@@ -1,13 +1,13 @@
 package com.twinofthings.utils;
 
 /**
- * Created by Eyliss on 5/24/17.
+ * Class where it contains all common functions for the project
  */
-
 public class Util {
 
     final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
 
+    //Converts a bytes array into a hexadecimal string
     public static String bytesToHex(byte[] bytes) {
         char[] hexChars = new char[bytes.length * 2];
         for ( int j = 0; j < bytes.length; j++ ) {

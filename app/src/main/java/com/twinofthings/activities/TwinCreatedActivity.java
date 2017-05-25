@@ -33,10 +33,15 @@ public class TwinCreatedActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        bindViews();
+    }
+
+    private void bindViews(){
         mBackButton = (Button)findViewById(R.id.back_to_start);
         mBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Close the screen and return to main screen
                 TwinCreatedActivity.this.finish();
             }
         });
@@ -45,12 +50,16 @@ public class TwinCreatedActivity extends AppCompatActivity {
         mScanTag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TwinCreatedActivity.this,ReaderActivity.class);
-                intent.putExtra(Constants.INTENT_PROCESS_TYPE,Constants.SCAN);
-                startActivity(intent);
-                finish();
+                startScanProcess();
             }
         });
+    }
+
+    private void startScanProcess(){
+        Intent intent = new Intent(TwinCreatedActivity.this,ReaderActivity.class);
+        intent.putExtra(Constants.INTENT_PROCESS_TYPE,Constants.SCAN);
+        startActivity(intent);
+        finish();
     }
 
     @Override

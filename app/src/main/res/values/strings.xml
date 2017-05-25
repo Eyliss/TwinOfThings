@@ -41,5 +41,8 @@
     <string name="product_name">Product Name</string>
     <string name="timestamp">Timestamp</string>
     <string name="comments_hint">Your comments here</string>
+    <string name="pup_id">Pup. ID: %1$s</string>
+    <string name="registered">Registered %1$s</string>
+
 
 </resources>

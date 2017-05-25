@@ -44,8 +44,12 @@ public class CreateTwinFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_create_twin, container, false);
+        bindViews(rootView);
 
-        //Bind views
+        return rootView;
+    }
+
+    private void bindViews(View rootView){
         mCreateTwinIcon = (ImageView) rootView.findViewById(R.id.creating_icon);
         mCreateTwinTitle = (TextView) rootView.findViewById(R.id.creating_title);
         mCreateTwinDescription = (TextView) rootView.findViewById(R.id.creating_description);
@@ -66,15 +70,10 @@ public class CreateTwinFragment extends Fragment {
         });
 
         ((ReaderActivity) getActivity()).setActionBarTitle(R.string.create_twin_activity_title);
-
-        return rootView;
     }
 
-    public void startCreation(){
-        modifyUI();
-    }
-
-    private void modifyUI(){
+    //If scanning has been success, modify the interface to notify to the user
+    public void adaptUItoResult(){
         mCreateTwinIcon.setImageResource(R.drawable.ic_scan_success);
         mCreateTwinTitle.setText(R.string.scanning_successful);
         mCreateTwinTitle.setTextColor(getResources().getColor(android.R.color.holo_blue_bright));

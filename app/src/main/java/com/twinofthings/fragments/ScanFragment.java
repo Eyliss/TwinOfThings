@@ -43,7 +43,12 @@ public class ScanFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_scan, container, false);
 
-        //Bind views
+        bindViews(rootView);
+
+        return rootView;
+    }
+
+    private void bindViews(View rootView){
         mCloseButton = (ImageButton)rootView.findViewById(R.id.close_button);
         mScanIcon = (ImageView) rootView.findViewById(R.id.scanning_icon);
         mScanTitle = (TextView) rootView.findViewById(R.id.scanning_title);
@@ -58,10 +63,9 @@ public class ScanFragment extends Fragment {
         });
 
         ((ReaderActivity) getActivity()).setActionBarTitle(R.string.scan_activity_title);
-
-        return rootView;
     }
 
+    //Configure UI for scanning
     public void startScan(){
         mScanIcon.setImageResource(R.drawable.ic_scan_success);
         mScanTitle.setText(R.string.scanning_successful);
@@ -71,6 +75,7 @@ public class ScanFragment extends Fragment {
         mProgressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(android.R.color.holo_blue_bright), PorterDuff.Mode.MULTIPLY);
     }
 
+    //Configure UI when scan stops
     public void stopScan(){
         mScanIcon.setImageResource(R.drawable.ic_scan);
         mScanTitle.setText(R.string.scanning_tag_title);

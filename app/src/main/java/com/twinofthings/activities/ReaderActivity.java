@@ -8,9 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.graphics.Point;
-import android.graphics.drawable.ColorDrawable;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
@@ -25,11 +22,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Display;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -94,7 +87,6 @@ import com.twinofthings.fragments.CreateTwinFragment;
 import com.twinofthings.fragments.ScanFragment;
 import com.twinofthings.helpers.KeyInfoProvider;
 import com.twinofthings.helpers.SampleAppKeys;
-import com.twinofthings.models.Transaction;
 import com.twinofthings.utils.Constants;
 import com.twinofthings.utils.Util;
 
@@ -119,8 +111,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ReaderActivity extends AppCompatActivity {
-
-//    private Tag tag;
 
     public static final String TAG = ReaderActivity.class.getSimpleName();
     private static final String SCAN_FRAGMENT_TAG = "scan_fragment_tag";
@@ -2278,12 +2268,13 @@ public class ReaderActivity extends AppCompatActivity {
 
     }
 
+    //Start validation o creation depends of the proccess selected by the user
     private void startProcess(){
         if(mFragment instanceof ScanFragment){
             ((ScanFragment)mFragment).startScan();
             validateTransaction();
         }else{
-            ((CreateTwinFragment)mFragment).startCreation();
+            ((CreateTwinFragment)mFragment).adaptUItoResult();
         }
     }
 

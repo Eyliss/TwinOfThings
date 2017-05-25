@@ -1,9 +1,8 @@
 package com.twinofthings.utils;
 
-import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Eyliss on 7/6/16.
+ * Class where it contains all constants strings
  */
 public class Constants {
     public final static String JSON_ID = "tx_id";
