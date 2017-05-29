@@ -38,6 +38,12 @@ public interface RCApiService {
           @Body JsonObject jsonObject
     );
 
+    //Get credentials
+    @POST("get-credentials")
+    Call<RCApiResponse> getCredentials(
+          @Body JsonObject jsonObject
+    );
+
     //Send signature
     @POST("sign")
     Call<RCApiResponse> sendSignature(

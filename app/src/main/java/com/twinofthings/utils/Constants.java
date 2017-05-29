@@ -22,9 +22,11 @@ public class Constants {
 
     public static String INTENT_PROCESS_TYPE = "process_type";
     public static String INTENT_TRANSACTION = "transaction";
-    public final static String INTENT_PUB_KEY = "pub_key";
-    public final static String INTENT_CHALLENGE = "challenge";
-    public final static String INTENT_SIGNATURE = "signature";
+    public static  String INTENT_CREDENTIALS = "credentials";
+
+    public final static String PUB_KEY = "public_key";
+    public final static String CHALLENGE = "challenge";
+    public final static String SIGNATURE = "signature";
 
     public static String SCAN = "scan";
     public static String CREATE_TWIN = "create_twin";

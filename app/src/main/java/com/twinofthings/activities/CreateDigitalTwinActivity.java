@@ -8,14 +8,10 @@ import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -26,7 +22,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -80,9 +75,9 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        publicKey = getIntent().getStringExtra(Constants.INTENT_PUB_KEY);
-        signature = getIntent().getStringExtra(Constants.INTENT_SIGNATURE);
-        challenge = getIntent().getStringExtra(Constants.INTENT_CHALLENGE);
+        publicKey = getIntent().getStringExtra(Constants.PUB_KEY);
+        signature = getIntent().getStringExtra(Constants.SIGNATURE);
+        challenge = getIntent().getStringExtra(Constants.CHALLENGE);
 
         setupGoogleApliClient();
 

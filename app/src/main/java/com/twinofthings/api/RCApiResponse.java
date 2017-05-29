@@ -1,5 +1,7 @@
 package com.twinofthings.api;
 
+import com.google.gson.Gson;
+
 public class RCApiResponse<T> {
 
     private String status;
@@ -15,8 +17,17 @@ public class RCApiResponse<T> {
         return data;
     }
 
+    public String getStringData(){
+        Gson gson = new Gson();
+        return gson.toJson(data);
+    }
+
     public String getMessage(){
         return message;
+    }
+
+    public String getError(){
+        return error;
     }
 
     public boolean isSuccessful(){

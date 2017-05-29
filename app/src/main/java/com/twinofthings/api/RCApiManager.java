@@ -26,6 +26,12 @@ public class RCApiManager {
         call.enqueue(callback);
     }
 
+    public static void getCredentials(Callback<RCApiResponse> callback){
+        JsonObject object = new JsonObject();
+        Call<RCApiResponse> call = RCService.getCredentials(object);
+        call.enqueue(callback);
+    }
+
     public static void sendHashMessage(String message, Callback<RCApiResponse> callback){
         JsonObject object = new JsonObject();
         object.addProperty("s",message);

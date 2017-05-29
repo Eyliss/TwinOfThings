@@ -338,6 +338,10 @@ public class ReaderActivity extends AppCompatActivity {
         // Get a support ActionBar corresponding to this toolbar and enable the Up button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        publicKey = getIntent().getStringExtra(Constants.PUB_KEY);
+        signature = getIntent().getStringExtra(Constants.SIGNATURE);
+        challenge = getIntent().getStringExtra(Constants.CHALLENGE);
+
         boolean readPermission = (ContextCompat.checkSelfPermission(ReaderActivity.this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
 
@@ -1405,24 +1409,24 @@ public class ReaderActivity extends AppCompatActivity {
         int fileSize_privKey = 64;
 
 
-        byte[] pubKey = new byte[]{(byte) 0xD7, (byte) 0x3B, (byte) 0x76, (byte) 0x3B, (byte) 0x16, (byte) 0x3E, (byte) 0x82, (byte) 0x5A, (byte) 0xA0, (byte) 0xD2,
-              (byte) 0xCC, (byte) 0x39, (byte) 0x48, (byte) 0x8D, (byte) 0x42, (byte) 0x69, (byte) 0xA2, (byte) 0x13, (byte) 0x52, (byte) 0x7A,
-              (byte) 0x5B, (byte) 0x4D, (byte) 0xB1, (byte) 0xE6, (byte) 0xBC, (byte) 0x1E, (byte) 0xD1, (byte) 0x24, (byte) 0xE0, (byte) 0x15,
-              (byte) 0x81, (byte) 0x1B, (byte) 0x06, (byte) 0x84, (byte) 0x22, (byte) 0xC8, (byte) 0x6B, (byte) 0x59, (byte) 0x3E, (byte) 0x89,
-              (byte) 0xD3, (byte) 0x6C, (byte) 0x25, (byte) 0xB5, (byte) 0xC3, (byte) 0x4B, (byte) 0xAC, (byte) 0xAA, (byte) 0x94, (byte) 0x61,
-              (byte) 0x14, (byte) 0xAC, (byte) 0x4D, (byte) 0x69, (byte) 0xCB, (byte) 0xC8, (byte) 0x1E, (byte) 0x67, (byte) 0xA4, (byte) 0xF8,
-              (byte) 0xD6, (byte) 0xC0, (byte) 0x5C, (byte) 0xCE};
-        byte[] hashMsg = new byte[]{(byte) 0x65, (byte) 0xB9, (byte) 0x69, (byte) 0xEB, (byte) 0xF9, (byte) 0x28, (byte) 0xFC, (byte) 0xF2, (byte) 0x75, (byte) 0x36,
-              (byte) 0xAF, (byte) 0xA2, (byte) 0x8D, (byte) 0x79, (byte) 0x74, (byte) 0x3D, (byte) 0x4B, (byte) 0x99, (byte) 0xA3, (byte) 0x0A,
-              (byte) 0xF4, (byte) 0xB2, (byte) 0xF3, (byte) 0x3A, (byte) 0x01, (byte) 0x90, (byte) 0x19, (byte) 0xCA, (byte) 0xB3, (byte) 0x44,
-              (byte) 0x70, (byte) 0x5A};
-        byte[] privKey = new byte[]{(byte) 0x2D, (byte) 0x45, (byte) 0x2F, (byte) 0x6E, (byte) 0x5F, (byte) 0x36, (byte) 0x23, (byte) 0x8D, (byte) 0x32, (byte) 0xBF,
-              (byte) 0xA7, (byte) 0xEA, (byte) 0x7C, (byte) 0x67, (byte) 0xE7, (byte) 0x1C, (byte) 0xBE, (byte) 0xCA, (byte) 0x2D, (byte) 0x8F,
-              (byte) 0xD1, (byte) 0xC9, (byte) 0x45, (byte) 0x3A, (byte) 0x5C, (byte) 0x23, (byte) 0x0B, (byte) 0x87, (byte) 0x7E, (byte) 0x45,
-              (byte) 0xC1, (byte) 0x31, (byte) 0x3F, (byte) 0x20, (byte) 0x26, (byte) 0x68, (byte) 0xBA, (byte) 0x34, (byte) 0x7C, (byte) 0x04,
-              (byte) 0xE5, (byte) 0xDD, (byte) 0x30, (byte) 0x6C, (byte) 0xE0, (byte) 0x55, (byte) 0x94, (byte) 0xE8, (byte) 0x82, (byte) 0xCB,
-              (byte) 0xA1, (byte) 0xC8, (byte) 0x48, (byte) 0xB6, (byte) 0x42, (byte) 0xC7, (byte) 0x55, (byte) 0x6C, (byte) 0xFD, (byte) 0x46,
-              (byte) 0xF1, (byte) 0x08, (byte) 0x09, (byte) 0x52};
+//        byte[] pubKey = new byte[]{(byte) 0xD7, (byte) 0x3B, (byte) 0x76, (byte) 0x3B, (byte) 0x16, (byte) 0x3E, (byte) 0x82, (byte) 0x5A, (byte) 0xA0, (byte) 0xD2,
+//              (byte) 0xCC, (byte) 0x39, (byte) 0x48, (byte) 0x8D, (byte) 0x42, (byte) 0x69, (byte) 0xA2, (byte) 0x13, (byte) 0x52, (byte) 0x7A,
+//              (byte) 0x5B, (byte) 0x4D, (byte) 0xB1, (byte) 0xE6, (byte) 0xBC, (byte) 0x1E, (byte) 0xD1, (byte) 0x24, (byte) 0xE0, (byte) 0x15,
+//              (byte) 0x81, (byte) 0x1B, (byte) 0x06, (byte) 0x84, (byte) 0x22, (byte) 0xC8, (byte) 0x6B, (byte) 0x59, (byte) 0x3E, (byte) 0x89,
+//              (byte) 0xD3, (byte) 0x6C, (byte) 0x25, (byte) 0xB5, (byte) 0xC3, (byte) 0x4B, (byte) 0xAC, (byte) 0xAA, (byte) 0x94, (byte) 0x61,
+//              (byte) 0x14, (byte) 0xAC, (byte) 0x4D, (byte) 0x69, (byte) 0xCB, (byte) 0xC8, (byte) 0x1E, (byte) 0x67, (byte) 0xA4, (byte) 0xF8,
+//              (byte) 0xD6, (byte) 0xC0, (byte) 0x5C, (byte) 0xCE};
+//        byte[] hashMsg = new byte[]{(byte) 0x65, (byte) 0xB9, (byte) 0x69, (byte) 0xEB, (byte) 0xF9, (byte) 0x28, (byte) 0xFC, (byte) 0xF2, (byte) 0x75, (byte) 0x36,
+//              (byte) 0xAF, (byte) 0xA2, (byte) 0x8D, (byte) 0x79, (byte) 0x74, (byte) 0x3D, (byte) 0x4B, (byte) 0x99, (byte) 0xA3, (byte) 0x0A,
+//              (byte) 0xF4, (byte) 0xB2, (byte) 0xF3, (byte) 0x3A, (byte) 0x01, (byte) 0x90, (byte) 0x19, (byte) 0xCA, (byte) 0xB3, (byte) 0x44,
+//              (byte) 0x70, (byte) 0x5A};
+//        byte[] privKey = new byte[]{(byte) 0x2D, (byte) 0x45, (byte) 0x2F, (byte) 0x6E, (byte) 0x5F, (byte) 0x36, (byte) 0x23, (byte) 0x8D, (byte) 0x32, (byte) 0xBF,
+//              (byte) 0xA7, (byte) 0xEA, (byte) 0x7C, (byte) 0x67, (byte) 0xE7, (byte) 0x1C, (byte) 0xBE, (byte) 0xCA, (byte) 0x2D, (byte) 0x8F,
+//              (byte) 0xD1, (byte) 0xC9, (byte) 0x45, (byte) 0x3A, (byte) 0x5C, (byte) 0x23, (byte) 0x0B, (byte) 0x87, (byte) 0x7E, (byte) 0x45,
+//              (byte) 0xC1, (byte) 0x31, (byte) 0x3F, (byte) 0x20, (byte) 0x26, (byte) 0x68, (byte) 0xBA, (byte) 0x34, (byte) 0x7C, (byte) 0x04,
+//              (byte) 0xE5, (byte) 0xDD, (byte) 0x30, (byte) 0x6C, (byte) 0xE0, (byte) 0x55, (byte) 0x94, (byte) 0xE8, (byte) 0x82, (byte) 0xCB,
+//              (byte) 0xA1, (byte) 0xC8, (byte) 0x48, (byte) 0xB6, (byte) 0x42, (byte) 0xC7, (byte) 0x55, (byte) 0x6C, (byte) 0xFD, (byte) 0x46,
+//              (byte) 0xF1, (byte) 0x08, (byte) 0x09, (byte) 0x52};
 
         int timeOut = 1000;
         int fileNo = 0;
@@ -1471,8 +1475,8 @@ public class ReaderActivity extends AppCompatActivity {
                 // 3 bytes : length
                 // 0 to 52 bytes : datas to write
 
-                desFireEV1.writeData(0, 0, pubKey);
-//                publicKey = Util.bytesToHex(desFireEV1.readData(0, 0,64));
+                desFireEV1.writeData(0, 0, Util.hexStringToByteArray(publicKey));
+                publicKey = Util.bytesToHex(desFireEV1.readData(0, 0,64));
                 showMessage(
                       "Pub Key read from the card : " + Util.bytesToHex(desFireEV1.readData(0, 0,
                             64)), 'd');
@@ -1506,11 +1510,11 @@ public class ReaderActivity extends AppCompatActivity {
 
                 desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
 
-                desFireEV1.writeData(1, 0, hashMsg);
+                desFireEV1.writeData(1, 0, Util.hexStringToByteArray(challenge));
 
 
                 desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
-//                challenge = Util.bytesToHex(desFireEV1.readData(1, 0,32));
+                challenge = Util.bytesToHex(desFireEV1.readData(1, 0,32));
                 showMessage(
                       "HashMsg Read from the card : "
                             + Utilities.dumpBytes(desFireEV1.readData(1, 0,
@@ -1555,9 +1559,9 @@ public class ReaderActivity extends AppCompatActivity {
                       IDESFireEV1.CommunicationType.Plain, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, fileSize_privKey));
 
                 desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
-                desFireEV1.writeData(0, 0, privKey);
+                desFireEV1.writeData(0, 0, Util.hexStringToByteArray(signature));
 
-//                signature = Util.bytesToHex(desFireEV1.readData(0, 0,64));
+                signature = Util.bytesToHex(desFireEV1.readData(0, 0,64));
                 showMessage(
                       "Signature Key read from the card : "
                             + Utilities.dumpBytes(desFireEV1.readData(0, 0,
@@ -2291,7 +2295,7 @@ public class ReaderActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }else{
-                    Toast.makeText(ReaderActivity.this, apiResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ReaderActivity.this, apiResponse.getError(), Toast.LENGTH_SHORT).show();
                     ((ScanFragment)mFragment).stopScan();
                 }
             }
@@ -2305,9 +2309,9 @@ public class ReaderActivity extends AppCompatActivity {
 
     public void goToCreateDigitalTwin(){
         Intent intent = new Intent(ReaderActivity.this,CreateDigitalTwinActivity.class);
-        intent.putExtra(Constants.INTENT_PUB_KEY,publicKey);
-        intent.putExtra(Constants.INTENT_SIGNATURE,signature);
-        intent.putExtra(Constants.INTENT_CHALLENGE,challenge);
+        intent.putExtra(Constants.PUB_KEY,publicKey);
+        intent.putExtra(Constants.SIGNATURE,signature);
+        intent.putExtra(Constants.CHALLENGE,challenge);
         startActivity(intent);
         finish();
     }
