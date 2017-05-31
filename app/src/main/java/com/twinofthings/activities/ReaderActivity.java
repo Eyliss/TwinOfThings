@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -12,6 +13,7 @@ import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.MifareClassic;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -20,6 +22,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -2294,6 +2297,7 @@ public class ReaderActivity extends AppCompatActivity {
             public void onResponse(Call<RCApiResponse> call, Response<RCApiResponse> response) {
                 RCApiResponse apiResponse = response.body();
                 if(apiResponse.isSuccessful()){
+                    
                     Gson gson = new Gson();
                     Intent intent = new Intent(ReaderActivity.this,ScannedTwinActivity.class);
                     String transaction = gson.toJson(apiResponse.getData());
@@ -2301,9 +2305,11 @@ public class ReaderActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }else{
-                    Toast.makeText(ReaderActivity.this, apiResponse.getError(), Toast.LENGTH_SHORT).show();
+
                     ((ScanFragment)mFragment).stopScan();
-                    showCreateDialog();
+                    if(apiResponse.notFoundError()){
+                        showCreateDialog();
+                    }
                 }
             }
 
@@ -2323,5 +2329,25 @@ public class ReaderActivity extends AppCompatActivity {
         finish();
     }
 
-    private void showCreateDialog(){}
+    private void showCreateDialog(){
+        AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(this);
+        }
+        builder.setTitle(R.string.dialog_title)
+              .setMessage(R.string.dialog_text)
+              .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                  public void onClick(DialogInterface dialog, int which) {
+                      goToCreateDigitalTwin();
+                  }
+              })
+              .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                  public void onClick(DialogInterface dialog, int which) {
+                      finish();
+                  }
+              })
+              .show();
+    }
 }

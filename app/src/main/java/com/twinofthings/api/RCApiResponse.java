@@ -2,6 +2,8 @@ package com.twinofthings.api;
 
 import com.google.gson.Gson;
 
+import com.twinofthings.R;
+
 public class RCApiResponse<T> {
 
     private String status;
@@ -28,6 +30,10 @@ public class RCApiResponse<T> {
 
     public String getError(){
         return error;
+    }
+
+    public boolean notFoundError(){
+        return error.equals(R.string.transaction_error);
     }
 
     public boolean isSuccessful(){

@@ -43,6 +43,10 @@
     <string name="comments_hint">Your comments here</string>
     <string name="pup_id">Pup. ID: %1$s</string>
     <string name="registered">Registered %1$s</string>
+    <string name="transaction_error">transaction not found</string>
+
+    <string name="dialog_title">Transaction not found</string>
+    <string name="dialog_text">Do you want to create it now?</string>
 
 
 </resources>
