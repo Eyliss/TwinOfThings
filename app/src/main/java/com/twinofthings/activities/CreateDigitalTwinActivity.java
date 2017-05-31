@@ -173,6 +173,9 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
 
     private void onTwinCreatedSuccessfully(){
         Intent intent = new Intent(CreateDigitalTwinActivity.this,TwinCreatedActivity.class);
+        intent.putExtra(Constants.PUB_KEY,publicKey);
+        intent.putExtra(Constants.SIGNATURE,signature);
+        intent.putExtra(Constants.CHALLENGE,challenge);
         startActivity(intent);
         finish();
     }

@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
         mScanTagButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getCredentials(Constants.SCAN);
+                goToReaderScreen(Constants.SCAN,null);
             }
         });
     }
@@ -73,11 +73,11 @@ public class MainActivity extends Activity {
         });
     }
 
-    private void goToReaderScreen(String proccess,Credentials credentials){
+    private void goToReaderScreen(String proccess, Credentials credentials){
         Intent intent = new Intent(getApplicationContext(), ReaderActivity.class);
-        intent.putExtra(Constants.PUB_KEY,credentials.getPublicKey());
-        intent.putExtra(Constants.SIGNATURE,credentials.getSignature());
-        intent.putExtra(Constants.CHALLENGE,credentials.getChallenge());
+        intent.putExtra(Constants.PUB_KEY, credentials != null ? credentials.getPublicKey() : "");
+        intent.putExtra(Constants.SIGNATURE,credentials != null ? credentials.getSignature() : "");
+        intent.putExtra(Constants.CHALLENGE,credentials != null ? credentials.getChallenge() : "");
         intent.putExtra(Constants.INTENT_PROCESS_TYPE,proccess);
         startActivity(intent);
         finish();

@@ -1432,7 +1432,6 @@ public class ReaderActivity extends AppCompatActivity {
         int fileNo = 0;
         int fileNo_2 = 1;
 
-        startProcess();
         showMessage("Card Detected : " + desFireEV1.getType().getTagName(), 'n');
 
         try {
@@ -1475,7 +1474,9 @@ public class ReaderActivity extends AppCompatActivity {
                 // 3 bytes : length
                 // 0 to 52 bytes : datas to write
 
-                desFireEV1.writeData(0, 0, Util.hexStringToByteArray(publicKey));
+                if(process.equals(Constants.CREATE_TWIN)){
+                    desFireEV1.writeData(0, 0, Util.hexStringToByteArray(publicKey));
+                }
                 publicKey = Util.bytesToHex(desFireEV1.readData(0, 0,64));
                 showMessage(
                       "Pub Key read from the card : " + Util.bytesToHex(desFireEV1.readData(0, 0,
@@ -1510,8 +1511,9 @@ public class ReaderActivity extends AppCompatActivity {
 
                 desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
 
-                desFireEV1.writeData(1, 0, Util.hexStringToByteArray(challenge));
-
+                if(process.equals(Constants.CREATE_TWIN)){
+                    desFireEV1.writeData(1, 0, Util.hexStringToByteArray(challenge));
+                }
 
                 desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
                 challenge = Util.bytesToHex(desFireEV1.readData(1, 0,32));
@@ -1559,7 +1561,10 @@ public class ReaderActivity extends AppCompatActivity {
                       IDESFireEV1.CommunicationType.Plain, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, fileSize_privKey));
 
                 desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
-                desFireEV1.writeData(0, 0, Util.hexStringToByteArray(signature));
+
+                if(process.equals(Constants.CREATE_TWIN)){
+                    desFireEV1.writeData(0, 0, Util.hexStringToByteArray(signature));
+                }
 
                 signature = Util.bytesToHex(desFireEV1.readData(0, 0,64));
                 showMessage(
@@ -1569,6 +1574,7 @@ public class ReaderActivity extends AppCompatActivity {
 
             }
 
+            startProcess();
             desFireEV1.getReader().close();
 
             // Set the custom path where logs will get stored, here we are setting the log folder DESFireLogs under
@@ -2297,6 +2303,7 @@ public class ReaderActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(ReaderActivity.this, apiResponse.getError(), Toast.LENGTH_SHORT).show();
                     ((ScanFragment)mFragment).stopScan();
+                    showCreateDialog();
                 }
             }
 
@@ -2315,4 +2322,6 @@ public class ReaderActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    private void showCreateDialog(){}
 }
