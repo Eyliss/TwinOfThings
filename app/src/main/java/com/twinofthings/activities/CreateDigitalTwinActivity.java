@@ -8,10 +8,12 @@ import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -26,6 +28,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.twinofthings.R;
@@ -44,7 +47,8 @@ import retrofit2.Response;
 
 public class CreateDigitalTwinActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, DatePickerDialog.OnDateSetListener {
 
-    public final static int REQUEST_LOCATION_PERMISSION = 0x17;
+    public static final int REQUEST_LOCATION_PERMISSION = 0x17;
+    public static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private String publicKey;
     private String challenge;
@@ -57,7 +61,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     private TextView mLocation;
     private EditText mComments;
     private Button mCreateTwin;
-    private ImageButton mUploadPicture;
+    private ImageView mUploadPicture;
 
     private Location mLastLocation;
     private String locationName;
@@ -135,17 +139,29 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
             }
         });
 
-        mUploadPicture = (ImageButton) findViewById(R.id.ib_upload_picture);
+        mUploadPicture = (ImageView) findViewById(R.id.ib_upload_picture);
         mUploadPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadPicture();
+                dispatchTakePictureIntent();
             }
         });
     }
 
-    private void uploadPicture(){
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            mUploadPicture.setImageBitmap(imageBitmap);
+        }
     }
 
     private void setDeviceCurrentLocation(){

@@ -23,20 +23,20 @@
                 android:padding="@dimen/activity_horizontal_margin"
                 android:background="@android:color/white">
             <RelativeLayout android:layout_width="match_parent" android:layout_height="0dp"
-            android:layout_weight="0.1">
-                <ImageButton
+            android:layout_weight="0.2"
+            android:padding="@dimen/activity_horizontal_margin">
+                <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@android:drawable/ic_menu_camera"
+                        android:src="@android:drawable/ic_menu_camera"
                         android:id="@+id/ib_upload_picture"
-                        android:background="@android:color/transparent"
                 android:layout_centerInParent="true"/>
             </RelativeLayout>
             <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.9"
+                    android:layout_weight="0.8"
                     android:background="@android:color/white" android:weightSum="1">
                 <!--<EditText-->
                 <!--android:layout_width="match_parent"-->
