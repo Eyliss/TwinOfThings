@@ -19,6 +19,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
@@ -86,6 +87,7 @@ import com.nxp.nfclib.utils.Utilities;
 import com.twinofthings.R;
 import com.twinofthings.api.RCApiManager;
 import com.twinofthings.api.RCApiResponse;
+import com.twinofthings.fragments.AlertDialogFragment;
 import com.twinofthings.fragments.CreateTwinFragment;
 import com.twinofthings.fragments.ScanFragment;
 import com.twinofthings.helpers.KeyInfoProvider;
@@ -1451,8 +1453,8 @@ public class ReaderActivity extends AppCompatActivity {
 
             desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
 
-        /* Do the following only if write checkbox is selected */
-            if (bWriteAllowed) {
+            if (process.equals(Constants.CREATE_TWIN)) {
+
                 desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
                 desFireEV1.format();
                 EV1ApplicationKeySettings.Builder appsetbuilder = new EV1ApplicationKeySettings.Builder();
@@ -1477,10 +1479,9 @@ public class ReaderActivity extends AppCompatActivity {
                 // 3 bytes : length
                 // 0 to 52 bytes : datas to write
 
-                if(process.equals(Constants.CREATE_TWIN)){
-                    desFireEV1.writeData(0, 0, Util.hexStringToByteArray(publicKey));
-                }
-                publicKey = Util.bytesToHex(desFireEV1.readData(0, 0,64));
+
+                desFireEV1.writeData(0, 0, Util.hexStringToByteArray(publicKey));
+                publicKey = Util.bytesToHex(desFireEV1.readData(0,0,64));
                 showMessage(
                       "Pub Key read from the card : " + Util.bytesToHex(desFireEV1.readData(0, 0,
                             64)), 'd');
@@ -1514,10 +1515,7 @@ public class ReaderActivity extends AppCompatActivity {
 
                 desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
 
-                if(process.equals(Constants.CREATE_TWIN)){
-                    desFireEV1.writeData(1, 0, Util.hexStringToByteArray(challenge));
-                }
-
+                desFireEV1.writeData(1, 0, Util.hexStringToByteArray(challenge));
                 desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
                 challenge = Util.bytesToHex(desFireEV1.readData(1, 0,32));
                 showMessage(
@@ -1565,15 +1563,34 @@ public class ReaderActivity extends AppCompatActivity {
 
                 desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
 
-                if(process.equals(Constants.CREATE_TWIN)){
-                    desFireEV1.writeData(0, 0, Util.hexStringToByteArray(signature));
-                }
-
+                desFireEV1.writeData(0, 0, Util.hexStringToByteArray(signature));
                 signature = Util.bytesToHex(desFireEV1.readData(0, 0,64));
                 showMessage(
                       "Signature Key read from the card : "
                             + Utilities.dumpBytes(desFireEV1.readData(0, 0,
                             64)), 'd');
+
+            }else{
+                desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
+                desFireEV1.selectApplication(appId);
+
+
+                desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
+                publicKey = Util.bytesToHex(desFireEV1.readData(0,0,64));
+
+
+                desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
+                challenge = Util.bytesToHex(desFireEV1.readData(1, 0,32));
+
+
+                desFireEV1.selectApplication(0);
+
+                desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
+                desFireEV1.selectApplication(appId_2);
+
+
+                desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
+                signature = Util.bytesToHex(desFireEV1.readData(0, 0,64));
 
             }
 
@@ -2297,7 +2314,7 @@ public class ReaderActivity extends AppCompatActivity {
             public void onResponse(Call<RCApiResponse> call, Response<RCApiResponse> response) {
                 RCApiResponse apiResponse = response.body();
                 if(apiResponse.isSuccessful()){
-                    
+
                     Gson gson = new Gson();
                     Intent intent = new Intent(ReaderActivity.this,ScannedTwinActivity.class);
                     String transaction = gson.toJson(apiResponse.getData());
@@ -2330,24 +2347,8 @@ public class ReaderActivity extends AppCompatActivity {
     }
 
     private void showCreateDialog(){
-        AlertDialog.Builder builder;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
-        } else {
-            builder = new AlertDialog.Builder(this);
-        }
-        builder.setTitle(R.string.dialog_title)
-              .setMessage(R.string.dialog_text)
-              .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                  public void onClick(DialogInterface dialog, int which) {
-                      goToCreateDigitalTwin();
-                  }
-              })
-              .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                  public void onClick(DialogInterface dialog, int which) {
-                      finish();
-                  }
-              })
-              .show();
+        DialogFragment newFragment = AlertDialogFragment.newInstance(
+              R.string.dialog_title);
+        newFragment.show(getSupportFragmentManager(), "dialog");
     }
 }

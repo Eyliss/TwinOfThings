@@ -80,6 +80,5 @@ public class MainActivity extends Activity {
         intent.putExtra(Constants.CHALLENGE,credentials != null ? credentials.getChallenge() : "");
         intent.putExtra(Constants.INTENT_PROCESS_TYPE,proccess);
         startActivity(intent);
-        finish();
     }
 }

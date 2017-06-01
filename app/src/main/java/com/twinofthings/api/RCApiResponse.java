@@ -33,7 +33,7 @@ public class RCApiResponse<T> {
     }
 
     public boolean notFoundError(){
-        return error.equals(R.string.transaction_error);
+        return error.equals("transaction not found");
     }
 
     public boolean isSuccessful(){
