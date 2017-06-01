@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.twinofthings.R;
@@ -56,6 +57,8 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     private TextView mLocation;
     private EditText mComments;
     private Button mCreateTwin;
+    private ImageButton mUploadPicture;
+
     private Location mLastLocation;
     private String locationName;
     private int day;
@@ -131,6 +134,18 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
                 sendTwinDataToServer();
             }
         });
+
+        mUploadPicture = (ImageButton) findViewById(R.id.ib_upload_picture);
+        mUploadPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadPicture();
+            }
+        });
+    }
+
+    private void uploadPicture(){
+
     }
 
     private void setDeviceCurrentLocation(){
