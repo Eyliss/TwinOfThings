@@ -31,6 +31,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.twinofthings.R;
 import com.twinofthings.api.RCApiManager;
 import com.twinofthings.api.RCApiResponse;
@@ -61,7 +63,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     private TextView mLocation;
     private EditText mComments;
     private Button mCreateTwin;
-    private ImageView mUploadPicture;
+    private SimpleDraweeView mUploadPicture;
 
     private Location mLastLocation;
     private String locationName;
@@ -75,7 +77,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Fresco.initialize(this);
         setContentView(R.layout.activity_create_digital_twin);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -139,7 +141,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
             }
         });
 
-        mUploadPicture = (ImageView) findViewById(R.id.ib_upload_picture);
+        mUploadPicture = (SimpleDraweeView) findViewById(R.id.ib_upload_picture);
         mUploadPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,8 +161,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            mUploadPicture.setImageBitmap(imageBitmap);
+            mUploadPicture.setImageURI(String.valueOf(extras.get("data")));
         }
     }
 
