@@ -12,6 +12,9 @@ public class Constants {
     public final static String JSON_USER_ID = "user_id";
     public final static String JSON_TIMESTAMP = "timestamp";
     public final static String JSON_LOCATION = "location";
+    public final static String JSON_DIALOG_TITLE = "title";
+    public final static String JSON_DIALOG_TEXT = "text";
+    public final static String JSON_DATA_FOUND = "data_found";
 
     public static String JSON_STATUS = "status";
     public static String JSON_DATA = "data";

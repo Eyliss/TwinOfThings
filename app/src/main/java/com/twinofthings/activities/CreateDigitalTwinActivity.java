@@ -63,7 +63,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     private TextView mLocation;
     private EditText mComments;
     private Button mCreateTwin;
-    private SimpleDraweeView mUploadPicture;
+//    private SimpleDraweeView mUploadPicture;
 
     private Location mLastLocation;
     private String locationName;
@@ -141,13 +141,13 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
             }
         });
 
-        mUploadPicture = (SimpleDraweeView) findViewById(R.id.ib_upload_picture);
-        mUploadPicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dispatchTakePictureIntent();
-            }
-        });
+//        mUploadPicture = (SimpleDraweeView) findViewById(R.id.ib_upload_picture);
+//        mUploadPicture.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dispatchTakePictureIntent();
+//            }
+//        });
     }
 
     private void dispatchTakePictureIntent() {
@@ -157,13 +157,13 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            mUploadPicture.setImageURI(String.valueOf(extras.get("data")));
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+//            Bundle extras = data.getExtras();
+//            mUploadPicture.setImageURI(String.valueOf(extras.get("data")));
+//        }
+//    }
 
     private void setDeviceCurrentLocation(){
         locationName = getLocationName();

@@ -45,8 +45,9 @@
     <string name="registered">Registered %1$s</string>
     <string name="transaction_error">transaction not found</string>
 
-    <string name="dialog_title">Transaction not found</string>
-    <string name="dialog_text">Do you want to create it now?</string>
-
+    <string name="dialog_tx_not_found_title">Transaction not found</string>
+    <string name="dialog_tx_not_found_text">Do you want to create it now?</string>
+    <string name="dialog_data_not_found_title">Tag is empty</string>
+    <string name="dialog_data_not_found_text">Do you want to create a twin? Hold your device again over the tag</string>
 
 </resources>

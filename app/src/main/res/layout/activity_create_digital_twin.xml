@@ -22,25 +22,25 @@
                 android:orientation="vertical"
                 android:padding="@dimen/activity_horizontal_margin"
                 android:background="@android:color/white">
-            <RelativeLayout android:layout_width="match_parent" android:layout_height="0dp"
-            android:layout_weight="0.2"
-            android:padding="@dimen/activity_horizontal_margin">
-                <com.facebook.drawee.view.SimpleDraweeView
-                        fresco:roundedCornerRadius="50dp"
-                        fresco:roundAsCircle="true"
-                        fresco:placeholderImage="@android:drawable/ic_menu_camera"
-                        fresco:failureImage="@android:drawable/ic_menu_camera"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
-                        android:src="@android:drawable/ic_menu_camera"
-                        android:id="@+id/ib_upload_picture"
-                        android:layout_centerInParent="true"/>
-            </RelativeLayout>
+            <!--<RelativeLayout android:layout_width="match_parent" android:layout_height="0dp"-->
+            <!--android:layout_weight="0.1"-->
+            <!--android:padding="@dimen/activity_horizontal_margin">-->
+                <!--<com.facebook.drawee.view.SimpleDraweeView-->
+                        <!--fresco:roundedCornerRadius="50dp"-->
+                        <!--fresco:roundAsCircle="true"-->
+                        <!--fresco:placeholderImage="@android:drawable/ic_menu_camera"-->
+                        <!--fresco:failureImage="@android:drawable/ic_menu_camera"-->
+                        <!--android:layout_width="75dp"-->
+                        <!--android:layout_height="75dp"-->
+                        <!--android:src="@android:drawable/ic_menu_camera"-->
+                        <!--android:id="@+id/ib_upload_picture"-->
+                        <!--android:layout_centerInParent="true"/>-->
+            <!--</RelativeLayout>-->
             <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.8"
+                    android:layout_weight="0.9"
                     android:background="@android:color/white" android:weightSum="1">
                 <!--<EditText-->
                 <!--android:layout_width="match_parent"-->
