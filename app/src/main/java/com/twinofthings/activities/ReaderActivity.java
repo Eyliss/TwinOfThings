@@ -1558,7 +1558,7 @@ public class ReaderActivity extends AppCompatActivity {
 
                 desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
 
-                if(desFireEV1.getApplicationIDs().length > 0){
+                if(desFireEV1.getApplicationIDs().length > 1){
                     Log.d(TAG,"Application ids is more than 0");
 
                     desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
