@@ -3,6 +3,7 @@ package com.twinofthings.activities;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.gson.Gson;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
@@ -63,7 +64,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     private TextView mLocation;
     private EditText mComments;
     private Button mCreateTwin;
-//    private SimpleDraweeView mUploadPicture;
+    private SimpleDraweeView mUploadPicture;
 
     private Location mLastLocation;
     private String locationName;
@@ -78,6 +79,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fresco.initialize(this);
+
         setContentView(R.layout.activity_create_digital_twin);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -141,13 +143,19 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
             }
         });
 
-//        mUploadPicture = (SimpleDraweeView) findViewById(R.id.ib_upload_picture);
-//        mUploadPicture.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dispatchTakePictureIntent();
-//            }
-//        });
+        mUploadPicture = (SimpleDraweeView) findViewById(R.id.ib_upload_picture);
+        mUploadPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {        mUploadPicture = (SimpleDraweeView) findViewById(R.id.ib_upload_picture);
+                mUploadPicture.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dispatchTakePictureIntent();
+                    }
+                });
+                dispatchTakePictureIntent();
+            }
+        });
     }
 
     private void dispatchTakePictureIntent() {
@@ -157,13 +165,14 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         }
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-//            Bundle extras = data.getExtras();
-//            mUploadPicture.setImageURI(String.valueOf(extras.get("data")));
-//        }
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            mUploadPicture.setImageBitmap(imageBitmap);
+        }
+    }
 
     private void setDeviceCurrentLocation(){
         locationName = getLocationName();
@@ -192,8 +201,12 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         RCApiManager.provision(publicKey, signature, challenge, name, comments, owner, timestamp, location,new Callback<RCApiResponse>() {
             @Override
             public void onResponse(Call<RCApiResponse> call, Response<RCApiResponse> response) {
-                RCApiResponse body = response.body();
-                onTwinCreatedSuccessfully();
+                RCApiResponse apiResponse = response.body();
+                if(apiResponse.isSuccessful()){
+                    Gson gson = new Gson();
+                    String transaction = gson.toJson(apiResponse.getData());
+                    onTwinCreatedSuccessfully(transaction);
+                }
             }
 
             @Override
@@ -203,8 +216,10 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         });
     }
 
-    private void onTwinCreatedSuccessfully(){
+    private void onTwinCreatedSuccessfully(String transaction){
         Intent intent = new Intent(CreateDigitalTwinActivity.this,TwinCreatedActivity.class);
+
+        intent.putExtra(Constants.INTENT_TRANSACTION,transaction);
         intent.putExtra(Constants.PUB_KEY,publicKey);
         intent.putExtra(Constants.SIGNATURE,signature);
         intent.putExtra(Constants.CHALLENGE,challenge);

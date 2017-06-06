@@ -15,12 +15,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.twinofthings.R;
 import com.twinofthings.api.RCApiManager;
 import com.twinofthings.api.RCApiResponse;
 import com.twinofthings.models.Credentials;
+import com.twinofthings.models.Transaction;
 import com.twinofthings.utils.Constants;
 
 import retrofit2.Call;
@@ -32,6 +34,14 @@ public class TwinCreatedActivity extends AppCompatActivity {
     private Button mBackButton;
     private Button mScanTag;
     private Toolbar mToolbar;
+
+    private TextView mRegisteredDate;
+    private TextView mName;
+    private TextView mOwner;
+    private TextView mLocation;
+    private TextView mComments;
+
+    private Transaction mTransaction;
 
     private String publicKey = "";
     private String signature = "";
@@ -51,7 +61,13 @@ public class TwinCreatedActivity extends AppCompatActivity {
         signature = getIntent().getStringExtra(Constants.SIGNATURE);
         challenge = getIntent().getStringExtra(Constants.CHALLENGE);
 
+        Gson gson = new Gson();
+        String post = getIntent().getExtras().getString(Constants.INTENT_TRANSACTION);
+        mTransaction = gson.fromJson(post, Transaction.class);
+
         bindViews();
+
+        setProductInfo();
     }
 
     private void bindViews(){
@@ -71,6 +87,21 @@ public class TwinCreatedActivity extends AppCompatActivity {
                 goToReaderScreen();
             }
         });
+
+        mRegisteredDate = (TextView)findViewById(R.id.tv_registered_date);
+        mName = (TextView)findViewById(R.id.tv_product_name);
+        mLocation = (TextView)findViewById(R.id.tv_location);
+        mOwner = (TextView)findViewById(R.id.tv_owner);
+        mComments = (TextView)findViewById(R.id.tv_comments);
+    }
+
+    private void setProductInfo(){
+
+        mRegisteredDate.setText(getString(R.string.registered,mTransaction.getMetadata().getTimestamp()));
+        mName.setText(mTransaction.getMetadata().getName());
+        mOwner.setText(mTransaction.getMetadata().getUserId());
+        mComments.setText(mTransaction.getMetadata().getDescription());
+        mLocation.setText(mTransaction.getMetadata().getLocation());
     }
 
     private void goToReaderScreen(){
