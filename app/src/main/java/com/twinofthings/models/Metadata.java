@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 import com.twinofthings.utils.Constants;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by Eyliss on 5/19/17.
  */
@@ -25,6 +28,9 @@ public class Metadata {
     @SerializedName(Constants.JSON_LOCATION)
     private String location;
 
+    @SerializedName(Constants.JSON_THUMBNAIL)
+    private Thumbnail thumbnail;
+
     public String getName() {
         return name;
     }
@@ -37,6 +43,10 @@ public class Metadata {
         return userId;
     }
 
+    public Thumbnail getThumbnail() {
+        return thumbnail;
+    }
+
     public String getTimestamp() {
         return timestamp;
     }
@@ -44,4 +54,5 @@ public class Metadata {
     public String getLocation() {
         return location;
     }
+
 }

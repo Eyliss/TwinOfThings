@@ -28,17 +28,12 @@
                             android:layout_weight="0.1"
                             android:padding="@dimen/activity_horizontal_margin"
                             android:background="@color/very_light_grey">
-                <com.facebook.drawee.view.SimpleDraweeView
-                        fresco:roundedCornerRadius="50dp"
-                        fresco:roundAsCircle="true"
-                        fresco:placeholderImage="@android:drawable/ic_menu_camera"
-                        fresco:placeholderImageScaleType="centerCrop"
-                        fresco:failureImage="@android:drawable/ic_menu_camera"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
+                <de.hdodenhof.circleimageview.CircleImageView
                         android:src="@android:drawable/ic_menu_camera"
                         android:id="@+id/ib_upload_picture"
-                        android:layout_centerInParent="true"/>
+                        android:layout_centerInParent="true"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"/>
             </RelativeLayout>
             <LinearLayout
                     android:orientation="vertical"

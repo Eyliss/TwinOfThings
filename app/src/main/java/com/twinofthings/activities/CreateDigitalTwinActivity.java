@@ -31,19 +31,18 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.twinofthings.R;
 import com.twinofthings.api.RCApiManager;
 import com.twinofthings.api.RCApiResponse;
 import com.twinofthings.utils.Constants;
+import com.twinofthings.utils.Util;
 
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,13 +63,14 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     private TextView mLocation;
     private EditText mComments;
     private Button mCreateTwin;
-    private SimpleDraweeView mUploadPicture;
+    private CircleImageView mUploadPicture;
 
     private Location mLastLocation;
     private String locationName;
     private int day;
     private int month;
     private int year;
+    private Bitmap thumbnailBitmap;
 
     private GoogleApiClient mGoogleApiClient;
     private Toolbar mToolbar;
@@ -78,7 +78,6 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fresco.initialize(this);
 
         setContentView(R.layout.activity_create_digital_twin);
 
@@ -143,16 +142,10 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
             }
         });
 
-        mUploadPicture = (SimpleDraweeView) findViewById(R.id.ib_upload_picture);
+        mUploadPicture = (CircleImageView) findViewById(R.id.ib_upload_picture);
         mUploadPicture.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {        mUploadPicture = (SimpleDraweeView) findViewById(R.id.ib_upload_picture);
-                mUploadPicture.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dispatchTakePictureIntent();
-                    }
-                });
+            public void onClick(View v) {
                 dispatchTakePictureIntent();
             }
         });
@@ -169,8 +162,8 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            mUploadPicture.setImageBitmap(imageBitmap);
+            thumbnailBitmap = (Bitmap) extras.get("data");
+            mUploadPicture.setImageBitmap(thumbnailBitmap);
         }
     }
 
@@ -197,8 +190,9 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         String owner = mOwner.getText().toString();
         String comments = mComments.getText().toString();
         String location = mLocation.getText().toString();
+        String thumbnail = Util.encodeBitmapToBase64(thumbnailBitmap, Bitmap.CompressFormat.PNG);
 
-        RCApiManager.provision(publicKey, signature, challenge, name, comments, owner, timestamp, location,new Callback<RCApiResponse>() {
+        RCApiManager.provision(publicKey, signature, challenge, name, comments, owner, timestamp, location, thumbnail,new Callback<RCApiResponse>() {
             @Override
             public void onResponse(Call<RCApiResponse> call, Response<RCApiResponse> response) {
                 RCApiResponse apiResponse = response.body();

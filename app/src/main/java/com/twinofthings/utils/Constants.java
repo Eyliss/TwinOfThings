@@ -15,6 +15,10 @@ public class Constants {
     public final static String JSON_DIALOG_TITLE = "title";
     public final static String JSON_DIALOG_TEXT = "text";
     public final static String JSON_DATA_FOUND = "data_found";
+    public final static String JSON_THUMBNAIL = "thumbnail";
+    public final static String JSON_FILENAME = "filename";
+    public final static String JSON_CONTENT = "content";
+    public final static String JSON_HASH = "hash";
 
     public static String JSON_STATUS = "status";
     public static String JSON_DATA = "data";

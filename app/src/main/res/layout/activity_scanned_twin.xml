@@ -22,6 +22,11 @@
             android:background="@drawable/purple_background"
             android:orientation="vertical"
     >
+        <ImageView android:layout_width="match_parent"
+                   android:layout_height="0dp"
+                   android:layout_weight="0.2"
+                    android:scaleType="fitCenter"
+        android:id="@+id/thumbnail"/>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -46,7 +51,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.9"
+                android:layout_weight="0.7"
                 android:background="@android:color/white">
             <TextView
                     android:id="@+id/tv_product_name"

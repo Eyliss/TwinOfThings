@@ -1,6 +1,7 @@
 package com.twinofthings.utils;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Base64;
 
 import java.io.ByteArrayOutputStream;
@@ -60,5 +61,11 @@ public class Util {
         String imageEncoded = Base64.encodeToString(b,Base64.DEFAULT);
 
         return imageEncoded;
+    }
+
+    public static Bitmap decodeBase64toBitmap(String image){
+        byte[] imageBytes = Base64.decode(image, Base64.DEFAULT);
+        Bitmap decodedBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+        return decodedBitmap;
     }
 }

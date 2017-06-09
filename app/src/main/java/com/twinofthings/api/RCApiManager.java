@@ -64,7 +64,7 @@ public class RCApiManager {
         call.enqueue(callback);
     }
 
-    public static void provision(String publicKey, String signature, String challenge, String name, String desc, String id, String timestamp, String location, Callback<RCApiResponse> callback){
+    public static void provision(String publicKey, String signature, String challenge, String name, String desc, String id, String timestamp, String location, String thumb, Callback<RCApiResponse> callback){
         JsonObject object = new JsonObject();
         object.addProperty("public_key",publicKey);
         object.addProperty("signature",signature);
@@ -76,6 +76,12 @@ public class RCApiManager {
         metadata.addProperty("user_id",id);
         metadata.addProperty("timestamp",timestamp);
         metadata.addProperty("location",location);
+
+        JsonObject thumbnail = new JsonObject();
+        thumbnail.addProperty("filename",System.currentTimeMillis()+".png");
+        thumbnail.addProperty("content",thumb);
+        metadata.add("thumbnail",thumbnail);
+
         object.add("metadata",metadata);
 
         Call<RCApiResponse> call = RCServiceWithAuth.provision(object);

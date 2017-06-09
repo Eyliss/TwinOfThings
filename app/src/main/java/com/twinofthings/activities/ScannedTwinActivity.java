@@ -15,11 +15,15 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.twinofthings.R;
 import com.twinofthings.models.Transaction;
 import com.twinofthings.utils.Constants;
+import com.twinofthings.utils.Util;
+
+import org.spongycastle.jcajce.provider.symmetric.util.PBE;
 
 public class ScannedTwinActivity extends AppCompatActivity {
 
@@ -30,6 +34,8 @@ public class ScannedTwinActivity extends AppCompatActivity {
     private TextView mOwner;
     private TextView mLocation;
     private TextView mComments;
+    private ImageView mThumbnail;
+
 
     private Transaction mTransaction;
     private Toolbar mToolbar;
@@ -68,6 +74,7 @@ public class ScannedTwinActivity extends AppCompatActivity {
         mLocation = (TextView)findViewById(R.id.tv_location);
         mOwner = (TextView)findViewById(R.id.tv_owner);
         mComments = (TextView)findViewById(R.id.tv_comments);
+        mThumbnail = (ImageView) findViewById(R.id.thumbnail);
     }
 
     private void setProductInfo(){
@@ -78,6 +85,12 @@ public class ScannedTwinActivity extends AppCompatActivity {
         mOwner.setText(mTransaction.getMetadata().getUserId());
         mComments.setText(mTransaction.getMetadata().getDescription());
         mLocation.setText(mTransaction.getMetadata().getLocation());
+
+        //Set the scanned product thumbnail converting the received base64 string into a bitmap
+        String thumbnail = mTransaction.getMetadata().getThumbnail().getContent();
+        if(thumbnail != null){
+            mThumbnail.setImageBitmap(Util.decodeBase64toBitmap(thumbnail));
+        }
     }
 
     @Override
