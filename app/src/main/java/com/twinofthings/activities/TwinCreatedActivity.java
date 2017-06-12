@@ -32,6 +32,7 @@ public class TwinCreatedActivity extends AppCompatActivity {
     private TextView mComments;
 
     private Transaction mTransaction;
+    private String mThumbnailEncoded;
 
     private String publicKey = "";
     private String signature = "";
@@ -50,6 +51,7 @@ public class TwinCreatedActivity extends AppCompatActivity {
         publicKey = getIntent().getStringExtra(Constants.PUB_KEY);
         signature = getIntent().getStringExtra(Constants.SIGNATURE);
         challenge = getIntent().getStringExtra(Constants.CHALLENGE);
+        mThumbnailEncoded = getIntent().getStringExtra(Constants.INTENT_IMAGE);
 
         Gson gson = new Gson();
         String post = getIntent().getExtras().getString(Constants.INTENT_TRANSACTION);
@@ -96,9 +98,8 @@ public class TwinCreatedActivity extends AppCompatActivity {
         mLocation.setText(mTransaction.getMetadata().getLocation());
 
         //Set the scanned product thumbnail converting the received base64 string into a bitmap
-        String thumbnail = mTransaction.getMetadata().getThumbnail().getContent();
-        if(thumbnail != null){
-            mThumbnail.setImageBitmap(Util.decodeBase64toBitmap(thumbnail));
+        if(mThumbnailEncoded != null){
+            mThumbnail.setImageBitmap(Util.decodeBase64toBitmap(mThumbnailEncoded));
         }
     }
 

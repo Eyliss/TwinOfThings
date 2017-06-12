@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -51,6 +52,12 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
 
     public static final int REQUEST_LOCATION_PERMISSION = 0x17;
     public static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_CAMERA_PERMISSION = 1;
+
+    private static final String[] CAMERA_PERMISSIONS = {
+          Manifest.permission.CAMERA,
+          Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };;
 
     private String publicKey;
     private String challenge;
@@ -71,6 +78,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     private int month;
     private int year;
     private Bitmap thumbnailBitmap;
+    private String thumbnailEncoded;
 
     private GoogleApiClient mGoogleApiClient;
     private Toolbar mToolbar;
@@ -146,15 +154,76 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         mUploadPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dispatchTakePictureIntent();
+                requestCameraPermissions();
             }
         });
     }
 
     private void dispatchTakePictureIntent() {
+
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    private void requestCameraPermissions() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            dispatchTakePictureIntent();
+        }else{
+            if (!shouldShowRequestPermissionRationale(CAMERA_PERMISSIONS)) {
+                dispatchTakePictureIntent();
+            } else {
+                requestPermissions(CAMERA_PERMISSIONS, REQUEST_CAMERA_PERMISSION);
+            }
+        }
+
+    }
+
+    /**
+     * Gets whether you should show UI with rationale for requesting permissions.
+     *
+     * @param permissions The permissions your app wants to request.
+     * @return Whether you can show permission rationale UI.
+     */
+    private boolean shouldShowRequestPermissionRationale(String[] permissions) {
+        for (String permission : permissions) {
+            int permissionCheck = ContextCompat.checkSelfPermission(this, permission);
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_CAMERA_PERMISSION) {
+            final int numOfRequest = grantResults.length;
+            final boolean isGranted = numOfRequest == 1
+                  && PackageManager.PERMISSION_GRANTED == grantResults[numOfRequest - 1];
+            if (isGranted) {
+                dispatchTakePictureIntent();
+            }
+        } else if (requestCode == REQUEST_LOCATION_PERMISSION) {
+            boolean permissionsGranted = true;
+            if (grantResults.length == permissions.length) {
+                for (int result : grantResults) {
+                    if (result != PackageManager.PERMISSION_GRANTED) {
+                        permissionsGranted = false;
+                        break;
+                    }
+                }
+                if (permissionsGranted) {
+                    try {
+                        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+                    } catch (SecurityException e) {
+                        //Do nothing
+                    }
+                }
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 
@@ -190,9 +259,9 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         String owner = mOwner.getText().toString();
         String comments = mComments.getText().toString();
         String location = mLocation.getText().toString();
-        String thumbnail = Util.encodeBitmapToBase64(thumbnailBitmap, Bitmap.CompressFormat.PNG);
+        thumbnailEncoded = Util.encodeBitmapToBase64(thumbnailBitmap, Bitmap.CompressFormat.PNG);
 
-        RCApiManager.provision(publicKey, signature, challenge, name, comments, owner, timestamp, location, thumbnail,new Callback<RCApiResponse>() {
+        RCApiManager.provision(publicKey, signature, challenge, name, comments, owner, timestamp, location, thumbnailEncoded,new Callback<RCApiResponse>() {
             @Override
             public void onResponse(Call<RCApiResponse> call, Response<RCApiResponse> response) {
                 RCApiResponse apiResponse = response.body();
@@ -214,6 +283,8 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         Intent intent = new Intent(CreateDigitalTwinActivity.this,TwinCreatedActivity.class);
 
         intent.putExtra(Constants.INTENT_TRANSACTION,transaction);
+        intent.putExtra(Constants.INTENT_IMAGE,thumbnailEncoded);
+
         intent.putExtra(Constants.PUB_KEY,publicKey);
         intent.putExtra(Constants.SIGNATURE,signature);
         intent.putExtra(Constants.CHALLENGE,challenge);
@@ -247,31 +318,6 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
                   this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_LOCATION_PERMISSION);
         } else {
             mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        boolean permissionsGranted = true;
-        if (requestCode == REQUEST_LOCATION_PERMISSION) {
-            if (grantResults.length == permissions.length) {
-                for (int result : grantResults) {
-                    if (result != PackageManager.PERMISSION_GRANTED) {
-                        permissionsGranted = false;
-                        break;
-                    }
-                }
-                if (permissionsGranted) {
-                    try {
-                        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-                    } catch (SecurityException e) {
-                        //Do nothing
-                    }
-                }
-            }
-        } else {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 

@@ -29,6 +29,8 @@ public class Constants {
 
     public static String INTENT_PROCESS_TYPE = "process_type";
     public static String INTENT_TRANSACTION = "transaction";
+    public static String INTENT_IMAGE = "image";
+
     public static  String INTENT_CREDENTIALS = "credentials";
 
     public final static String PUB_KEY = "public_key";
