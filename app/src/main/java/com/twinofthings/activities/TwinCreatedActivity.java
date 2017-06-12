@@ -2,38 +2,28 @@ package com.twinofthings.activities;
 
 import com.google.gson.Gson;
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.twinofthings.R;
-import com.twinofthings.api.RCApiManager;
-import com.twinofthings.api.RCApiResponse;
-import com.twinofthings.models.Credentials;
+import com.twinofthings.helpers.CircleImageView;
 import com.twinofthings.models.Transaction;
 import com.twinofthings.utils.Constants;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.twinofthings.utils.Util;
 
 public class TwinCreatedActivity extends AppCompatActivity {
 
     private Button mBackButton;
     private Button mScanTag;
     private Toolbar mToolbar;
+    private CircleImageView mThumbnail;
 
     private TextView mRegisteredDate;
     private TextView mName;
@@ -93,6 +83,8 @@ public class TwinCreatedActivity extends AppCompatActivity {
         mLocation = (TextView)findViewById(R.id.tv_location);
         mOwner = (TextView)findViewById(R.id.tv_owner);
         mComments = (TextView)findViewById(R.id.tv_comments);
+        mThumbnail = (CircleImageView) findViewById(R.id.thumbnail);
+
     }
 
     private void setProductInfo(){
@@ -102,6 +94,12 @@ public class TwinCreatedActivity extends AppCompatActivity {
         mOwner.setText(mTransaction.getMetadata().getUserId());
         mComments.setText(mTransaction.getMetadata().getDescription());
         mLocation.setText(mTransaction.getMetadata().getLocation());
+
+        //Set the scanned product thumbnail converting the received base64 string into a bitmap
+        String thumbnail = mTransaction.getMetadata().getThumbnail().getContent();
+        if(thumbnail != null){
+            mThumbnail.setImageBitmap(Util.decodeBase64toBitmap(thumbnail));
+        }
     }
 
     private void goToReaderScreen(){

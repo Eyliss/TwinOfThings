@@ -34,6 +34,7 @@ import android.widget.TextView;
 import com.twinofthings.R;
 import com.twinofthings.api.RCApiManager;
 import com.twinofthings.api.RCApiResponse;
+import com.twinofthings.helpers.CircleImageView;
 import com.twinofthings.utils.Constants;
 import com.twinofthings.utils.Util;
 
@@ -42,7 +43,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

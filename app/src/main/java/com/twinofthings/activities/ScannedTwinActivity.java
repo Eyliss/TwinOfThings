@@ -2,9 +2,6 @@ package com.twinofthings.activities;
 
 import com.google.gson.Gson;
 
-import android.app.ActionBar;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v4.app.NavUtils;
@@ -12,18 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.twinofthings.R;
+import com.twinofthings.helpers.CircleImageView;
 import com.twinofthings.models.Transaction;
 import com.twinofthings.utils.Constants;
 import com.twinofthings.utils.Util;
-
-import org.spongycastle.jcajce.provider.symmetric.util.PBE;
 
 public class ScannedTwinActivity extends AppCompatActivity {
 
@@ -34,7 +27,7 @@ public class ScannedTwinActivity extends AppCompatActivity {
     private TextView mOwner;
     private TextView mLocation;
     private TextView mComments;
-    private ImageView mThumbnail;
+    private CircleImageView mThumbnail;
 
 
     private Transaction mTransaction;
@@ -74,7 +67,7 @@ public class ScannedTwinActivity extends AppCompatActivity {
         mLocation = (TextView)findViewById(R.id.tv_location);
         mOwner = (TextView)findViewById(R.id.tv_owner);
         mComments = (TextView)findViewById(R.id.tv_comments);
-        mThumbnail = (ImageView) findViewById(R.id.thumbnail);
+        mThumbnail = (CircleImageView) findViewById(R.id.thumbnail);
     }
 
     private void setProductInfo(){
