@@ -37,17 +37,28 @@
                     android:layout_height="0dp"
                     android:layout_weight="0.9"
                     android:background="@android:color/white" android:weightSum="1">
-                <!--<EditText-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/brand"-->
-                <!--android:gravity="left"-->
-                <!--style="@style/TextAppearance.AppCompat.Medium"-->
-                <!--android:padding="@dimen/section_padding"-->
-                <!--android:layout_margin="@dimen/separator_height"-->
-                <!--android:drawableLeft="@drawable/ic_brand"-->
-                <!--android:drawablePadding="@dimen/activity_horizontal_margin"-->
-                <!--android:hint="@string/brand"/>-->
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/brand_name"
+                    android:gravity="left"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:padding="@dimen/section_padding"
+                    android:layout_margin="@dimen/separator_height"
+                    android:drawableLeft="@drawable/ic_brand"
+                    android:drawablePadding="@dimen/activity_horizontal_margin"
+                    android:hint="@string/brand"/>
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/product_subline"
+                        android:gravity="left"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_margin="@dimen/separator_height"
+                        android:drawableLeft="@drawable/ic_product_name"
+                        android:drawablePadding="10dp"
+                        android:maxLines="1"
+                        android:hint="@string/product_subline"/>
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -83,7 +94,18 @@
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/owner"
+                        android:id="@+id/owner_name"
+                        android:gravity="left"
+                        android:maxLines="1"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_margin="@dimen/separator_height"
+                        android:drawableLeft="@drawable/ic_owner"
+                        android:drawablePadding="10dp"
+                        android:hint="@string/owner"/>
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/serial_id"
                         android:gravity="left"
                         android:maxLines="1"
                         style="@style/TextAppearance.AppCompat.Medium"
@@ -101,36 +123,26 @@
                 <!--android:layout_margin="@dimen/separator_height"-->
                 <!--android:drawableLeft="@drawable/ic_id"-->
                 <!--android:drawablePadding="@dimen/activity_horizontal_margin"/>-->
+                <!--<EditText-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:id="@+id/twin_location"-->
+                        <!--android:hint="@string/location"-->
+                        <!--android:gravity="left"-->
+                        <!--android:maxLines="1"-->
+                        <!--style="@style/TextAppearance.AppCompat.Medium"-->
+                        <!--android:drawableLeft="@drawable/ic_my_location"-->
+                        <!--android:drawablePadding="8dp"/>-->
                 <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/twin_location"
-                        android:hint="@string/location"
-                        android:gravity="left"
-                        android:maxLines="1"
-                        style="@style/TextAppearance.AppCompat.Medium"
-                        android:drawableLeft="@drawable/ic_my_location"
-                        android:drawablePadding="8dp"/>
-                <!--<EditText-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/material"-->
-                <!--android:gravity="left"-->
-                <!--style="@style/TextAppearance.AppCompat.Medium"-->
-                <!--android:padding="@dimen/section_padding"-->
-                <!--android:layout_margin="@dimen/separator_height"-->
-                <!--android:drawableLeft="@drawable/ic_material"-->
-                <!--android:drawablePadding="@dimen/activity_horizontal_margin"/>-->
-                <!--<EditText-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/color"-->
-                <!--android:gravity="left"-->
-                <!--style="@style/TextAppearance.AppCompat.Medium"-->
-                <!--android:padding="@dimen/section_padding"-->
-                <!--android:layout_margin="@dimen/separator_height"-->
-                <!--android:drawableLeft="@drawable/ic_color"-->
-                <!--android:drawablePadding="@dimen/activity_horizontal_margin"/>-->
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/material"
+                android:gravity="left"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:padding="@dimen/section_padding"
+                android:layout_margin="@dimen/separator_height"
+                android:drawableLeft="@drawable/ic_material"
+                android:drawablePadding="@dimen/activity_horizontal_margin"/>
                 <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"

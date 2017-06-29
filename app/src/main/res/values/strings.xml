@@ -32,6 +32,7 @@
         <u>PRODUCT INFO</u>
     </string>
     <string name="owner">Owner</string>
+    <string name="serial_id">Serial ID</string>
     <string name="object_id">Object ID</string>
     <string name="material">Material</string>
     <string name="color">Color</string>
@@ -39,6 +40,8 @@
     <string name="brand">Brand</string>
     <string name="location">Location</string>
     <string name="product_name">Product Name</string>
+    <string name="product_subline">Product Subline</string>
+
     <string name="timestamp">Timestamp</string>
     <string name="comments_hint">Your comments here</string>
     <string name="pup_id">Pup. ID: %1$s</string>

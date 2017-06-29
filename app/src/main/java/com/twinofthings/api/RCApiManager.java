@@ -64,18 +64,21 @@ public class RCApiManager {
         call.enqueue(callback);
     }
 
-    public static void provision(String publicKey, String signature, String challenge, String name, String desc, String id, String timestamp, String location, String thumb, Callback<RCApiResponse> callback){
+    public static void provision(String publicKey, String signature, String challenge, String brandName, String productName, String productSubline, String timestamp, String ownerName, String serialId, String material, String commentsDetail, String thumb, Callback<RCApiResponse> callback){
         JsonObject object = new JsonObject();
         object.addProperty("public_key",publicKey);
         object.addProperty("signature",signature);
         object.addProperty("challenge",challenge);
 
         JsonObject metadata = new JsonObject();
-        metadata.addProperty("name",name);
-        metadata.addProperty("short_desc",desc);
-        metadata.addProperty("user_id",id);
+        metadata.addProperty("brand_name",brandName);
+        metadata.addProperty("product_name",productName);
+        metadata.addProperty("product_subline",productSubline);
         metadata.addProperty("timestamp",timestamp);
-        metadata.addProperty("location",location);
+        metadata.addProperty("owner_name",ownerName);
+        metadata.addProperty("serial_id",serialId);
+        metadata.addProperty("material",material);
+        metadata.addProperty("comments_detail",commentsDetail);
 
         JsonObject thumbnail = new JsonObject();
         thumbnail.addProperty("filename",System.currentTimeMillis()+".png");

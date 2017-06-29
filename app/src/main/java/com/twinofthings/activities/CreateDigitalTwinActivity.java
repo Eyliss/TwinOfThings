@@ -63,12 +63,17 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     private String challenge;
     private String signature;
 
-    private EditText mName;
+    private EditText mBrandName;
     private TextView mTimestamp;
     private DatePickerDialog mDatePickerDialog;
-    private EditText mOwner;
-    private TextView mLocation;
+    private EditText mProductName;
+    private EditText mProductSubline;
+    private EditText mOwnerName;
+    private EditText mSerialId;
+    private EditText mMaterial;
     private EditText mComments;
+
+//    private TextView mLocation;
     private Button mCreateTwin;
     private CircleImageView mUploadPicture;
 
@@ -103,7 +108,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
 
         bindViews();
 
-        setDeviceCurrentLocation();
+//        setDeviceCurrentLocation();
 
     }
 
@@ -129,10 +134,16 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     }
 
     private void bindViews(){
-        mName = (EditText) findViewById(R.id.product_name);
-        mOwner = (EditText) findViewById(R.id.owner);
-        mLocation = (TextView) findViewById(R.id.twin_location);
+
+        mBrandName = (EditText) findViewById(R.id.brand_name);
+        mProductName = (EditText) findViewById(R.id.product_name);
+        mProductSubline = (EditText) findViewById(R.id.product_subline);
+        mOwnerName = (EditText) findViewById(R.id.owner_name);
+        mSerialId = (EditText) findViewById(R.id.serial_id);
+        mMaterial = (EditText) findViewById(R.id.material);
         mComments = (EditText) findViewById(R.id.comments);
+
+//        mLocation = (TextView) findViewById(R.id.twin_location);
         mTimestamp = (TextView) findViewById(R.id.tv_timestamp);
         mTimestamp.setText(getStringDate());
         mTimestamp.setOnClickListener(new View.OnClickListener() {
@@ -236,10 +247,10 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         }
     }
 
-    private void setDeviceCurrentLocation(){
-        locationName = getLocationName();
-        mLocation.setText(locationName);
-    }
+//    private void setDeviceCurrentLocation(){
+//        locationName = getLocationName();
+//        mLocation.setText(locationName);
+//    }
 
     protected void onStart() {
         mGoogleApiClient.connect();
@@ -254,14 +265,18 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
 
     private void sendTwinDataToServer() {
 
-        String name = mName.getText().toString();
+        String brandName = mBrandName.getText().toString();
         String timestamp = getStringDate();
-        String owner = mOwner.getText().toString();
+        String productName = mProductName.getText().toString();
+        String productSubline = mProductSubline.getText().toString();
+        String ownerName = mOwnerName.getText().toString();
+        String serialId = mSerialId.getText().toString();
+        String material = mMaterial.getText().toString();
         String comments = mComments.getText().toString();
-        String location = mLocation.getText().toString();
+//        String location = mLocation.getText().toString();
         thumbnailEncoded = Util.encodeBitmapToBase64(thumbnailBitmap, Bitmap.CompressFormat.PNG);
 
-        RCApiManager.provision(publicKey, signature, challenge, name, comments, owner, timestamp, location, thumbnailEncoded,new Callback<RCApiResponse>() {
+        RCApiManager.provision(publicKey, signature, challenge, brandName, productName, productSubline,timestamp,ownerName,serialId,material,comments,thumbnailEncoded,new Callback<RCApiResponse>() {
             @Override
             public void onResponse(Call<RCApiResponse> call, Response<RCApiResponse> response) {
                 RCApiResponse apiResponse = response.body();

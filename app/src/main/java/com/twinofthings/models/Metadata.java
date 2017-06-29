@@ -4,44 +4,39 @@ import com.google.gson.annotations.SerializedName;
 
 import com.twinofthings.utils.Constants;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 /**
  * Created by Eyliss on 5/19/17.
  */
 
 public class Metadata {
 
-    @SerializedName(Constants.JSON_NAME)
-    private String name;
+    @SerializedName(Constants.JSON_BRAND_NAME)
+    private String brandName;
 
-    @SerializedName(Constants.JSON_DESC)
-    private String description;
+    @SerializedName(Constants.JSON_PRODUCT_NAME)
+    private String productName;
 
-    @SerializedName(Constants.JSON_USER_ID)
-    private String userId;
+    @SerializedName(Constants.JSON_PRODUCT_SUBLINE)
+    private String productSubline;
 
     @SerializedName(Constants.JSON_TIMESTAMP)
     private String timestamp;
 
-    @SerializedName(Constants.JSON_LOCATION)
-    private String location;
+    @SerializedName(Constants.JSON_OWNER_NAME)
+    private String ownerName;
+
+    @SerializedName(Constants.JSON_SERIAL_ID)
+    private String serialId;
+
+    @SerializedName(Constants.JSON_MATERIAL)
+    private String material;
+
+    @SerializedName(Constants.JSON_COMMENTS_DETAIL)
+    private String commentsDetail;
 
     @SerializedName(Constants.JSON_THUMBNAIL)
     private Thumbnail thumbnail;
 
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
 
     public Thumbnail getThumbnail() {
         return thumbnail;
@@ -51,8 +46,31 @@ public class Metadata {
         return timestamp;
     }
 
-    public String getLocation() {
-        return location;
+    public String getBrandName() {
+        return brandName;
     }
 
+    public String getProductName() {
+        return productName;
+    }
+
+    public String getProductSubline() {
+        return productSubline;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public String getSerialId() {
+        return serialId;
+    }
+
+    public String getMaterial() {
+        return material;
+    }
+
+    public String getCommentsDetail() {
+        return commentsDetail;
+    }
 }

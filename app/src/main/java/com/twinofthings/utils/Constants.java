@@ -7,7 +7,12 @@ package com.twinofthings.utils;
 public class Constants {
     public final static String JSON_ID = "tx_id";
     public final static String JSON_METADATA = "metadata";
-    public final static String JSON_NAME = "name";
+    public final static String JSON_PRODUCT_NAME = "product_name";
+    public final static String JSON_PRODUCT_SUBLINE = "product_subline";
+    public final static String JSON_OWNER_NAME = "owner_name";
+    public final static String JSON_SERIAL_ID = "serial_id";
+    public final static String JSON_MATERIAL = "material";
+
     public final static String JSON_DESC = "short_desc";
     public final static String JSON_USER_ID = "user_id";
     public final static String JSON_TIMESTAMP = "timestamp";
@@ -19,13 +24,8 @@ public class Constants {
     public final static String JSON_FILENAME = "filename";
     public final static String JSON_CONTENT = "content";
     public final static String JSON_HASH = "hash";
-
-    public static String JSON_STATUS = "status";
-    public static String JSON_DATA = "data";
-    public static String JSON_NETWORK = "network";
-    public static String JSON_ADDRESS = "address";
-    public static String JSON_CONFIRMED_BALANCE = "confirmed_balance";
-    public static String JSON_UNCONFIRMED_BALANCE = "unconfirmed_balance";
+    public final static String JSON_BRAND_NAME = "brand_name";
+    public final static String JSON_COMMENTS_DETAIL = "comments_detail";
 
     public static String INTENT_PROCESS_TYPE = "process_type";
     public static String INTENT_TRANSACTION = "transaction";
