@@ -28,7 +28,7 @@ public class TwinCreatedActivity extends AppCompatActivity {
     private TextView mRegisteredDate;
     private TextView mName;
     private TextView mOwner;
-    private TextView mLocation;
+    private TextView mBrand;
     private TextView mComments;
 
     private Transaction mTransaction;
@@ -82,7 +82,7 @@ public class TwinCreatedActivity extends AppCompatActivity {
 
         mRegisteredDate = (TextView)findViewById(R.id.tv_registered_date);
         mName = (TextView)findViewById(R.id.tv_product_name);
-        mLocation = (TextView)findViewById(R.id.tv_location);
+        mBrand = (TextView)findViewById(R.id.tv_brand);
         mOwner = (TextView)findViewById(R.id.tv_owner);
         mComments = (TextView)findViewById(R.id.tv_comments);
         mThumbnail = (CircleImageView) findViewById(R.id.thumbnail);
@@ -92,10 +92,10 @@ public class TwinCreatedActivity extends AppCompatActivity {
     private void setProductInfo(){
 
         mRegisteredDate.setText(getString(R.string.registered,mTransaction.getMetadata().getTimestamp()));
-        mName.setText(mTransaction.getMetadata().getName());
-        mOwner.setText(mTransaction.getMetadata().getUserId());
-        mComments.setText(mTransaction.getMetadata().getDescription());
-        mLocation.setText(mTransaction.getMetadata().getLocation());
+        mName.setText(mTransaction.getMetadata().getProductName());
+        mBrand.setText(mTransaction.getMetadata().getBrandName());
+        mOwner.setText(mTransaction.getMetadata().getOwnerName());
+        mComments.setText(mTransaction.getMetadata().getCommentsDetail());
 
         //Set the scanned product thumbnail converting the received base64 string into a bitmap
         if(mThumbnailEncoded != null){

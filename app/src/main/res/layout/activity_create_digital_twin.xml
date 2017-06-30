@@ -36,6 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="0.9"
+                    android:padding="@dimen/activity_horizontal_margin"
                     android:background="@android:color/white" android:weightSum="1">
                 <EditText
                     android:layout_width="match_parent"
@@ -43,22 +44,10 @@
                     android:id="@+id/brand_name"
                     android:gravity="left"
                     style="@style/TextAppearance.AppCompat.Medium"
-                    android:padding="@dimen/section_padding"
                     android:layout_margin="@dimen/separator_height"
                     android:drawableLeft="@drawable/ic_brand"
-                    android:drawablePadding="@dimen/activity_horizontal_margin"
+                    android:drawablePadding="10dp"
                     android:hint="@string/brand"/>
-                <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/product_subline"
-                        android:gravity="left"
-                        style="@style/TextAppearance.AppCompat.Medium"
-                        android:layout_margin="@dimen/separator_height"
-                        android:drawableLeft="@drawable/ic_product_name"
-                        android:drawablePadding="10dp"
-                        android:maxLines="1"
-                        android:hint="@string/product_subline"/>
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -70,6 +59,17 @@
                         android:drawablePadding="10dp"
                         android:maxLines="1"
                         android:hint="@string/product_name"/>
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/product_subline"
+                        android:gravity="left"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_margin="@dimen/separator_height"
+                        android:drawableLeft="@drawable/ic_product_name"
+                        android:drawablePadding="10dp"
+                        android:maxLines="1"
+                        android:hint="@string/product_subline"/>
                 <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
@@ -110,9 +110,9 @@
                         android:maxLines="1"
                         style="@style/TextAppearance.AppCompat.Medium"
                         android:layout_margin="@dimen/separator_height"
-                        android:drawableLeft="@drawable/ic_owner"
+                        android:drawableLeft="@drawable/ic_id"
                         android:drawablePadding="10dp"
-                        android:hint="@string/owner"/>
+                        android:hint="@string/serial_id"/>
                 <!--<EditText-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="wrap_content"-->
@@ -139,10 +139,11 @@
                 android:id="@+id/material"
                 android:gravity="left"
                 style="@style/TextAppearance.AppCompat.Medium"
-                android:padding="@dimen/section_padding"
                 android:layout_margin="@dimen/separator_height"
                 android:drawableLeft="@drawable/ic_material"
-                android:drawablePadding="@dimen/activity_horizontal_margin"/>
+                android:drawablePadding="10dp"
+                android:hint="@string/material"
+                />
                 <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"

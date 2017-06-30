@@ -119,15 +119,15 @@
                         android:layout_weight="0.4"
                         android:layout_height="wrap_content"
                         android:gravity="left"
-                        android:text="@string/location"
+                        android:text="@string/brand"
                         style="@style/TextAppearance.AppCompat.Medium"
-                        android:drawableLeft="@drawable/ic_my_location"
+                        android:drawableLeft="@drawable/ic_brand"
                         android:drawablePadding="7dp"/>
                 <TextView
                         android:layout_width="0dp"
                         android:layout_weight="0.6"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tv_location"
+                        android:id="@+id/tv_brand"
                         android:gravity="left"
                         android:textColor="@android:color/black"
                         style="@style/TextAppearance.AppCompat.Medium"/>

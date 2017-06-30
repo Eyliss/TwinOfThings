@@ -106,14 +106,14 @@
                     android:layout_weight="0.3"
                     android:layout_height="wrap_content"
                     android:gravity="left"
-                    android:text="@string/location"
+                    android:text="@string/brand"
                     android:textColor="@color/very_light_grey"
                     style="@style/TextAppearance.AppCompat.Medium"/>
             <TextView
                     android:layout_width="0dp"
                     android:layout_weight="0.7"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_location"
+                    android:id="@+id/tv_brand"
                     android:gravity="left"
                     android:textColor="@android:color/white"
                     style="@style/TextAppearance.AppCompat.Medium"/>
