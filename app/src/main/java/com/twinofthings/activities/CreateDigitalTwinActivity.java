@@ -274,9 +274,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         String material = mMaterial.getText().toString();
         String comments = mComments.getText().toString();
 //        String location = mLocation.getText().toString();
-        if(thumbnailBitmap != null){
-            thumbnailEncoded = Util.encodeBitmapToBase64(thumbnailBitmap, Bitmap.CompressFormat.PNG);
-        }
+        thumbnailEncoded = thumbnailBitmap != null ? Util.encodeBitmapToBase64(thumbnailBitmap, Bitmap.CompressFormat.PNG) : "";
 
         RCApiManager.provision(publicKey, signature, challenge, brandName, productName, productSubline,timestamp,ownerName,serialId,material,comments,thumbnailEncoded,new Callback<RCApiResponse>() {
             @Override
