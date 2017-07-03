@@ -5,6 +5,7 @@
         <item name="colorPrimary">@android:color/white</item>
         <item name="colorControlActivated">@android:color/white</item>
         <item name="colorControlHighlight">@android:color/white</item>
+        <item name="android:editTextStyle">@style/EditTextStyle</item>
     </style>
     <!-- ToolBar -->
     <style name="ToolBarStyle" parent="Theme.AppCompat">
@@ -16,5 +17,9 @@
         <!-- Support library compatibility -->
         <item name="windowActionBarOverlay">true</item>
     </style>
-
+    <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="colorControlNormal">@color/underline_color</item>
+        <item name="colorControlActivated">@color/underline_color</item>
+        <item name="colorControlHighlight">@color/underline_color</item>
+    </style>
 </resources>

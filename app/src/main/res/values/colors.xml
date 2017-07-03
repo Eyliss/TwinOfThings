@@ -3,9 +3,9 @@
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="very_light_grey">#f6f6f6</color>
+    <color name="grey">#919191</color>
+    <color name="very_light_grey">#F9F7FB</color>
     <color name="cyan">#0DDEC4</color>
     <color name="bright_violet">#7E29FB</color>
-
-
+    <color name="underline_color">#2B93FC</color>
 </resources>
