@@ -82,7 +82,7 @@
                             android:gravity="left"
                             android:text="@string/timestamp"
                             style="@style/TextAppearance.AppCompat.Medium"
-                            android:drawableLeft="@drawable/ic_timestamp"
+                            android:drawableLeft="@drawable/ic_time"
                             android:drawablePadding="10dp"/>
                     <TextView
                             android:layout_width="match_parent"

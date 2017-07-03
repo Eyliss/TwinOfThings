@@ -1,9 +1,6 @@
 package com.twinofthings.fragments;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,7 +14,7 @@ import android.widget.TextView;
 import com.twinofthings.R;
 import com.twinofthings.activities.ReaderActivity;
 
-public class CreateTwinFragment extends Fragment {
+public class ProvisioningFragment extends Fragment {
 
     private ImageButton mCloseButton;
     private ImageView mCreateTwinIcon;
@@ -25,12 +22,12 @@ public class CreateTwinFragment extends Fragment {
     private TextView mCreateTwinDescription;
     private Button mEnterData;
 
-    public CreateTwinFragment() {
+    public ProvisioningFragment() {
         // Required empty public constructor
     }
 
-    public static CreateTwinFragment newInstance() {
-        CreateTwinFragment fragment = new CreateTwinFragment();
+    public static ProvisioningFragment newInstance() {
+        ProvisioningFragment fragment = new ProvisioningFragment();
         return fragment;
     }
 
@@ -43,7 +40,7 @@ public class CreateTwinFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_create_twin, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_provisioning, container, false);
         bindViews(rootView);
 
         return rootView;

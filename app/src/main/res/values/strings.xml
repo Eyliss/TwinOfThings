@@ -1,14 +1,12 @@
 <resources>
     <string name="app_name">TwinOfThings</string>
-    <string name="info_string">Tap any MIFARE / NTAG / ICODE tag!</string>
-
     <string name="splash_text">EVERY PRODUCT\nHAS ITS OWN STORY.</string>
-    <string name="main_text">ENTER A NEW TRUSTWORTHY WORLD\nWITH TWIN OF THINGS.</string>
+    <string name="main_text">ENTER A NEW TRUSTWORTHY\nWORLD\nWITH TWIN OF THINGS.</string>
     <string name="main_subtext">CLICK ONE OF THE BUTTONS BELOW TO\nCREATE A DIGITAL TWIN OR SCAN A NFC TAG.</string>
     <string name="create_twin_button_text">CREATE DIGITAL TWIN</string>
     <string name="scan_tag_button_text">SCAN NFC TAG</string>
     <string name="back_to_start_button_text">BACK TO START SCREEN</string>
-    <string name="create_twin_success">GREAT,\nYOU CREATED A DIGITAL TWIN</string>
+    <string name="create_twin_success">GREAT,\nYOU CREATED A\nDIGITAL TWIN</string>
 
     <string name="scanning_tag_title">LOOKING FOR NFC TAG&#8230;</string>
     <string name="scanning_tag_description">PLEASE HOLD\nYOUR DEVICE OVER THE NFC TAG\nYOU WANT TO SCAN</string>
@@ -16,9 +14,10 @@
     <string name="loading">LOADING DATA&#8230;</string>
     <string name="tag_provisioning_successful">TAG PROVISIONING SUCCESSFUL</string>
     <string name="enter_product_data">ENTER PRODUCT DATA</string>
+    <string name="tag_id">TAG ID #</string>
 
     <string name="create_digital_twin_title">PROVISIONING NEW NFC TAG&#8230;</string>
-    <string name="create_digital_twin_description">TO CREATE A DIGITAL TWIN,\nHOLD YOUR DEVICE\nOVER A NOT YET PAIRED NFC TAG</string>
+    <string name="create_digital_twin_description">TO CREATE A DIGITAL TWIN,\nHOLD YOUR DEVICE\nOVER A NOT YET PAIRED NFC\nTAG.</string>
 
     <string name="create_twin_activity_title">Create Digital Twin</string>
     <string name="scan_activity_title">Scanning</string>

@@ -2,6 +2,7 @@ package com.twinofthings.activities;
 
 import com.google.gson.Gson;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,8 @@ import com.twinofthings.helpers.CircleImageView;
 import com.twinofthings.models.Transaction;
 import com.twinofthings.utils.Constants;
 import com.twinofthings.utils.Util;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ScannedTwinActivity extends AppCompatActivity {
 
@@ -83,6 +86,11 @@ public class ScannedTwinActivity extends AppCompatActivity {
         if(thumbnail != null){
             mThumbnail.setImageBitmap(Util.decodeBase64toBitmap(thumbnail));
         }
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     @Override

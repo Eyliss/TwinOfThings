@@ -10,6 +10,7 @@ import com.twinofthings.models.Credentials;
 import com.twinofthings.utils.Constants;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends Activity {
 
@@ -80,5 +82,10 @@ public class MainActivity extends Activity {
         intent.putExtra(Constants.CHALLENGE,credentials != null ? credentials.getChallenge() : "");
         intent.putExtra(Constants.INTENT_PROCESS_TYPE,proccess);
         startActivity(intent);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }

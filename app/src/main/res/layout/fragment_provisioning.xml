@@ -13,18 +13,29 @@
                   android:orientation="vertical"
                   android:gravity="center_vertical|center_horizontal"
                   android:layout_centerInParent="true">
-        <ImageView
-                android:id="@+id/creating_icon"
-                android:layout_width="225dp"
-                   android:layout_height="225dp"
-                   android:layout_gravity="center_horizontal|center_vertical"
-                   android:src="@drawable/ic_create_twin"/>
+        <RelativeLayout android:layout_width="250dp"
+                        android:layout_height="250dp"
+                        android:id="@+id/creating_icon"
+                        android:layout_gravity="center_horizontal|center_vertical">
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="75dp"
+                    android:layout_marginTop="75dp"
+                    android:src="@drawable/ic_scan_provisioning"/>
+            <ImageView
+                    android:id="@+id/provisioning_clip"
+                    android:layout_width="225dp"
+                    android:layout_height="225dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/clippers"/>
+        </RelativeLayout>
         <TextView
                 android:id="@+id/creating_title"
                 android:text="@string/create_digital_twin_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="16sp"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center"
                 android:layout_margin="@dimen/activity_horizontal_margin"
@@ -34,7 +45,7 @@
                 android:text="@string/create_digital_twin_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="13sp"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
@@ -49,8 +60,8 @@
                 android:layout_gravity="center"/>
         <Button
                 android:id="@+id/btn_enter_product_data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:background="@drawable/button_white"
                 android:text="@string/enter_product_data"
                 android:textColor="@android:color/holo_purple"
