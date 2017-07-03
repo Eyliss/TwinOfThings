@@ -21,12 +21,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="75dp"
-                    android:layout_marginTop="75dp"
+                    android:layout_marginTop="60dp"
                     android:src="@drawable/ic_scan_provisioning"/>
             <ImageView
                     android:id="@+id/provisioning_clip"
-                    android:layout_width="225dp"
-                    android:layout_height="225dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_centerInParent="true"
                     android:src="@drawable/clippers"/>
         </RelativeLayout>
@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_close"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:layout_gravity="center"/>
         <Button
                 android:id="@+id/btn_enter_product_data"
