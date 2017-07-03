@@ -13,7 +13,7 @@
             android:id="@+id/logo"
             android:layout_width="225dp"
             android:layout_height="225dp"
-            android:src="@drawable/main_logo"
+            android:src="@drawable/homescreen_logo"
             android:layout_margin="50dp"
             android:layout_centerHorizontal="true"/>
     <TextView

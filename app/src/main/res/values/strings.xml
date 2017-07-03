@@ -2,12 +2,6 @@
     <string name="app_name">TwinOfThings</string>
     <string name="info_string">Tap any MIFARE / NTAG / ICODE tag!</string>
 
-    <string name="Note">Note: This sample app changes contents on tapped cards</string>
-    <string name="about">About</string>
-    <string name="about_text">This sample demonstrates use of RIDDLE&amp;CODE SDK.Please visit R&amp;C SDK page of www.riddleandcode.com for this application source and more details.</string>
-    <string name="checkbox_text">Allow write operations.</string>
-    <string name="write_ops_title">"Overwrite warning!!"</string>
-    <string name="write_ops_message">Please note by selecting this option application writes sample data to the tapped card if the card key is factory default</string>
     <string name="splash_text">EVERY PRODUCT\nHAS ITS OWN STORY.</string>
     <string name="main_text">ENTER A NEW TRUSTWORTHY WORLD\nWITH TWIN OF THINGS.</string>
     <string name="main_subtext">CLICK ONE OF THE BUTTONS BELOW TO\nCREATE A DIGITAL TWIN OR SCAN A NFC TAG.</string>
