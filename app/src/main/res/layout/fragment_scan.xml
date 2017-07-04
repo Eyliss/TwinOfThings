@@ -16,7 +16,7 @@
     android:layout_margin="@dimen/activity_horizontal_margin">
         <RelativeLayout android:layout_width="250dp"
                         android:layout_height="250dp"
-                        android:id="@+id/scanning_icon"
+                        android:id="@+id/images_container"
                         android:layout_gravity="center_horizontal|center_vertical">
             <ImageView
                     android:layout_width="wrap_content"
@@ -25,11 +25,11 @@
                     android:layout_marginTop="60dp"
                     android:src="@drawable/ic_scan_scanning"/>
             <ImageView
-                    android:id="@+id/provisioning_clip"
+                    android:id="@+id/scan_clip"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/clippers"/>
+                    android:src="@drawable/oval_1"/>
         </RelativeLayout>
         <TextView
                 android:id="@+id/scanning_title"
