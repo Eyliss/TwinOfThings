@@ -7,6 +7,9 @@
     <string name="scan_tag_button_text">SCAN NFC TAG</string>
     <string name="back_to_start_button_text">BACK TO START SCREEN</string>
     <string name="create_twin_success">GREAT,\nYOU CREATED A\nDIGITAL TWIN</string>
+    <string name="error_field_required">Field cannot be empty</string>
+    <string name="error_picture_required">Image need to be provided</string>
+
 
     <string name="scanning_tag_title">LOOKING FOR NFC TAG&#8230;</string>
     <string name="scanning_tag_description">PLEASE HOLD\nYOUR DEVICE OVER THE NFC TAG\nYOU WANT TO SCAN</string>

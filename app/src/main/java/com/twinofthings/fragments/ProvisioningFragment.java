@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.twinofthings.R;
@@ -17,7 +18,7 @@ import com.twinofthings.activities.ReaderActivity;
 public class ProvisioningFragment extends Fragment {
 
     private ImageButton mCloseButton;
-    private ImageView mCreateTwinIcon;
+//    private ImageView mCreateTwinIcon;
     private TextView mCreateTwinTitle;
     private TextView mCreateTwinDescription;
     private Button mEnterData;
@@ -47,7 +48,7 @@ public class ProvisioningFragment extends Fragment {
     }
 
     private void bindViews(View rootView){
-        mCreateTwinIcon = (ImageView) rootView.findViewById(R.id.creating_icon);
+//        mCreateTwinIcon = (RelativeLayout) rootView.findViewById(R.id.creating_icon);
         mCreateTwinTitle = (TextView) rootView.findViewById(R.id.creating_title);
         mCreateTwinDescription = (TextView) rootView.findViewById(R.id.creating_description);
         mEnterData = (Button)rootView.findViewById(R.id.btn_enter_product_data);
@@ -71,7 +72,7 @@ public class ProvisioningFragment extends Fragment {
 
     //If scanning has been success, modify the interface to notify to the user
     public void adaptUItoResult(){
-        mCreateTwinIcon.setImageResource(R.drawable.ic_scan_success);
+//        mCreateTwinIcon.setImageResource(R.drawable.ic_scan_success);
         mCreateTwinTitle.setText(R.string.scanning_successful);
         mCreateTwinTitle.setTextColor(getResources().getColor(android.R.color.holo_blue_bright));
         mCreateTwinTitle.setVisibility(View.GONE);
