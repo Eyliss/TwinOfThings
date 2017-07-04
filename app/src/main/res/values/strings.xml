@@ -37,8 +37,9 @@
     <string name="location">Location</string>
     <string name="product_name">Product Name</string>
     <string name="product_subline">Product Subline</string>
+    <string name="take_photo">take photo</string>
 
-    <string name="timestamp">Timestamp</string>
+    <string name="timestamp">Time Stamp</string>
     <string name="comments_hint">Your comments here</string>
     <string name="pup_id">Pup. ID: %1$s</string>
     <string name="registered">Registered %1$s</string>
