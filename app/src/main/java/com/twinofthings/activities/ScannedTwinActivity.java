@@ -24,12 +24,16 @@ public class ScannedTwinActivity extends AppCompatActivity {
 
     private Button mBackButton;
     private TextView mRegisteredDate;
-    private TextView mId;
-    private TextView mName;
+    private TextView mTransactionId;
+    private CircleImageView mThumbnail;
+
+    private TextView mProductName;
+    private TextView mProductSubline;
     private TextView mOwner;
+    private TextView mObjectId;
+    private TextView mMaterial;
     private TextView mBrand;
     private TextView mComments;
-    private CircleImageView mThumbnail;
 
 
     private Transaction mTransaction;
@@ -64,21 +68,26 @@ public class ScannedTwinActivity extends AppCompatActivity {
             }
         });
         mRegisteredDate = (TextView)findViewById(R.id.tv_registered_date);
-        mId = (TextView)findViewById(R.id.tv_pup_id);
-        mName = (TextView)findViewById(R.id.tv_product_name);
-        mBrand = (TextView)findViewById(R.id.tv_brand);
+        mTransactionId = (TextView)findViewById(R.id.tv_pup_id);
+        mProductName = (TextView)findViewById(R.id.tv_product_name);
+        mProductSubline = (TextView)findViewById(R.id.tv_product_subline);
         mOwner = (TextView)findViewById(R.id.tv_owner);
+        mObjectId = (TextView)findViewById(R.id.tv_object_id);
+        mMaterial = (TextView)findViewById(R.id.tv_material);
+        mBrand = (TextView)findViewById(R.id.tv_brand);
         mComments = (TextView)findViewById(R.id.tv_comments);
         mThumbnail = (CircleImageView) findViewById(R.id.thumbnail);
     }
 
     private void setProductInfo(){
-
-        mId.setText(getString(R.string.pup_id,mTransaction.getId()));
         mRegisteredDate.setText(getString(R.string.registered,mTransaction.getMetadata().getTimestamp()));
-        mName.setText(mTransaction.getMetadata().getProductName());
-        mBrand.setText(mTransaction.getMetadata().getBrandName());
+        mTransactionId.setText(getString(R.string.pup_id,mTransaction.getId()));
+        mProductName.setText(mTransaction.getMetadata().getProductName());
+        mProductSubline.setText(mTransaction.getMetadata().getProductSubline());
         mOwner.setText(mTransaction.getMetadata().getOwnerName());
+        mObjectId.setText(mTransaction.getMetadata().getSerialId());
+        mMaterial.setText(mTransaction.getMetadata().getMaterial());
+        mBrand.setText(mTransaction.getMetadata().getBrandName());
         mComments.setText(mTransaction.getMetadata().getCommentsDetail());
 
         //Set the scanned product thumbnail converting the received base64 string into a bitmap

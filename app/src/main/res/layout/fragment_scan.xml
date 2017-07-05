@@ -11,11 +11,11 @@
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:orientation="vertical"
-                  android:gravity="center_vertical|center_horizontal"
+                  android:gravity="center_horizontal"
                   android:layout_centerInParent="true"
     android:layout_margin="@dimen/activity_horizontal_margin">
         <ImageView android:layout_width="225dp"
-                   android:layout_height="225dp"
+                   android:layout_height="200dp"
                    android:layout_gravity="center_horizontal|center_vertical"
                    android:id="@+id/scanning_icon"
                    android:src="@drawable/ic_scan"/>
@@ -24,13 +24,14 @@
                 android:text="@string/scanning_tag_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="16sp"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center"
-                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/section_vertical_margin"
                 android:textColor="@android:color/white"/>
         <ProgressBar
                 style="?android:attr/progressBarStyleLarge"
+                android:layout_marginTop="@dimen/section_vertical_margin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/progressBar"
@@ -38,20 +39,20 @@
         <TextView
                 android:id="@+id/scanning_description"
                 android:text="@string/scanning_tag_description"
+                android:lineSpacingMultiplier="1.5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="13sp"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/section_vertical_margin"
+                android:layout_marginBottom="@dimen/section_vertical_margin"
                 android:textColor="@android:color/white"/>
         <ImageButton
                 android:id="@+id/close_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_close"
-                android:layout_marginTop="50dp"
                 android:layout_gravity="center"/>
     </LinearLayout>
 </RelativeLayout>

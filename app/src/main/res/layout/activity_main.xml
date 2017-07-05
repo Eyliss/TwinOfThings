@@ -54,7 +54,6 @@
                 android:padding="10dp"
                 android:drawableLeft="@drawable/ic_scan_tag_button"
                 android:drawableTint="@android:color/white"
-                android:drawablePadding="10dp"
                 android:background="@drawable/button_white_border"
                 android:text="@string/scan_tag_button_text"
                 android:textColor="@android:color/white"

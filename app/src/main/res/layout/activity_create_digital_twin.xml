@@ -48,9 +48,11 @@
                     android:textSize="14sp"
                     android:textColor="@android:color/black"
                     android:textColorHint="@color/grey"
+                    android:paddingBottom="20dp"
                     android:layout_marginBottom="@dimen/form_field_vertical_margin"
                     android:drawableLeft="@drawable/ic_brand"
                     android:drawablePadding="10dp"
+                    android:backgroundTint="@color/bright_violet"
                     android:hint="@string/brand"/>
             <EditText
                     android:layout_width="match_parent"
@@ -60,9 +62,11 @@
                     android:textSize="14sp"
                     android:textColor="@android:color/black"
                     android:textColorHint="@color/grey"
+                    android:paddingBottom="20dp"
                     android:layout_marginBottom="@dimen/form_field_vertical_margin"
                     android:drawableLeft="@drawable/ic_product_name"
                     android:drawablePadding="10dp"
+                    android:backgroundTint="@color/bright_violet"
                     android:maxLines="1"
                     android:hint="@string/product_name"/>
             <EditText
@@ -71,11 +75,13 @@
                     android:id="@+id/product_subline"
                     android:gravity="left"
                     android:textSize="14sp"
+                    android:paddingBottom="20dp"
                     android:textColor="@android:color/black"
                     android:textColorHint="@color/grey"
                     android:layout_marginBottom="@dimen/form_field_vertical_margin"
                     android:drawableLeft="@drawable/ic_product_name"
                     android:drawablePadding="10dp"
+                    android:backgroundTint="@color/bright_violet"
                     android:maxLines="1"
                     android:hint="@string/product_subline"/>
             <LinearLayout
@@ -100,8 +106,9 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="@android:color/black"
-                        android:padding="@dimen/activity_horizontal_margin"
-                        android:id="@+id/tv_timestamp" android:layout_marginLeft="10dp"/>
+                        android:padding="5dp"
+                        android:id="@+id/tv_timestamp"
+                        android:layout_marginStart="25dp"/>
             </LinearLayout>
             <EditText
                     android:layout_width="match_parent"
@@ -113,8 +120,10 @@
                     android:textColor="@android:color/black"
                     android:textColorHint="@color/grey"
                     android:layout_marginBottom="@dimen/form_field_vertical_margin"
+                    android:paddingBottom="20dp"
                     android:drawableLeft="@drawable/ic_owner"
                     android:drawablePadding="10dp"
+                    android:backgroundTint="@color/bright_violet"
                     android:hint="@string/owner"/>
             <EditText
                     android:layout_width="match_parent"
@@ -126,29 +135,11 @@
                     android:textColor="@android:color/black"
                     android:textColorHint="@color/grey"
                     android:layout_marginBottom="@dimen/form_field_vertical_margin"
+                    android:paddingBottom="20dp"
                     android:drawableLeft="@drawable/ic_fingerprint"
                     android:drawablePadding="10dp"
+                    android:backgroundTint="@color/bright_violet"
                     android:hint="@string/serial_id"/>
-            <!--<EditText-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/twin_id"-->
-            <!--android:gravity="left"-->
-            <!--style="@style/TextAppearance.AppCompat.Medium"-->
-            <!--android:padding="@dimen/section_padding"-->
-            <!--android:layout_margin="@dimen/separator_height"-->
-            <!--android:drawableLeft="@drawable/ic_id"-->
-            <!--android:drawablePadding="@dimen/activity_horizontal_margin"/>-->
-            <!--<EditText-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/twin_location"-->
-            <!--android:hint="@string/location"-->
-            <!--android:gravity="left"-->
-            <!--android:maxLines="1"-->
-            <!--style="@style/TextAppearance.AppCompat.Medium"-->
-            <!--android:drawableLeft="@drawable/ic_my_location"-->
-            <!--android:drawablePadding="8dp"/>-->
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -158,8 +149,10 @@
                     android:textColor="@android:color/black"
                     android:textColorHint="@color/grey"
                     android:layout_marginBottom="@dimen/form_field_vertical_margin"
+                    android:paddingBottom="20dp"
                     android:drawableLeft="@drawable/ic_material"
                     android:drawablePadding="10dp"
+                    android:backgroundTint="@color/bright_violet"
                     android:hint="@string/material"
             />
             <LinearLayout
@@ -180,7 +173,8 @@
                         android:textColorHint="@color/grey"
                         android:hint="@string/comments_hint"
                         android:background="@color/very_light_grey"
-                        android:layout_marginStart="@dimen/activity_horizontal_margin"/>
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                />
             </LinearLayout>
             <Button
                     android:id="@+id/create_digital_twin_button"

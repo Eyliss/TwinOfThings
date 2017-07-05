@@ -12,7 +12,7 @@
 
 
     <string name="scanning_tag_title">LOOKING FOR NFC TAG&#8230;</string>
-    <string name="scanning_tag_description">PLEASE HOLD\nYOUR DEVICE OVER THE NFC TAG\nYOU WANT TO SCAN</string>
+    <string name="scanning_tag_description">PLEASE HOLD\nYOUR DEVICE OVER THE NFC\nTAG\nYOU WANT TO SCAN</string>
     <string name="scanning_successful">SCANNING SUCCESSFUL</string>
     <string name="loading">LOADING DATA&#8230;</string>
     <string name="tag_provisioning_successful">TAG PROVISIONING SUCCESSFUL</string>
@@ -24,9 +24,7 @@
 
     <string name="create_twin_activity_title">Create Digital Twin</string>
     <string name="scan_activity_title">Scanning</string>
-    <string name="product_info">
-        <u>PRODUCT INFO</u>
-    </string>
+    <string name="product_info"><u>PRODUCT INFO</u></string>
     <string name="owner">Owner</string>
     <string name="serial_id">Serial ID</string>
     <string name="object_id">Object ID</string>

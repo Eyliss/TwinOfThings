@@ -18,9 +18,11 @@ import com.twinofthings.activities.ReaderActivity;
 public class ProvisioningFragment extends Fragment {
 
     private ImageButton mCloseButton;
-//    private ImageView mCreateTwinIcon;
-    private TextView mCreateTwinTitle;
-    private TextView mCreateTwinDescription;
+    private ImageView mProvisioningIcon;
+    private ImageView mProvisioningClip;
+
+    private TextView mProvisioningTitle;
+    private TextView mProvisioningDescription;
     private Button mEnterData;
 
     public ProvisioningFragment() {
@@ -48,9 +50,10 @@ public class ProvisioningFragment extends Fragment {
     }
 
     private void bindViews(View rootView){
-//        mCreateTwinIcon = (RelativeLayout) rootView.findViewById(R.id.creating_icon);
-        mCreateTwinTitle = (TextView) rootView.findViewById(R.id.creating_title);
-        mCreateTwinDescription = (TextView) rootView.findViewById(R.id.creating_description);
+        mProvisioningIcon = (ImageView) rootView.findViewById(R.id.provisioning_icon);
+        mProvisioningClip = (ImageView) rootView.findViewById(R.id.provisioning_clip);
+        mProvisioningTitle = (TextView) rootView.findViewById(R.id.creating_title);
+        mProvisioningDescription = (TextView) rootView.findViewById(R.id.creating_description);
         mEnterData = (Button)rootView.findViewById(R.id.btn_enter_product_data);
         mCloseButton = (ImageButton)rootView.findViewById(R.id.close_button);
 
@@ -72,10 +75,15 @@ public class ProvisioningFragment extends Fragment {
 
     //If scanning has been success, modify the interface to notify to the user
     public void adaptUItoResult(){
-//        mCreateTwinIcon.setImageResource(R.drawable.ic_scan_success);
-        mCreateTwinTitle.setText(R.string.scanning_successful);
-        mCreateTwinTitle.setTextColor(getResources().getColor(android.R.color.holo_blue_bright));
-        mCreateTwinTitle.setVisibility(View.GONE);
+        mProvisioningIcon.setImageResource(R.drawable.provisioning_icon_success);
+        mProvisioningClip.getLayoutParams().height = mProvisioningIcon.getLayoutParams().height * 2;
+        mProvisioningClip.getLayoutParams().width = mProvisioningIcon.getLayoutParams().width * 2;
+        mProvisioningClip.requestLayout();
+        mProvisioningClip.setImageResource(R.drawable.provisioning_clip_success);
+
+        mProvisioningTitle.setText(R.string.scanning_successful);
+        mProvisioningTitle.setTextColor(getResources().getColor(android.R.color.holo_blue_bright));
+        mProvisioningTitle.setVisibility(View.GONE);
         mCloseButton.setVisibility(View.GONE);
         mEnterData.setVisibility(View.VISIBLE);
     }
