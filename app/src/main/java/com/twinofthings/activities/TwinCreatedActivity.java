@@ -28,13 +28,7 @@ public class TwinCreatedActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private CircleImageView mThumbnail;
 
-    private TextView mRegisteredDate;
-    private TextView mName;
-    private TextView mOwner;
-    private TextView mBrand;
-    private TextView mComments;
-
-    private Transaction mTransaction;
+//    private Transaction mTransaction;
     private String mThumbnailEncoded;
 
     private String publicKey = "";
@@ -58,7 +52,7 @@ public class TwinCreatedActivity extends AppCompatActivity {
 
         Gson gson = new Gson();
         String post = getIntent().getExtras().getString(Constants.INTENT_TRANSACTION);
-        mTransaction = gson.fromJson(post, Transaction.class);
+//        mTransaction = gson.fromJson(post, Transaction.class);
 
         bindViews();
 
@@ -83,22 +77,10 @@ public class TwinCreatedActivity extends AppCompatActivity {
             }
         });
 
-        mRegisteredDate = (TextView)findViewById(R.id.tv_registered_date);
-        mName = (TextView)findViewById(R.id.tv_product_name);
-        mBrand = (TextView)findViewById(R.id.tv_brand);
-        mOwner = (TextView)findViewById(R.id.tv_owner);
-        mComments = (TextView)findViewById(R.id.tv_comments);
         mThumbnail = (CircleImageView) findViewById(R.id.thumbnail);
-
     }
 
     private void setProductInfo(){
-
-        mRegisteredDate.setText(getString(R.string.registered,mTransaction.getMetadata().getTimestamp()));
-        mName.setText(mTransaction.getMetadata().getProductName());
-        mBrand.setText(mTransaction.getMetadata().getBrandName());
-        mOwner.setText(mTransaction.getMetadata().getOwnerName());
-        mComments.setText(mTransaction.getMetadata().getCommentsDetail());
 
         //Set the scanned product thumbnail converting the received base64 string into a bitmap
         if(mThumbnailEncoded != null){

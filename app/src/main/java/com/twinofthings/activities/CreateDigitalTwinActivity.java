@@ -165,6 +165,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         });
 
         mUploadPicture = (CircleImageView) findViewById(R.id.ib_upload_picture);
+        mUploadPicture.setBorderWidth(3);
         mUploadPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
