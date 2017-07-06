@@ -18,25 +18,25 @@
                     android:layout_marginTop="@dimen/section_vertical_margin"
                     android:layout_marginBottom="@dimen/section_vertical_margin"
                     android:id="@+id/images_container">
+        <ImageView
+                android:src="@drawable/outline"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerInParent="true"/>
+        <com.twinofthings.helpers.CircleImageView
+                android:src="@android:drawable/ic_menu_camera"
+                android:id="@+id/thumbnail"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_centerInParent="true"/>
         <ImageView android:layout_width="100dp"
                    android:layout_height="100dp"
                    android:src="@drawable/ic_scan_success"
                    android:id="@+id/success_icon"
                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_alignStart="@id/thumbnail"
-        android:layout_marginLeft="-55dp"/>
-        <ImageView
-                android:src="@drawable/outline"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_centerInParent="true"/>
-        <com.twinofthings.helpers.CircleImageView
-                android:src="@android:drawable/ic_menu_camera"
-                android:id="@+id/thumbnail"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_centerInParent="true"/>
+                   android:layout_centerVertical="true"
+                   android:layout_alignStart="@id/thumbnail"
+                   android:layout_marginLeft="-55dp"/>
     </RelativeLayout>
     <TextView
             android:id="@+id/centered_text"
@@ -45,7 +45,6 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:layout_centerInParent="true"
-            android:layout_marginTop="@dimen/double_section_vertical_margin"
             android:lineSpacingMultiplier="1.5"
             android:textColor="@android:color/white"
             android:gravity="center"
@@ -53,20 +52,20 @@
     <Button
             android:id="@+id/scan_tag_button"
             android:layout_width="220dp"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:layout_height="50dp"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:drawableLeft="@drawable/ic_scan_tag_button"
             android:drawableTint="@android:color/white"
             android:layout_above="@id/back_to_start"
             android:background="@drawable/button_white_border"
             android:text="@string/scan_tag_button_text"
+            android:padding="10dp"
             android:textColor="@android:color/white"
             android:layout_centerHorizontal="true"/>
     <Button
             android:id="@+id/back_to_start"
             android:layout_width="220dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:padding="10dp"
             android:background="@drawable/button_white_border"
             android:text="@string/back_to_start_button_text"

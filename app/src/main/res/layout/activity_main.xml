@@ -20,19 +20,21 @@
                 android:text="@string/main_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="16sp"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center"
                 android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:lineSpacingMultiplier="1.2"
                 android:textColor="@android:color/white"/>
         <TextView
                 android:text="@string/main_subtext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_gravity="center_horizontal|center_vertical"
+                android:textSize="13sp"
                 android:gravity="center"
                 android:layout_margin="@dimen/activity_vertical_margin"
+                android:lineSpacingMultiplier="1.5"
                 android:textColor="@android:color/white"/>
         <Button
                 android:id="@+id/create_twin_button"
