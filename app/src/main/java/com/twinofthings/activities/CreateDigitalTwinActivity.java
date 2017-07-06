@@ -24,15 +24,16 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.twinofthings.R;
 import com.twinofthings.api.RCApiManager;
 import com.twinofthings.api.RCApiResponse;
@@ -159,11 +160,12 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         mCreateTwin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendTwinDataToServer();
+                attemptProvisioning();
             }
         });
 
         mUploadPicture = (CircleImageView) findViewById(R.id.ib_upload_picture);
+        mUploadPicture.setBorderWidth(3);
         mUploadPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -264,8 +266,21 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         super.onStop();
     }
 
+    /**
+     * Attempts to sign in and create a user with the form fields.
+     * If there are form errors (invalid email, missing fields, etc.), the
+     * errors are presented and no actual sign up attempt is made.
+     */
+    private void attemptProvisioning(){
 
-    private void sendTwinDataToServer() {
+        // Reset errors.
+        mBrandName.setError(null);
+        mProductName.setError(null);
+        mProductSubline.setError(null);
+        mOwnerName.setError(null);
+        mSerialId.setError(null);
+        mMaterial.setError(null);
+        mComments.setError(null);
 
         String brandName = mBrandName.getText().toString();
         String timestamp = getStringDate();
@@ -275,8 +290,68 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         String serialId = mSerialId.getText().toString();
         String material = mMaterial.getText().toString();
         String comments = mComments.getText().toString();
-//        String location = mLocation.getText().toString();
         thumbnailEncoded = thumbnailBitmap != null ? Util.encodeBitmapToBase64(thumbnailBitmap, Bitmap.CompressFormat.PNG) : "";
+
+        boolean cancel = false;
+        View focusView = null;
+
+        if (TextUtils.isEmpty(brandName)) {
+            mBrandName.setError(getString(R.string.error_field_required));
+            focusView = mBrandName;
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(productName)) {
+            mProductName.setError(getString(R.string.error_field_required));
+            focusView = mProductName;
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(productSubline)) {
+            mProductSubline.setError(getString(R.string.error_field_required));
+            focusView = mProductSubline;
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(ownerName)) {
+            mOwnerName.setError(getString(R.string.error_field_required));
+            focusView = mOwnerName;
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(serialId)) {
+            mSerialId.setError(getString(R.string.error_field_required));
+            focusView = mSerialId;
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(material)) {
+            mMaterial.setError(getString(R.string.error_field_required));
+            focusView = mMaterial;
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(comments)) {
+            mComments.setError(getString(R.string.error_field_required));
+            focusView = mComments;
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(thumbnailEncoded)) {
+            Toast.makeText(this,R.string.error_picture_required,Toast.LENGTH_SHORT).show();
+            cancel = true;
+        }
+
+        if (cancel) {
+            focusView.requestFocus();
+        } else {
+            sendTwinDataToServer(brandName, productName, productSubline,timestamp,ownerName,serialId,material,comments,thumbnailEncoded);
+        }
+
+    }
+
+    private void sendTwinDataToServer(String brandName,String productName,String productSubline,String timestamp,String ownerName,String serialId,String material,String comments,String thumbnailEncoded) {
+
 
         RCApiManager.provision(publicKey, signature, challenge, brandName, productName, productSubline,timestamp,ownerName,serialId,material,comments,thumbnailEncoded,new Callback<RCApiResponse>() {
             @Override

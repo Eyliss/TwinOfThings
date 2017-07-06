@@ -18,14 +18,14 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-public class CircleImageView extends ImageView {
+public class CircleImageView extends android.support.v7.widget.AppCompatImageView {
 
     private static final ScaleType SCALE_TYPE = ScaleType.FIT_XY;
 
     private static final Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;
     private static final int COLORDRAWABLE_DIMENSION = 1;
 
-    private static final int DEFAULT_BORDER_WIDTH = 2;
+    private static final int DEFAULT_BORDER_WIDTH = 0;
     private static final int DEFAULT_BORDER_COLOR = Color.WHITE;
 
     private final RectF mDrawableRect = new RectF();

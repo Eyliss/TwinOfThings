@@ -15,158 +15,63 @@
     <RelativeLayout android:layout_width="match_parent"
                     android:layout_below="@+id/toolbar"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/section_vertical_margin"
+                    android:layout_marginBottom="@dimen/section_vertical_margin"
                     android:id="@+id/images_container">
-        <ImageView android:layout_width="50dp"
-                   android:layout_height="50dp"
-                   android:src="@drawable/ic_scan_success"
-                   android:id="@+id/success_icon"
-                   android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_alignLeft="@id/thumbnail"/>
+        <ImageView
+                android:src="@drawable/outline"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerInParent="true"/>
         <com.twinofthings.helpers.CircleImageView
                 android:src="@android:drawable/ic_menu_camera"
                 android:id="@+id/thumbnail"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
                 android:layout_centerInParent="true"/>
+        <ImageView android:layout_width="100dp"
+                   android:layout_height="100dp"
+                   android:src="@drawable/ic_scan_success"
+                   android:id="@+id/success_icon"
+                   android:layout_centerHorizontal="true"
+                   android:layout_centerVertical="true"
+                   android:layout_alignStart="@id/thumbnail"
+                   android:layout_marginLeft="-55dp"/>
     </RelativeLayout>
     <TextView
             android:id="@+id/centered_text"
             android:text="@string/create_twin_success"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.AppCompat.Small"
-            android:textStyle="bold"
-            android:layout_centerHorizontal="true"
+            android:textSize="16sp"
+            android:layout_centerInParent="true"
+            android:lineSpacingMultiplier="1.5"
             android:textColor="@android:color/white"
             android:gravity="center"
             android:layout_below="@id/images_container"/>
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical"
-            android:layout_below="@id/centered_text"
-            android:layout_above="@+id/scan_tag_button"
-                  android:padding="@dimen/activity_vertical_margin">
-        <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.8"
-                android:background="@android:color/transparent">
-
-            <TextView
-                android:id="@+id/tv_product_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_gravity="center"
-                android:textAllCaps="true"/>
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_registered_date"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textColor="@android:color/white"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-            />
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent">
-            <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.3"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="@string/owner"
-                    android:textColor="@color/very_light_grey"
-                    style="@style/TextAppearance.AppCompat.Medium"/>
-            <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.7"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_owner"
-                    android:gravity="left"
-                    android:textColor="@android:color/white"
-                    style="@style/TextAppearance.AppCompat.Medium"/>
-        </LinearLayout>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:layout_margin="@dimen/separator_height">
-            <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.3"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="@string/brand"
-                    android:textColor="@color/very_light_grey"
-                    style="@style/TextAppearance.AppCompat.Medium"/>
-            <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.7"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_brand"
-                    android:gravity="left"
-                    android:textColor="@android:color/white"
-                    style="@style/TextAppearance.AppCompat.Medium"/>
-        </LinearLayout>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent">
-            <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.3"
-                    android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:text="@string/comments"
-                    android:textColor="@color/very_light_grey"
-                    style="@style/TextAppearance.AppCompat.Medium"/>
-            <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.7"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_comments"
-                    android:gravity="start"
-                    android:ellipsize="end"
-                    android:lines="3"
-                    android:textColor="@android:color/white"
-                    style="@style/TextAppearance.AppCompat.Medium"/>
-        </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
     <Button
             android:id="@+id/scan_tag_button"
             android:layout_width="220dp"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:layout_height="50dp"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:drawableLeft="@drawable/ic_scan_tag_button"
             android:drawableTint="@android:color/white"
             android:layout_above="@id/back_to_start"
             android:background="@drawable/button_white_border"
             android:text="@string/scan_tag_button_text"
+            android:padding="10dp"
             android:textColor="@android:color/white"
             android:layout_centerHorizontal="true"/>
     <Button
             android:id="@+id/back_to_start"
             android:layout_width="220dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:padding="10dp"
             android:background="@drawable/button_white_border"
             android:text="@string/back_to_start_button_text"
             android:textColor="@android:color/white"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-    android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+    android:layout_marginBottom="@dimen/double_section_vertical_margin"/>
 
 </RelativeLayout>
