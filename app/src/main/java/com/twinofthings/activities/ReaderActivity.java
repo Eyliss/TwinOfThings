@@ -2330,7 +2330,7 @@ public class ReaderActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }else{
-                    if(apiResponse.notFoundError()){
+                    if(apiResponse.hasErrors()){
                         showCreateDialog();
                     }else{
                         ((ScanFragment)mFragment).stopScan();

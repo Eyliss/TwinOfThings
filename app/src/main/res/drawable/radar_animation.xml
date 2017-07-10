@@ -1,7 +1,7 @@
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
-                android:oneshot="true">
-    <item android:drawable="@drawable/oval_1" android:duration="50" />
-    <item android:drawable="@drawable/oval_2" android:duration="50" />
-    <item android:drawable="@drawable/oval_3" android:duration="50" />
-    <item android:drawable="@drawable/oval_4" android:duration="50" />
+                android:oneshot="false">
+    <item android:drawable="@drawable/oval_1" android:duration="200" />
+    <item android:drawable="@drawable/oval_2" android:duration="225" />
+    <item android:drawable="@drawable/oval_3" android:duration="250" />
+    <item android:drawable="@drawable/oval_4" android:duration="275" />
 </animation-list>

@@ -70,6 +70,7 @@ public class RCApiManager {
         object.addProperty("signature",signature);
         object.addProperty("challenge",challenge);
 
+
         JsonObject metadata = new JsonObject();
         metadata.addProperty("brand_name",brandName);
         metadata.addProperty("product_name",productName);

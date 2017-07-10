@@ -23,11 +23,12 @@
                 android:layout_width="0dp"
                 android:layout_weight="0.35"
                 android:layout_height="match_parent"
-                android:layout_gravity="bottom|right"
+                android:layout_gravity="bottom|end"
                 android:id="@+id/tv_registered_date"
-                android:gravity="center"
+                android:gravity="bottom|end"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"/>
+                android:textSize="12sp"
+        android:padding="1dp"/>
         <TextView
                 android:layout_width="0dp"
                 android:layout_weight="0.3"
@@ -37,10 +38,11 @@
                 android:layout_width="0dp"
                 android:layout_weight="0.35"
                 android:layout_height="match_parent"
-                android:layout_gravity="bottom|left"
+                android:layout_gravity="bottom|start"
                 android:id="@+id/tv_pup_id"
-                android:gravity="center"
+                android:gravity="bottom|start"
                 android:textSize="12sp"
+                android:padding="1dp"
                 android:textColor="@android:color/white"
                 android:ellipsize="end"
         android:maxLines="1"/>
@@ -226,14 +228,16 @@
                 android:text="@string/back_to_start_button_text"
                 android:textColor="@color/bright_violet"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/section_vertical_margin"/>
+                android:layout_marginTop="@dimen/section_vertical_margin"
+                android:layout_marginBottom="@dimen/section_vertical_margin"/>
     </LinearLayout>
 </ScrollView>
     <RelativeLayout android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/thumbnail_layout"
                     android:layout_below="@+id/toolbar"
-                    android:layout_centerHorizontal="true">
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true">
         <com.twinofthings.helpers.CircleImageView
                 android:id="@+id/thumbnail"
                 android:layout_width="100dp"

@@ -342,7 +342,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
             cancel = true;
         }
 
-        if (cancel) {
+        if (cancel && focusView != null) {
             focusView.requestFocus();
         } else {
             sendTwinDataToServer(brandName, productName, productSubline,timestamp,ownerName,serialId,material,comments,thumbnailEncoded);

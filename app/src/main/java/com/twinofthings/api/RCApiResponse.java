@@ -32,8 +32,8 @@ public class RCApiResponse<T> {
         return error;
     }
 
-    public boolean notFoundError(){
-        return error.equals("transaction not found");
+    public boolean hasErrors(){
+        return error.equals("transaction not found") || error.equals("malformed metadata");
     }
 
     public boolean isSuccessful(){

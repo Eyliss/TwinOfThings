@@ -24,6 +24,9 @@ public class ScanFragment extends Fragment {
     private TextView mScanTitle;
     private TextView mScanDescription;
     private ProgressBar mProgressBar;
+    private ImageView rocketImage;
+    private ImageView scanImage;
+
     AnimationDrawable rocketAnimation;
 
     public ScanFragment() {
@@ -57,7 +60,8 @@ public class ScanFragment extends Fragment {
         mScanTitle = (TextView) rootView.findViewById(R.id.scanning_title);
         mScanDescription = (TextView) rootView.findViewById(R.id.scanning_description);
         mProgressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
-
+        rocketImage = (ImageView) rootView.findViewById(R.id.scan_clip);
+        scanImage = (ImageView) rootView.findViewById(R.id.scan_image);
         mCloseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,30 +71,26 @@ public class ScanFragment extends Fragment {
 
         ((ReaderActivity) getActivity()).setActionBarTitle(R.string.scan_activity_title);
 
-        final ImageView rocketImage = (ImageView) rootView.findViewById(R.id.scan_clip);
-        rocketImage.setBackgroundResource(R.drawable.radar_animation);
-        rocketImage.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                rocketAnimation = (AnimationDrawable) rocketImage.getBackground();
-                                rocketAnimation.start();
-                            }
-                        });
+        rocketImage.setImageResource(R.drawable.radar_animation);
+        rocketAnimation = (AnimationDrawable) rocketImage.getDrawable();
+        rocketAnimation.start();
     }
 
     //Configure UI for scanning
     public void startScan(){
-//        mScanIcon.setImageResource(R.drawable.ic_scan_success);
+        rocketAnimation.stop();
         mScanTitle.setText(R.string.scanning_successful);
         mScanTitle.setTextColor(getResources().getColor(R.color.cyan));
         mScanDescription.setText(R.string.loading);
+        rocketImage.setImageResource(R.drawable.ic_scan_success);
+        scanImage.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.VISIBLE);
         mProgressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.cyan), PorterDuff.Mode.MULTIPLY);
     }
 
     //Configure UI when scan stops
     public void stopScan(){
-//        mScanIcon.setImageResource(R.drawable.ic_scan);
+        rocketAnimation.start();
         mScanTitle.setText(R.string.scanning_tag_title);
         mScanTitle.setTextColor(getResources().getColor(android.R.color.white));
         mScanDescription.setText(R.string.scanning_tag_description);

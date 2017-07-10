@@ -14,7 +14,7 @@
             android:layout_width="225dp"
             android:layout_height="225dp"
             android:src="@drawable/splash_logo"
-            android:layout_margin="50dp"
+            android:layout_marginTop="100dp"
             android:layout_centerHorizontal="true"/>
     <TextView
             android:id="@+id/tvDisclaimer"
@@ -22,9 +22,11 @@
             android:layout_height="wrap_content"
             android:textAllCaps="true"
             android:text="@string/splash_text"
+            android:lineSpacingMultiplier="1.5"
             android:gravity="center"
             android:textSize="18sp"
             android:textColor="@android:color/white"
+            android:layout_marginTop="50dp"
             android:layout_below="@+id/logo"
             android:layout_centerHorizontal="true"/>
 

@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceGenerator {
 
-    public static String API_BASE_URL = "http://ec2-34-251-133-19.eu-west-1.compute.amazonaws.com:8001/v1/";
+    public static String API_BASE_URL = "http://34.251.133.19:8001/v1/";
     public static String AUTH_TOKEN = "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTA4MTA1NjcsImlhdCI6MTQ5MDgxMDI2NywibmJmIjoxNDkwODEwMjY3LCJpZGVudGl0eSI6MTIzNH0.UkhNR7KzrtahqWAxHjOzJz6fsOEwtZh49gRvl_llW8w";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
