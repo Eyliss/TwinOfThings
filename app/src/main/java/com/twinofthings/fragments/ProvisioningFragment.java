@@ -97,9 +97,9 @@ public class ProvisioningFragment extends Fragment {
         mProvisioningClip.requestLayout();
         mProvisioningClip.setImageResource(R.drawable.provisioning_clip_success);
 
-        mProvisioningTitle.setText(R.string.scanning_successful);
+        mProvisioningTitle.setText(R.string.tag_provisioning_successful);
         mProvisioningTitle.setTextColor(getResources().getColor(android.R.color.holo_blue_bright));
-        mProvisioningTitle.setVisibility(View.GONE);
+        mProvisioningDescription.setVisibility(View.GONE);
 
         mCloseButton.setVisibility(View.GONE);
         mEnterData.setVisibility(View.VISIBLE);

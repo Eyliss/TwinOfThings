@@ -70,7 +70,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     private TextView mTimestamp;
     private DatePickerDialog mDatePickerDialog;
     private EditText mProductName;
-    private EditText mProductSubline;
+//    private EditText mProductSubline;
     private EditText mOwnerName;
     private EditText mSerialId;
     private EditText mMaterial;
@@ -79,6 +79,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
 //    private TextView mLocation;
     private Button mCreateTwin;
     private CircleImageView mUploadPicture;
+    private TextView mTvTakePhoto;
 
     private Location mLastLocation;
     private String locationName;
@@ -140,7 +141,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
 
         mBrandName = (EditText) findViewById(R.id.brand_name);
         mProductName = (EditText) findViewById(R.id.product_name);
-        mProductSubline = (EditText) findViewById(R.id.product_subline);
+//        mProductSubline = (EditText) findViewById(R.id.product_subline);
         mOwnerName = (EditText) findViewById(R.id.owner_name);
         mSerialId = (EditText) findViewById(R.id.serial_id);
         mMaterial = (EditText) findViewById(R.id.material);
@@ -165,14 +166,18 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         });
 
         mUploadPicture = (CircleImageView) findViewById(R.id.ib_upload_picture);
+        mTvTakePhoto = (TextView) findViewById(R.id.tv_take_photo);
         mUploadPicture.setBorderWidth(3);
-        mUploadPicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                requestCameraPermissions();
-            }
-        });
+        mTvTakePhoto.setOnClickListener(takePhotoListener);
+        mUploadPicture.setOnClickListener(takePhotoListener);
     }
+
+    View.OnClickListener takePhotoListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            requestCameraPermissions();
+        }
+    };
 
     private void dispatchTakePictureIntent() {
 
@@ -276,7 +281,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         // Reset errors.
         mBrandName.setError(null);
         mProductName.setError(null);
-        mProductSubline.setError(null);
+//        mProductSubline.setError(null);
         mOwnerName.setError(null);
         mSerialId.setError(null);
         mMaterial.setError(null);
@@ -285,7 +290,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         String brandName = mBrandName.getText().toString();
         String timestamp = getStringDate();
         String productName = mProductName.getText().toString();
-        String productSubline = mProductSubline.getText().toString();
+//        String productSubline = mProductSubline.getText().toString();
         String ownerName = mOwnerName.getText().toString();
         String serialId = mSerialId.getText().toString();
         String material = mMaterial.getText().toString();
@@ -304,12 +309,6 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         if (TextUtils.isEmpty(productName)) {
             mProductName.setError(getString(R.string.error_field_required));
             focusView = mProductName;
-            cancel = true;
-        }
-
-        if (TextUtils.isEmpty(productSubline)) {
-            mProductSubline.setError(getString(R.string.error_field_required));
-            focusView = mProductSubline;
             cancel = true;
         }
 
@@ -345,7 +344,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         if (cancel && focusView != null) {
             focusView.requestFocus();
         } else {
-            sendTwinDataToServer(brandName, productName, productSubline,timestamp,ownerName,serialId,material,comments,thumbnailEncoded);
+            sendTwinDataToServer(brandName, productName, "-",timestamp,ownerName,serialId,material,comments,thumbnailEncoded);
         }
 
     }

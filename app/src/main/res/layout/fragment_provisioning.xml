@@ -69,6 +69,6 @@
                 android:padding="10dp"
                 android:visibility="gone"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/separator_height"/>
+                android:layout_marginTop="@dimen/section_vertical_margin"/>
     </LinearLayout>
 </RelativeLayout>

@@ -25,6 +25,7 @@
             android:xlargeScreens="true"/>
 
     <application
+            android:name=".TwinOfThingsApplication"
             android:allowBackup="false"
             android:description="@string/app_name"
             android:icon="@mipmap/ic_launcher"

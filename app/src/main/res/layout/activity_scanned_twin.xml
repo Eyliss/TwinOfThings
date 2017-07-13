@@ -27,8 +27,8 @@
                 android:id="@+id/tv_registered_date"
                 android:gravity="bottom|end"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
-        android:padding="1dp"/>
+                android:textSize="11sp"
+                android:padding="1dp"/>
         <TextView
                 android:layout_width="0dp"
                 android:layout_weight="0.3"
@@ -41,50 +41,72 @@
                 android:layout_gravity="bottom|start"
                 android:id="@+id/tv_pup_id"
                 android:gravity="bottom|start"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:padding="1dp"
                 android:textColor="@android:color/white"
                 android:ellipsize="end"
         android:maxLines="1"/>
     </LinearLayout>
-
-<ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/upper_layout"
-        android:background="@android:color/white">
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/upper_layout"
+            android:id="@+id/general_info_container"
             android:background="@android:color/white">
         <TextView
-                android:id="@+id/tv_product_name"
+                android:id="@+id/tv_brand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textSize="22sp"
                 android:layout_marginTop="64dp"
-                android:layout_gravity="center"
-                android:textAllCaps="true"/>
+                android:layout_gravity="center"/>
         <TextView
-            android:id="@+id/tv_product_subline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="12sp"
-            android:gravity="center"
-            android:text="Speedmaster speedy Tuesday"/>
-        <TextView
+                android:id="@+id/tv_product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:text="@string/product_info"
-                android:textSize="16sp"
-                android:textColor="@color/cyan"
-        />
+                android:textSize="12sp"
+                android:gravity="center"/>
+        <RelativeLayout android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="2dp"
+        >
+            <TextView
+                    android:id="@+id/tv_product_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/product_info"
+                    android:textSize="16sp"
+                    android:textColor="@color/cyan"
+                    android:padding="5dp"
+                    android:layout_centerInParent="true"/>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_alignEnd="@+id/tv_product_info"
+                    android:layout_alignStart="@+id/tv_product_info"
+                    android:layout_below="@+id/tv_product_info"
+                    android:layout_marginTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/cyan"/>
+        </RelativeLayout>
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/general_info_container"
+        android:background="@android:color/white">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@android:color/white">
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -109,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_owner"
                     android:gravity="left"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/tuatara"
                     android:textSize="14sp"
             />
         </LinearLayout>
@@ -137,7 +159,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_object_id"
                     android:gravity="left"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/tuatara"
                     android:textSize="14sp"/>
         </LinearLayout>
         <LinearLayout
@@ -164,42 +186,42 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_material"
                     android:gravity="left"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/tuatara"
                     android:textSize="14sp"/>
         </LinearLayout>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:paddingStart="30dp"
-                android:background="@color/very_light_grey"
-                android:layout_margin="@dimen/separator_height">
-            <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.4"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="@string/brand"
-                    android:textSize="14sp"
-                    android:textColor="@color/grey"
-                    android:drawableLeft="@drawable/ic_brand"
-                    android:drawablePadding="7dp"/>
-            <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.6"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_brand"
-                    android:gravity="left"
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp"/>
-        </LinearLayout>
+        <!--<LinearLayout-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:padding="10dp"-->
+                <!--android:paddingStart="30dp"-->
+                <!--android:background="@color/very_light_grey"-->
+                <!--android:layout_margin="@dimen/separator_height">-->
+            <!--<TextView-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="0.4"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="left"-->
+                    <!--android:text="@string/brand"-->
+                    <!--android:textSize="14sp"-->
+                    <!--android:textColor="@color/grey"-->
+                    <!--android:drawableLeft="@drawable/ic_brand"-->
+                    <!--android:drawablePadding="7dp"/>-->
+            <!--<TextView-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="0.6"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/tv_brand"-->
+                    <!--android:gravity="left"-->
+                    <!--android:textColor="@android:color/black"-->
+                    <!--android:textSize="14sp"/>-->
+        <!--</LinearLayout>-->
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/very_light_grey"
-                android:padding="@dimen/activity_vertical_margin"
+                android:padding="10dp"
                 android:paddingStart="30dp"
                 android:layout_margin="@dimen/separator_height">
             <TextView
@@ -230,7 +252,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/section_vertical_margin"
                 android:layout_marginBottom="@dimen/section_vertical_margin"/>
-    </LinearLayout>
+        </LinearLayout>
 </ScrollView>
     <RelativeLayout android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

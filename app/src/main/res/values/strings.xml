@@ -15,7 +15,7 @@
     <string name="scanning_tag_description">PLEASE HOLD\nYOUR DEVICE OVER THE NFC\nTAG\nYOU WANT TO SCAN</string>
     <string name="scanning_successful">SCANNING SUCCESSFUL</string>
     <string name="loading">LOADING DATA&#8230;</string>
-    <string name="tag_provisioning_successful">TAG PROVISIONING SUCCESSFUL</string>
+    <string name="tag_provisioning_successful">TAG RECOGNIZED</string>
     <string name="enter_product_data">ENTER PRODUCT DATA</string>
     <string name="tag_id">TAG ID #</string>
 
@@ -24,9 +24,9 @@
 
     <string name="create_twin_activity_title">Create Digital Twin</string>
     <string name="scan_activity_title">Scanning</string>
-    <string name="product_info"><u>PRODUCT INFO</u></string>
+    <string name="product_info">Product Info</string>
     <string name="owner">Owner</string>
-    <string name="serial_id">Serial ID</string>
+    <string name="serial_id">Product Serial ID</string>
     <string name="object_id">Object ID</string>
     <string name="material">Material</string>
     <string name="color">Color</string>
@@ -39,8 +39,8 @@
 
     <string name="timestamp">Time Stamp</string>
     <string name="comments_hint">Your comments here</string>
-    <string name="pup_id">Pup. ID %1$s</string>
-    <string name="registered">Registered %1$s</string>
+    <string name="pup_id">Pup. ID  %1$s</string>
+    <string name="registered">Registered  %1$s</string>
     <string name="transaction_error">transaction not found</string>
 
     <string name="dialog_tx_not_found_title">Transaction not found</string>
