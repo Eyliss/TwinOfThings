@@ -5,6 +5,7 @@ import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,7 +89,7 @@ public class ProvisioningFragment extends Fragment {
     }
 
     //If scanning has been success, modify the interface to notify to the user
-    public void adaptUItoResult(){
+    public void adaptUItoResult(String tagId){
         scaleDown.end();
         
         mProvisioningIcon.setImageResource(R.drawable.provisioning_icon_success);
@@ -99,7 +100,8 @@ public class ProvisioningFragment extends Fragment {
 
         mProvisioningTitle.setText(R.string.tag_provisioning_successful);
         mProvisioningTitle.setTextColor(getResources().getColor(android.R.color.holo_blue_bright));
-        mProvisioningDescription.setVisibility(View.GONE);
+        mProvisioningDescription.setVisibility(TextUtils.isEmpty(tagId) ? View.GONE : View.VISIBLE);
+        mProvisioningDescription.setText(getString(R.string.tag_id,tagId));
 
         mCloseButton.setVisibility(View.GONE);
         mEnterData.setVisibility(View.VISIBLE);

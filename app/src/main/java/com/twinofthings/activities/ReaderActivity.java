@@ -125,6 +125,7 @@ public class ReaderActivity extends AppCompatActivity {
     private String publicKey = "AA8BC774646ADF5C9B753652379DE877C70087EB711A351580CC7261738BB65ABE33E1E370190EE74FD79421C8C4F80F9375CE2E687CC5D155C453CB33876CF7";
     private String signature = "1948D64C603E29035A7926F7B3CD3235AECD1A39816E74932287814EEA52FE27E2CC4EC4171C94C372870B8D4FF43337AD12D01EF7CFD52C7B432869576CAD97";
     private String challenge = "9834876DCFB05CB167A5C24953EBA58C4AC89B1ADF57F28F2F9D09AF107EE8F0";
+    private String tagId = "";
 
     private IKeyData objKEY_2KTDES_ULC = null;
     private IKeyData objKEY_2KTDES = null;
@@ -791,6 +792,10 @@ public class ReaderActivity extends AppCompatActivity {
             case DESFireEV1:
                 mCardType = CardType.DESFireEV1;
                 desFireEV1 = DESFireFactory.getInstance().getDESFire(libInstance.getCustomModules());
+                Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+                if(tag != null){
+                    tagId = Util.bytesToHex(tag.getId());
+                }
                 try {
 
                     desFireEV1.getReader().connect();
@@ -835,7 +840,7 @@ public class ReaderActivity extends AppCompatActivity {
                 mCardType = CardType.PlusSL1;
                 showMessage("Plus SL1 Card detected.", 't');
                 tv.setText(" ");
-                Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+                tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
                 MifareClassic obj = MifareClassic.get(tag);
                 if (obj != null) {
                     plusSL1 = PlusSL1Factory.getInstance().getPlusSL1(libInstance.getCustomModules(), obj);
@@ -1609,7 +1614,7 @@ public class ReaderActivity extends AppCompatActivity {
             NxpLogUtils.save();
 
         } catch (Exception e) {
-            showMessage("IOException occurred... check LogCat", 't');
+//            showMessage("IOException occurred... check LogCat", 't');
             e.printStackTrace();
         }
 
@@ -2311,7 +2316,7 @@ public class ReaderActivity extends AppCompatActivity {
             if(mFragment instanceof ScanFragment){
                 goToCreateDigitalTwin();
             }else{
-                ((ProvisioningFragment)mFragment).adaptUItoResult();
+                ((ProvisioningFragment)mFragment).adaptUItoResult(tagId);
             }
         }
     }
@@ -2347,9 +2352,7 @@ public class ReaderActivity extends AppCompatActivity {
 
     public void goToCreateDigitalTwin(){
         Intent intent = new Intent(ReaderActivity.this,CreateDigitalTwinActivity.class);
-        Log.d(TAG,"Public key to create "+publicKey);
-        Log.d(TAG,"Signature to create "+signature);
-        Log.d(TAG,"Challenge to create "+challenge);
+
         intent.putExtra(Constants.PUB_KEY,publicKey);
         intent.putExtra(Constants.SIGNATURE,signature);
         intent.putExtra(Constants.CHALLENGE,challenge);
@@ -2371,9 +2374,6 @@ public class ReaderActivity extends AppCompatActivity {
                     publicKey = credentials.getPublicKey();
                     challenge = credentials.getChallenge();
                     signature = credentials.getSignature();
-                    Log.d(TAG,"Public key "+publicKey);
-                    Log.d(TAG,"Signature "+signature);
-                    Log.d(TAG,"Challenge "+challenge);
 
                     process = Constants.CREATE_TWIN;
                 }

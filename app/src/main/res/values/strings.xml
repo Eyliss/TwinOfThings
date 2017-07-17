@@ -17,7 +17,6 @@
     <string name="loading">LOADING DATA&#8230;</string>
     <string name="tag_provisioning_successful">TAG RECOGNIZED</string>
     <string name="enter_product_data">ENTER PRODUCT DATA</string>
-    <string name="tag_id">TAG ID #</string>
 
     <string name="create_digital_twin_title">PROVISIONING NEW NFC TAG&#8230;</string>
     <string name="create_digital_twin_description">TO CREATE A DIGITAL TWIN,\nHOLD YOUR DEVICE\nOVER A NOT YET PAIRED NFC\nTAG.</string>
@@ -41,6 +40,7 @@
     <string name="comments_hint">Your comments here</string>
     <string name="pup_id">Pup. ID  %1$s</string>
     <string name="registered">Registered  %1$s</string>
+    <string name="tag_id">TAG ID # %1$s</string>
     <string name="transaction_error">transaction not found</string>
 
     <string name="dialog_tx_not_found_title">Transaction not found</string>
