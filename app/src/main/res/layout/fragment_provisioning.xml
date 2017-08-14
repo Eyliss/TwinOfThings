@@ -64,7 +64,7 @@
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_white"
-                android:text="@string/enter_product_data"
+                android:text="@string/enter_meta_data"
                 android:textColor="@color/bright_violet"
                 android:padding="10dp"
                 android:visibility="gone"
