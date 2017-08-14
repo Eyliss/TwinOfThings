@@ -38,8 +38,8 @@
 
     <string name="timestamp">Time Stamp</string>
     <string name="comments_hint">Your comments here</string>
-    <string name="pup_id">Pup. ID  %1$s</string>
-    <string name="registered">Registered  %1$s</string>
+    <string name="pup_id">Pup. ID %1$s</string>
+    <string name="registered">Registered %1$s</string>
     <string name="tag_id">TAG ID # %1$s</string>
     <string name="transaction_error">transaction not found</string>
 
@@ -47,5 +47,12 @@
     <string name="dialog_tx_not_found_text">Do you want to create it now?</string>
     <string name="dialog_data_not_found_title">Tag is empty</string>
     <string name="dialog_data_not_found_text">Do you want to create a twin? Hold your device again over the tag</string>
+
+    <string name="info_title">App information</string>
+    <string name="info_version">Version 1.0</string>
+    <string name="info_copyright">Copyright 2017 innogy SE\nInnogy Innovatin Hub\nMachine Economy Lighthouse\nwww.innovationhub.innogy.com</string>
+    <string name="info_association">in association with</string>
+    <string name="info_riddle">Riddle&amp;Code\nwww.riddleandcode.com</string>
+    <string name="info_bigchain">BigchainDB\nwww.bigchaindb.com</string>
 
 </resources>

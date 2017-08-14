@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import retrofit2.Call;
@@ -26,6 +27,7 @@ public class MainActivity extends Activity {
 
     private Button mCreateTwinButton;
     private Button mScanTagButton;
+    private ImageButton mInfoButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,13 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 goToReaderScreen(Constants.SCAN,null);
+            }
+        });
+        mInfoButton = (ImageButton)findViewById(R.id.btn_info);
+        mInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToInfoScreen();
             }
         });
     }
@@ -81,6 +90,11 @@ public class MainActivity extends Activity {
         intent.putExtra(Constants.SIGNATURE,credentials != null ? credentials.getSignature() : "");
         intent.putExtra(Constants.CHALLENGE,credentials != null ? credentials.getChallenge() : "");
         intent.putExtra(Constants.INTENT_PROCESS_TYPE,proccess);
+        startActivity(intent);
+    }
+
+    private void goToInfoScreen(){
+        Intent intent = new Intent(getApplicationContext(), InfoActivity.class);
         startActivity(intent);
     }
 
