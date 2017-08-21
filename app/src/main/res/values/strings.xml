@@ -16,7 +16,7 @@
     <string name="scanning_successful">SCANNING SUCCESSFUL</string>
     <string name="loading">LOADING DATA&#8230;</string>
     <string name="tag_provisioning_successful">TAG RECOGNIZED</string>
-    <string name="enter_meta_data">ENTER META DATA</string>
+    <string name="enter_meta_data">Enter Digital Twin Data</string>
 
     <string name="create_digital_twin_title">PROVISIONING NEW NFC TAG&#8230;</string>
     <string name="create_digital_twin_description">TO CREATE A DIGITAL TWIN,\nHOLD YOUR DEVICE\nOVER A NOT YET PAIRED NFC\nTAG.</string>
