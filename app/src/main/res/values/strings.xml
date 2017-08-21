@@ -12,14 +12,14 @@
 
 
     <string name="scanning_tag_title">LOOKING FOR NFC TAG&#8230;</string>
-    <string name="scanning_tag_description">PLEASE HOLD\nYOUR DEVICE OVER THE NFC\nTAG\nYOU WANT TO SCAN</string>
+    <string name="scanning_tag_description">PLEASE HOLD\nYOUR DEVICE&apos;S NFC SENSOR\nCLOSE TO THE NFC TAG\nYOU WANT TO SCAN</string>
     <string name="scanning_successful">SCANNING SUCCESSFUL</string>
     <string name="loading">LOADING DATA&#8230;</string>
     <string name="tag_provisioning_successful">TAG RECOGNIZED</string>
     <string name="enter_meta_data">Enter Digital Twin Data</string>
 
     <string name="create_digital_twin_title">PROVISIONING NEW NFC TAG&#8230;</string>
-    <string name="create_digital_twin_description">TO CREATE A DIGITAL TWIN,\nHOLD YOUR DEVICE\nOVER A NOT YET PAIRED NFC\nTAG.</string>
+    <string name="create_digital_twin_description">TO CREATE A DIGITAL TWIN,\nHOLD YOUR DEVICE&apos;S NFC SENSOR\nCLOSE TO A NOT YET\nPROVISIONED NFC TAG.</string>
 
     <string name="create_twin_activity_title">Create Digital Twin</string>
     <string name="scan_activity_title">Scanning</string>
