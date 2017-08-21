@@ -94,16 +94,16 @@ public class ScannedTwinActivity extends AppCompatActivity {
 
         CalligraphyTypefaceSpan typefaceSpan = new CalligraphyTypefaceSpan(TypefaceUtils.load(getAssets(), "fonts/CooperHewitt-Bold.otf"));
 
-        String timestamp = getString(R.string.registered,mTransaction.getMetadata().getTimestamp());
+        String timestamp = mTransaction.getMetadata().getTimestamp();
         SpannableStringBuilder str = new SpannableStringBuilder(timestamp);
-        str.setSpan(new RelativeSizeSpan(1.1f), timestamp.lastIndexOf(" "), timestamp.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        str.setSpan(typefaceSpan, timestamp.lastIndexOf(" "), timestamp.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        str.setSpan(new RelativeSizeSpan(1.1f), 0, timestamp.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        str.setSpan(typefaceSpan, 0, timestamp.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         mRegisteredDate.setText(str);
 
-        String id = getString(R.string.pup_id,mTransaction.getId());
+        String id = mTransaction.getId();
         str = new SpannableStringBuilder(id);
-        str.setSpan(new RelativeSizeSpan(1.1f), id.lastIndexOf(" "), id.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        str.setSpan(typefaceSpan, id.lastIndexOf(" "), id.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        str.setSpan(new RelativeSizeSpan(1.1f), 0, id.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        str.setSpan(typefaceSpan, 0, id.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         mTransactionId.setText(str);
 
         mProductName.setText(mTransaction.getMetadata().getProductName());
