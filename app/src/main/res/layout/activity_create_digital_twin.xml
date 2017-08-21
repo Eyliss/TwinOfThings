@@ -4,31 +4,31 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/dodger_blue"
-            app:theme="@style/ToolBarStyle"/>
     <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/toolbar">
+            android:layout_height="match_parent">
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent"
                         android:orientation="vertical">
             <RelativeLayout android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/data_bg"
-                            android:layout_below="@+id/toolbar"
                             android:id="@+id/upper_layout">
+                <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="@android:color/transparent"
+                        android:layout_alignParentTop="true"
+                        app:theme="@style/ToolBarStyle"/>
                 <com.twinofthings.helpers.CircleImageView
                         android:src="@drawable/ic_scan_picture"
                         android:id="@+id/ib_upload_picture"
+                        android:layout_below="@id/toolbar"
                         android:layout_centerInParent="true"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:layout_margin="@dimen/activity_vertical_margin"/>
+                        android:layout_margin="@dimen/info_vertical_margin"/>
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:textColor="@android:color/white"
@@ -37,7 +37,8 @@
                           android:id="@+id/tv_take_photo"
                           android:drawableLeft="@drawable/back_arrow"
                           android:drawablePadding="10dp"
-                          android:layout_alignBottom="@+id/ib_upload_picture" android:layout_toEndOf="@+id/ib_upload_picture" android:layout_marginBottom="50dp"/>
+                          android:layout_alignBottom="@+id/ib_upload_picture"
+                          android:layout_toEndOf="@+id/ib_upload_picture" android:layout_marginBottom="50dp"/>
             </RelativeLayout>
             <LinearLayout
                     android:orientation="vertical"

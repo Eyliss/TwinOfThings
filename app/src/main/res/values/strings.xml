@@ -38,8 +38,8 @@
 
     <string name="timestamp">Time Stamp</string>
     <string name="comments_hint">Your comments here</string>
-    <string name="pup_id">Pup. ID %1$s</string>
-    <string name="registered">Registered %1$s</string>
+    <string name="pup_id">Pup. ID\n %1$s</string>
+    <string name="registered">Registered\n %1$s</string>
     <string name="tag_id">TAG ID # %1$s</string>
     <string name="transaction_error">transaction not found</string>
 
