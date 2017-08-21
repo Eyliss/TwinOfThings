@@ -94,7 +94,11 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="com.twinofthings.activities.MainActivity"/>
         </activity>
-        <activity android:name=".activities.InfoActivity">
+        <activity android:name=".activities.InfoActivity"
+                  android:parentActivityName=".activities.MainActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.twinofthings.activities.MainActivity"/>
         </activity>
     </application>
 
