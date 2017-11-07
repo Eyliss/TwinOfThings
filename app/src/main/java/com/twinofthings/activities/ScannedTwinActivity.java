@@ -3,6 +3,8 @@ package com.twinofthings.activities;
 import com.google.gson.Gson;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -78,6 +80,12 @@ public class ScannedTwinActivity extends AppCompatActivity {
         });
         mRegisteredDate = (TextView)findViewById(R.id.tv_registered_date);
         mTransactionId = (TextView)findViewById(R.id.tv_pup_id);
+        mTransactionId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openTransactionLink();
+            }
+        });
         mProductName = (TextView)findViewById(R.id.tv_product_name);
 //        mProductSubline = (TextView)findViewById(R.id.tv_product_subline);
         mOwner = (TextView)findViewById(R.id.tv_owner);
@@ -119,6 +127,11 @@ public class ScannedTwinActivity extends AppCompatActivity {
         if(thumbnail != null){
             mThumbnail.setImageBitmap(Util.decodeBase64toBitmap(thumbnail));
         }
+    }
+
+    private void openTransactionLink(){
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.riddleandcode.com/transactions/"+mTransaction.getId()));
+        startActivity(browserIntent);
     }
 
     @Override
