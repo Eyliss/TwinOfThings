@@ -130,7 +130,7 @@ public class ScannedTwinActivity extends AppCompatActivity {
     }
 
     private void openTransactionLink(){
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.riddleandcode.com/transactions/"+mTransaction.getId()));
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://34.251.133.19:8000/webinterface/tx-info/"+mTransaction.getId()));
         startActivity(browserIntent);
     }
 
