@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.twinofthings.R;
+import com.twinofthings.sezamecore.SezameRegistrationHelper;
+import com.twinofthings.sezamecore.utils.P;
 import com.twinofthings.utils.Util;
 
 public class BioAuthenticationActivity extends AppCompatActivity {
@@ -27,6 +29,8 @@ public class BioAuthenticationActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        P.init(this);
 
         mEmail = (EditText) findViewById(R.id.user_email);
         mQuestion1 = (EditText) findViewById(R.id.register_question1);
@@ -87,6 +91,18 @@ public class BioAuthenticationActivity extends AppCompatActivity {
     }
 
     private void registerUser(String email, String q1, String q2){
-
+        SezameRegistrationHelper.instance(getResources()).register(email, pushToken)
+              .subscribe(success -> {
+                        if (success) {
+                            //registration successful
+                        } else {
+                            //Device recovery, Email already registered
+                        }
+                        SezameRegistrationHelper.instance().cleanUp();
+                    }, throwable -> {
+                        //failed
+                        SezameRegistrationHelper.instance().cleanUp();
+                    }
+              );
     }
 }

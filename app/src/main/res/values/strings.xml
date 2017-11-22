@@ -65,5 +65,9 @@
     <string name="info_bigchain">BigchainDB\nwww.bigchaindb.com</string>
 
     <string name="title_activity_bio_authentication">Biometric authentication</string>
-
+    <string name="language">en</string>
+    <string name="error_user_active">A user with the same recovery email is already active</string>
+    <string name="error_device_inactive">Your device is inactive - Please activate it via the Recovery-GUI</string>
+    <string name="error_internal">Internal Server error</string>
+    <string name="error_general">An error occurred</string>
 </resources>
