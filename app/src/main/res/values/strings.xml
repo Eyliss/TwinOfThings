@@ -5,6 +5,10 @@
     <string name="main_subtext">CLICK ONE OF THE BUTTONS BELOW TO\nCREATE A DIGITAL TWIN OR SCAN A NFC TAG.</string>
     <string name="create_twin_button_text">CREATE DIGITAL TWIN</string>
     <string name="scan_tag_button_text">SCAN NFC TAG</string>
+    <string name="bio_auth_button_text">BIOMETRIC AUTHENTICATION</string>
+    <string name="register_button_text">REGISTER</string>
+
+
     <string name="back_to_start_button_text">BACK TO START SCREEN</string>
     <string name="create_twin_success">GREAT,\nYOU CREATED A\nDIGITAL TWIN</string>
     <string name="error_field_required">Field cannot be empty</string>
@@ -25,6 +29,9 @@
     <string name="scan_activity_title">Scanning</string>
     <string name="product_info">Product Info</string>
     <string name="owner">Owner</string>
+    <string name="email">Email</string>
+    <string name="security_q1">Favorite animal</string>
+    <string name="security_q2">Favorite color</string>
     <string name="serial_id">Product Serial ID</string>
     <string name="object_id">Object ID</string>
     <string name="material">Material</string>
@@ -47,6 +54,8 @@
     <string name="dialog_tx_not_found_text">Do you want to create it now?</string>
     <string name="dialog_data_not_found_title">Tag is empty</string>
     <string name="dialog_data_not_found_text">Do you want to create a twin? Hold your device again over the tag</string>
+    <string name="error_invalid_email">Email not valid</string>
+    <string name="error_empty_field">This field cannot be empty</string>
 
     <string name="info_title">App information</string>
     <string name="info_version">Version 1.0</string>
@@ -54,5 +63,7 @@
     <string name="info_association">in association with</string>
     <string name="info_riddle">Riddle&amp;Code\nwww.riddleandcode.com</string>
     <string name="info_bigchain">BigchainDB\nwww.bigchaindb.com</string>
+
+    <string name="title_activity_bio_authentication">Biometric authentication</string>
 
 </resources>

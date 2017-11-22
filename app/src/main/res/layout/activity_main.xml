@@ -66,5 +66,17 @@
                 android:text="@string/scan_tag_button_text"
                 android:textColor="@android:color/white"
                 android:layout_gravity="center"/>
+        <Button
+                android:id="@+id/bio_auth_button"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_margin="@dimen/activity_vertical_margin"
+                android:drawableLeft="@android:drawable/btn_radio"
+                android:drawableTint="@android:color/white"
+                android:background="@drawable/button_white_border"
+                android:text="@string/bio_auth_button_text"
+                android:textColor="@android:color/white"
+                android:layout_gravity="center"/>
     </LinearLayout>
 </RelativeLayout>

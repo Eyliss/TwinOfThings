@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
 
     private Button mCreateTwinButton;
     private Button mScanTagButton;
+    private Button mBioAuthButton;
     private ImageButton mInfoButton;
 
     @Override
@@ -50,6 +51,13 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 goToReaderScreen(Constants.SCAN,null);
+            }
+        });
+        mBioAuthButton = (Button)findViewById(R.id.bio_auth_button);
+        mBioAuthButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAuthScreen();
             }
         });
         mInfoButton = (ImageButton)findViewById(R.id.btn_info);
@@ -90,6 +98,11 @@ public class MainActivity extends Activity {
         intent.putExtra(Constants.SIGNATURE,credentials != null ? credentials.getSignature() : "");
         intent.putExtra(Constants.CHALLENGE,credentials != null ? credentials.getChallenge() : "");
         intent.putExtra(Constants.INTENT_PROCESS_TYPE,proccess);
+        startActivity(intent);
+    }
+
+    private void goToAuthScreen(){
+        Intent intent = new Intent(getApplicationContext(), BioAuthenticationActivity.class);
         startActivity(intent);
     }
 

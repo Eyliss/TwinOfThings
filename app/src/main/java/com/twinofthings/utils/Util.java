@@ -16,6 +16,10 @@ public class Util {
 
     final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
 
+    public static boolean isEmailValid(String email) {
+        return email.contains("@");
+    }
+
     //Converts a bytes array into a hexadecimal string
     public static String bytesToHex(byte[] bytes) {
         char[] hexChars = new char[bytes.length * 2];
