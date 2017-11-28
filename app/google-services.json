@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "422004816200",
+    "firebase_url": "https://twinofthings-c975a.firebaseio.com",
+    "project_id": "twinofthings-c975a",
+    "storage_bucket": "twinofthings-c975a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422004816200:android:8a52b05a281a6c75",
+        "android_client_info": {
+          "package_name": "com.twinofthings"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "422004816200-4n0r7qb7ij6s2jp205q9krtjobal602s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.twinofthings",
+            "certificate_hash": "cb97e9543238e325a48e9cecfbaae9bfe26c10e6"
+          }
+        },
+        {
+          "client_id": "422004816200-5reqmveuud65nf4knkh08nqeqe5ah6t4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2DIhZoNey8dCOvp5seWbOV7PXoJ2AuMI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "422004816200-5reqmveuud65nf4knkh08nqeqe5ah6t4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
