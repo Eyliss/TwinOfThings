@@ -12,14 +12,12 @@ import com.twinofthings.sezamecore.utils.S;
 
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
-
-import org.apache.commons.cli.MissingArgumentException;
+import android.util.Log;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.subjects.PublishSubject;
-import timber.log.Timber;
 
 /**
  * @author Felix Tutzer
@@ -28,6 +26,8 @@ import timber.log.Timber;
  *         Providing helper functions to facilitate the registration process
  */
 public class SezameRegistrationHelper {
+
+    private static final String TAG = SezameRegistrationHelper.class.getSimpleName();
     private static SezameRegistrationHelper instance;
     private final Resources resources;
     private final CompositeDisposable disposables = new CompositeDisposable();
@@ -45,9 +45,9 @@ public class SezameRegistrationHelper {
         return instance;
     }
 
-    public static synchronized SezameRegistrationHelper instance() throws MissingArgumentException {
+    public static synchronized SezameRegistrationHelper instance(){
         if (instance == null) {
-            throw new MissingArgumentException("Call instance(Resources resources) first");
+            Log.d(TAG,"Call instance(Resources resources) first");
         }
         return instance;
     }
@@ -64,9 +64,9 @@ public class SezameRegistrationHelper {
         PublishSubject<Boolean> result = PublishSubject.create();
         disposables.add(SezameDataProvider.instance().provideUserRepoForRegistration()
                 .register(createDto(email, resources.getString(R.string.language))).subscribe(response -> {
-                    Timber.d("User Id %s", response.getUsername());
-                    Timber.d("Device Id %s", response.getDevice_id());
-                    Timber.d("Shared Secret %s", response.getReg_shared_secret());
+                    Log.d("User Id %s", response.getUsername());
+                  Log.d("Device Id %s", response.getDevice_id());
+                  Log.d("Shared Secret %s", response.getReg_shared_secret());
 
                     registerDevice(pushToken, response, result);
 
@@ -109,7 +109,7 @@ public class SezameRegistrationHelper {
                 }
             } else {
                 result.onError(new Throwable(resources.getString(R.string.error_general)));
-                Timber.e(throwable);
+                Log.e(TAG,throwable.toString());
             }
         };
     }
@@ -135,7 +135,7 @@ public class SezameRegistrationHelper {
         final String hmac_header = keyStoreUtility.createHmacHashForDeviceRegisterCall(response.getReg_shared_secret(), dto);
         disposables.add(SezameDataProvider.instance().provideDeviceRepoForRegistration(hmac_header).registerDevice(dto).subscribe(r -> {
             if (S.isBlank(r.getCert())) {
-                Timber.e("Error while registering certificate, certificate is empty");
+                Log.e(TAG,"Error while registering certificate, certificate is empty");
                 result.onError(new Throwable("Invalid certificate exchange"));
             } else {
                 try {
@@ -144,12 +144,12 @@ public class SezameRegistrationHelper {
                     result.onNext(true);
                 } catch (Exception e) {
                     result.onError(new Throwable("Invalid certificate exchange"));
-                    Timber.e(e, "Error while registering certificate");
+                    Log.e(TAG, "Error while registering certificate");
                 }
             }
         }, throwable -> {
             result.onError(new Throwable("An error occurred: " + throwable.getMessage()));
-            Timber.e(throwable);
+            Log.e(TAG,throwable.toString());
         }));
     }
 

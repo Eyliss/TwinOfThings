@@ -6,6 +6,12 @@
               android:layout_marginTop="?attr/actionBarSize"
               android:background="@android:color/white"
               android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/register_text"
+            android:textColor="@android:color/black"/>
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -21,36 +27,6 @@
                 android:drawablePadding="10dp"
                 android:backgroundTint="@color/bright_violet"
                 android:hint="@string/email"/>
-        <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/register_question1"
-                android:gravity="left|center_vertical"
-                android:maxLines="1"
-                android:textSize="14sp"
-                android:textColor="@android:color/black"
-                android:textColorHint="@color/grey"
-                android:layout_marginBottom="@dimen/form_field_vertical_margin"
-                android:paddingBottom="20dp"
-                android:drawableLeft="@android:drawable/ic_menu_help"
-                android:drawablePadding="10dp"
-                android:backgroundTint="@color/bright_violet"
-                android:hint="@string/security_q1"/>
-        <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/register_question2"
-                android:gravity="left|center_vertical"
-                android:textSize="14sp"
-                android:textColor="@android:color/black"
-                android:textColorHint="@color/grey"
-                android:layout_marginBottom="@dimen/form_field_vertical_margin"
-                android:paddingBottom="20dp"
-                android:drawableLeft="@android:drawable/ic_menu_help"
-                android:drawablePadding="10dp"
-                android:backgroundTint="@color/bright_violet"
-                android:hint="@string/security_q2"
-        />
         <Button
                 android:id="@+id/register_user"
                 android:layout_width="wrap_content"

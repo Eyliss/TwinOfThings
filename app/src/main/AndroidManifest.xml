@@ -33,6 +33,12 @@
             android:logo="@mipmap/ic_launcher"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             tools:replace="android:allowBackup">
+        <service
+                android:name=".RCFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
         <meta-data
                 android:name="io.fabric.ApiKey"
                 android:value="d1b8bb24902f0824b0e51e8c8a522bc3b7dc12c9"/>

@@ -5,6 +5,8 @@ package com.twinofthings.utils;
  * Class where it contains all constants strings
  */
 public class Constants {
+    public final static String FCM_TOKEN = "fcm_token";
+
     public final static String JSON_ID = "tx_id";
     public final static String JSON_METADATA = "metadata";
     public final static String JSON_PRODUCT_NAME = "product_name";

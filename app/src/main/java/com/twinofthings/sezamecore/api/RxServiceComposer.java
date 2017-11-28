@@ -4,6 +4,8 @@ import com.twinofthings.sezamecore.api.error.ErrorResponse;
 import com.twinofthings.sezamecore.schedulers.BaseSchedulerProvider;
 import com.twinofthings.sezamecore.utils.S;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,7 +16,6 @@ import io.reactivex.ObservableTransformer;
 import io.reactivex.functions.Function;
 import okhttp3.ResponseBody;
 import retrofit2.HttpException;
-import timber.log.Timber;
 
 /**
  * @author Felix Tutzer
@@ -27,6 +28,7 @@ import timber.log.Timber;
 
 public class RxServiceComposer {
 
+    private final String TAG = RxServiceComposer.class.getSimpleName();
     private final BaseSchedulerProvider schedulerProvider;
 
     public RxServiceComposer(BaseSchedulerProvider schedulerProvider) {
@@ -68,10 +70,10 @@ public class RxServiceComposer {
                             sb.append(line);
                         }
                     } catch (IOException e) {
-                        Timber.e(e);
+                        Log.e(TAG,e.getMessage());
                     }
                     if (!S.isBlank(sb)) {
-                        Timber.e("Request error-response: \n%s", sb.toString());
+                        Log.e(TAG,"Request error-response: "+ sb.toString());
                         try {
                             ErrorResponse response = S.deserialize(sb.toString(), errorResponseType);
                             response.setCode(((HttpException) throwable).response().code());

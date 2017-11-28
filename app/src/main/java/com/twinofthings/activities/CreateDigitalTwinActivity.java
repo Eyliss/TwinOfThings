@@ -1,8 +1,8 @@
 package com.twinofthings.activities;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
+//import com.google.android.gms.common.ConnectionResult;
+//import com.google.android.gms.common.api.GoogleApiClient;
+//import com.google.android.gms.location.LocationServices;
 import com.google.gson.Gson;
 
 import android.Manifest;
@@ -51,7 +51,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class CreateDigitalTwinActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, DatePickerDialog.OnDateSetListener {
+public class CreateDigitalTwinActivity extends AppCompatActivity implements /*GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,*/ DatePickerDialog.OnDateSetListener {
 
     public static final int REQUEST_LOCATION_PERMISSION = 0x17;
     public static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -89,7 +89,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     private Bitmap thumbnailBitmap;
     private String thumbnailEncoded;
 
-    private GoogleApiClient mGoogleApiClient;
+//    private GoogleApiClient mGoogleApiClient;
     private Toolbar mToolbar;
 
     @Override
@@ -106,7 +106,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         signature = getIntent().getStringExtra(Constants.SIGNATURE);
         challenge = getIntent().getStringExtra(Constants.CHALLENGE);
 
-        setupGoogleApliClient();
+//        setupGoogleApliClient();
 
         setupDatePicker();
 
@@ -117,15 +117,15 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     }
 
     //Instantiate the google api client and activate location services API
-    private void setupGoogleApliClient(){
-        if (mGoogleApiClient == null) {
-            mGoogleApiClient = new GoogleApiClient.Builder(this)
-                  .addConnectionCallbacks(this)
-                  .addOnConnectionFailedListener(this)
-                  .addApi(LocationServices.API)
-                  .build();
-        }
-    }
+//    private void setupGoogleApliClient(){
+//        if (mGoogleApiClient == null) {
+//            mGoogleApiClient = new GoogleApiClient.Builder(this)
+//                  .addConnectionCallbacks(this)
+//                  .addOnConnectionFailedListener(this)
+//                  .addApi(LocationServices.API)
+//                  .build();
+//        }
+//    }
 
     //Creates a date picker for get timestamp which is activated when the text field is clicked
     private void setupDatePicker(){
@@ -234,13 +234,13 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
                         break;
                     }
                 }
-                if (permissionsGranted) {
-                    try {
-                        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-                    } catch (SecurityException e) {
-                        //Do nothing
-                    }
-                }
+//                if (permissionsGranted) {
+//                    try {
+//                        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+//                    } catch (SecurityException e) {
+//                        //Do nothing
+//                    }
+//                }
             }
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -260,16 +260,16 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
 //        locationName = getLocationName();
 //        mLocation.setText(locationName);
 //    }
-
-    protected void onStart() {
-        mGoogleApiClient.connect();
-        super.onStart();
-    }
-
-    protected void onStop() {
-        mGoogleApiClient.disconnect();
-        super.onStop();
-    }
+//
+//    protected void onStart() {
+//        mGoogleApiClient.connect();
+//        super.onStart();
+//    }
+//
+//    protected void onStop() {
+//        mGoogleApiClient.disconnect();
+//        super.onStop();
+//    }
 
     /**
      * Attempts to sign in and create a user with the form fields.
@@ -404,23 +404,23 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        int fineLocationPermissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
-        int coarseLocationPermissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
+//    @Override
+//    public void onConnected(@Nullable Bundle bundle) {
+//        int fineLocationPermissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+//        int coarseLocationPermissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
+//
+//        if (fineLocationPermissionCheck != PackageManager.PERMISSION_GRANTED && coarseLocationPermissionCheck != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(
+//                  this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_LOCATION_PERMISSION);
+//        } else {
+//            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+//        }
+//    }
 
-        if (fineLocationPermissionCheck != PackageManager.PERMISSION_GRANTED && coarseLocationPermissionCheck != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                  this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_LOCATION_PERMISSION);
-        } else {
-            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        }
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
+//    @Override
+//    public void onConnectionSuspended(int i) {
+//
+//    }
 
     //Use geocoding to get the location name from its latitude and longitude
     private String getLocationName(){
@@ -441,10 +441,10 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         return city;
     }
 
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
+//    @Override
+//    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+//
+//    }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {

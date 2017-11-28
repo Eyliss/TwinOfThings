@@ -1,9 +1,12 @@
 package com.twinofthings.activities;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,14 +14,15 @@ import android.widget.EditText;
 import com.twinofthings.R;
 import com.twinofthings.sezamecore.SezameRegistrationHelper;
 import com.twinofthings.sezamecore.utils.P;
+import com.twinofthings.utils.Constants;
 import com.twinofthings.utils.Util;
 
 public class BioAuthenticationActivity extends AppCompatActivity {
 
     private EditText mEmail;
-    private EditText mQuestion1;
-    private EditText mQuestion2;
     private Button mRegister;
+    ProgressDialog progress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +35,7 @@ public class BioAuthenticationActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         P.init(this);
-
         mEmail = (EditText) findViewById(R.id.user_email);
-        mQuestion1 = (EditText) findViewById(R.id.register_question1);
-        mQuestion2 = (EditText) findViewById(R.id.register_question2);
         mRegister = (Button) findViewById(R.id.register_user);
         mRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,13 +48,9 @@ public class BioAuthenticationActivity extends AppCompatActivity {
     private void attempRegistration(){
         // Reset errors.
         mEmail.setError(null);
-        mQuestion1.setError(null);
-        mQuestion2.setError(null);
 
         // Store values at the time of the login attempt.
         String email = mEmail.getText().toString().trim();
-        String question1 = mQuestion1.getText().toString();
-        String question2 = mQuestion2.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -69,34 +66,24 @@ public class BioAuthenticationActivity extends AppCompatActivity {
             cancel = true;
         }
 
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(question1)) {
-            mQuestion1.setError(getString(R.string.error_empty_field));
-            focusView = mQuestion1;
-            cancel = true;
-        }
-
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(question2)) {
-            mQuestion2.setError(getString(R.string.error_empty_field));
-            focusView = mQuestion2;
-            cancel = true;
-        }
-
         if (cancel) {
             focusView.requestFocus();
         } else {
-            registerUser(email,question1,question2);
+            registerUser(email);
         }
     }
 
-    private void registerUser(String email, String q1, String q2){
-        SezameRegistrationHelper.instance(getResources()).register(email, pushToken)
+    private void registerUser(String email){
+        progress = ProgressDialog.show(this, "Loading", "Wait while loading...");
+        String token = P.instance().getString(Constants.FCM_TOKEN);
+        SezameRegistrationHelper.instance(getResources()).register(email, token)
               .subscribe(success -> {
                         if (success) {
-                            //registration successful
+                            Log.d("Authentication","User authenticated");
+                            goToMainScreen();
                         } else {
-                            //Device recovery, Email already registered
+                            goToMainScreen();
+                            Log.d("Authentication","Device recovery");
                         }
                         SezameRegistrationHelper.instance().cleanUp();
                     }, throwable -> {
@@ -104,5 +91,12 @@ public class BioAuthenticationActivity extends AppCompatActivity {
                         SezameRegistrationHelper.instance().cleanUp();
                     }
               );
+    }
+
+    private void goToMainScreen(){
+        progress.dismiss();
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
+        finish();
     }
 }

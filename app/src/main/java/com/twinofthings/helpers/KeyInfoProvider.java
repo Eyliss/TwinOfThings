@@ -2,8 +2,8 @@ package com.twinofthings.helpers;
 
 import android.content.Context;
 
-import com.nxp.nfclib.defaultimpl.KeyData;
-import com.nxp.nfclib.interfaces.IKeyData;
+//import com.nxp.nfclib.defaultimpl.KeyData;
+//import com.nxp.nfclib.interfaces.IKeyData;
 
 import java.security.Key;
 
@@ -70,22 +70,22 @@ public class KeyInfoProvider {
      * @param keyType
      * @return IKeyData
      */
-    public IKeyData getKey(final String alias, final SampleAppKeys.EnumKeyType keyType){
-        /**
-         * MIFARE Keys are custom keys, they are not supported by SpongyCastle based keystore and hence cannot be retrieved from SpongyCastle Keystore without compromising the key material.
-         * You can use the  method getMifareKey() to fetch Mifare Key bytes.
-         */
-        if(keyType == SampleAppKeys.EnumKeyType.EnumMifareKey)
-            return null;
-
-        Key storedKey =  mKeystoreHelper.getKey(alias);
-        if (storedKey != null) {
-            KeyData keyDataObj = new KeyData();
-            keyDataObj.setKey(storedKey);
-            return keyDataObj;
-        }
-        return null;
-    }
+//    public IKeyData getKey(final String alias, final SampleAppKeys.EnumKeyType keyType){
+//        /**
+//         * MIFARE Keys are custom keys, they are not supported by SpongyCastle based keystore and hence cannot be retrieved from SpongyCastle Keystore without compromising the key material.
+//         * You can use the  method getMifareKey() to fetch Mifare Key bytes.
+//         */
+//        if(keyType == SampleAppKeys.EnumKeyType.EnumMifareKey)
+//            return null;
+//
+//        Key storedKey =  mKeystoreHelper.getKey(alias);
+//        if (storedKey != null) {
+//            KeyData keyDataObj = new KeyData();
+//            keyDataObj.setKey(storedKey);
+//            return keyDataObj;
+//        }
+//        return null;
+//    }
 
 
     /**

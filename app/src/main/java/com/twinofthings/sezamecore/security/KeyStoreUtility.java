@@ -4,6 +4,7 @@ import com.twinofthings.sezamecore.api.dto.RegisterDeviceRequestDto;
 import com.twinofthings.sezamecore.utils.S;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 
 import org.spongycastle.openssl.jcajce.JcaPEMWriter;
@@ -39,7 +40,6 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 import javax.security.auth.x500.X500Principal;
 
-import timber.log.Timber;
 import static com.twinofthings.sezamecore.security.KeyStoreUtility.SecurityConstants.ANDROID_KEY_STORE;
 
 /**
@@ -47,6 +47,8 @@ import static com.twinofthings.sezamecore.security.KeyStoreUtility.SecurityConst
  *         © Nous 2017
  */
 public class KeyStoreUtility {
+
+    private String TAG = KeyStoreUtility.class.getSimpleName();
 
     static {
         Security.insertProviderAt(new org.spongycastle.jce.provider.BouncyCastleProvider(), 1);
@@ -57,7 +59,6 @@ public class KeyStoreUtility {
     private KeyPair keyPair;
 
     public KeyStoreUtility() {
-        Timber.tag(KeyStoreUtility.class.getName());
         try {
             this.store = KeyStore.getInstance(ANDROID_KEY_STORE);
         } catch (KeyStoreException e) {
@@ -77,10 +78,10 @@ public class KeyStoreUtility {
         try {
             store.load(null);
             if (store.containsAlias(KEY_NAME)) {
-                Timber.d("KeyStore contains Sezame-Keys");
+                Log.d(TAG,"KeyStore contains Sezame-Keys");
                 store.deleteEntry(KEY_NAME);
             }
-            Timber.d("Create Sezame-Keys and store in KeyStore");
+            Log.d(TAG,"Create Sezame-Keys and store in KeyStore");
             try {
 
                 KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(SecurityConstants.TYPE_RSA);
@@ -139,13 +140,13 @@ public class KeyStoreUtility {
             keyPair = null;
             return true;
         } catch (IOException e) {
-            Timber.e(e);
+            Log.e(TAG,e.getMessage());
         } catch (NoSuchAlgorithmException e) {
-            Timber.e(e);
+            Log.e(TAG,e.getMessage());
         } catch (KeyStoreException e) {
-            Timber.e(e);
+            Log.e(TAG,e.getMessage());
         } catch (CertificateException e) {
-            Timber.e(e);
+            Log.e(TAG,e.getMessage());
         }
 
         return false;
@@ -156,13 +157,13 @@ public class KeyStoreUtility {
             store.load(null);
             store.deleteEntry(KEY_NAME);
         } catch (IOException e) {
-            Timber.e(e);
+            Log.e(TAG,e.getMessage());
         } catch (NoSuchAlgorithmException e) {
-            Timber.e(e);
+            Log.e(TAG,e.getMessage());
         } catch (CertificateException e) {
-            Timber.e(e);
+            Log.e(TAG,e.getMessage());
         } catch (KeyStoreException e) {
-            Timber.e(e);
+            Log.e(TAG,e.getMessage());
         }
     }
 
@@ -208,7 +209,7 @@ public class KeyStoreUtility {
             return Hex.toHexString(cipher.doFinal(Hex.decode(what)));
         } catch (Exception e) {
             //LOADS OF DIFFERENT EXCEPTIONS POSSIBLE HERE
-            Timber.e(e);
+            Log.e(TAG,e.getMessage());
         }
         return null;
     }
@@ -224,7 +225,7 @@ public class KeyStoreUtility {
             store.load(null);
             return decrypt(store, KEY_NAME, encrypted);
         } catch (Exception e) {
-            Timber.e(e);
+            Log.e(TAG,e.getMessage());
         }
         return null;
     }
@@ -234,19 +235,19 @@ public class KeyStoreUtility {
             KeyStore.Entry entry = keyStore.getEntry(alias, null);
 
             if (entry == null) {
-                Timber.w("No key found under alias: %s", alias);
-                Timber.w("Exiting signData()...");
+                Log.w(TAG,"No key found under alias: "+ alias);
+                Log.w(TAG,"Exiting signData()...");
                 return null;
             }
 
             if (!(entry instanceof KeyStore.PrivateKeyEntry)) {
-                Timber.w("Not an instance of a PrivateKeyEntry");
-                Timber.w("Exiting signData()...");
+                Log.w(TAG,"Not an instance of a PrivateKeyEntry");
+                Log.w(TAG,"Exiting signData()...");
                 return null;
             }
             return (KeyStore.PrivateKeyEntry) entry;
         } catch (Exception e) {
-            Timber.e(e);
+            Log.e(TAG,e.getMessage());
             return null;
         }
     }

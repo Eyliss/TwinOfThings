@@ -46,11 +46,12 @@ android {
         jumboMode = true
         javaMaxHeapSize "4g"
     }
+    
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        android.compileOptions.sourceCompatibility JavaVersion.VERSION_1_8
+        android.compileOptions.targetCompatibility JavaVersion.VERSION_1_8
 
-        incremental false
+        incremental true
     }
 }
 
@@ -59,17 +60,18 @@ repositories {
         dirs 'libs'
     }
 //    /** Following lines are for accessing the TapLinx jars from Repo directly */
-    maven {
-        credentials {
-            username "sdkuser"
-            password "taplinx"
-        }
-        url "http://maven.taplinx.nxp.com/nexus/content/repositories/taplinx/"
-    }
+//    maven {
+//        credentials {
+//            username "sdkuser"
+//            password "taplinx"
+//        }
+//        url "http://maven.taplinx.nxp.com/nexus/content/repositories/taplinx/"
+//    }
 
     maven {
         url 'https://maven.fabric.io/public'
     }
+    google()
 }
 
 dependencies {
@@ -77,37 +79,32 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
-//    compile 'uk.co.chrisjenx:calligraphy:2.2.0'
-
-
-    compile('taplinx-android:nxpnfcandroidlib:1.0@aar') {
-        transitive = true
-    }
+    
+//    compile('taplinx-android:nxpnfcandroidlib:1.0@aar') {
+//        transitive = true
+//    }
 
     compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
         transitive = true;
     }
+
     compile 'commons-codec:commons-codec:1.10'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:support-core-utils:25.3.1'
-
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    compile "com.squareup.retrofit2:converter-moshi:2.3.0"
-    compile "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
-
-    compile "com.squareup.okhttp3:okhttp:3.8.1"
-    compile "com.squareup.okhttp3:logging-interceptor:3.8.1"
-    compile "com.facebook.stetho:stetho-okhttp3:1.5.0"
-    compile 'com.google.android.gms:play-services:10.2.6'
+    compile 'com.squareup.retrofit2:converter-moshi:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.1'
     compile 'uk.co.chrisjenx:calligraphy:2.3.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.squareup.moshi:moshi-kotlin:1.5.0'
-    compile "com.jakewharton.timber:timber:4.6.0"
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    compile 'io.reactivex.rxjava2:rxjava:2.1.5'
+    compile 'com.jakewharton.timber:timber:4.6.0'
+    compile 'com.android.support:multidex:1.0.0'
 
+    compile 'com.google.firebase:firebase-messaging:10.0.1'
     testCompile 'junit:junit:4.12'
 }
+
+apply plugin: 'com.google.gms.google-services'

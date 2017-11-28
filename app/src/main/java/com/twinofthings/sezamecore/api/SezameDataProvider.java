@@ -1,6 +1,5 @@
 package com.twinofthings.sezamecore.api;
 
-import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.twinofthings.BuildConfig;
 import com.twinofthings.sezamecore.api.repositories.DeviceRepository;
 import com.twinofthings.sezamecore.api.repositories.EventRepository;
@@ -179,7 +178,7 @@ public class SezameDataProvider {
                 = new HttpLoggingInterceptor(message -> Timber.tag("OkHttp").v(message));
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
-                .addNetworkInterceptor(new StethoInterceptor())
+                /*.addNetworkInterceptor(new StethoInterceptor())*/
                 .addInterceptor(loggingInterceptor);
 
         builder.addInterceptor(chain -> {
