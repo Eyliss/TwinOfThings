@@ -133,18 +133,6 @@ public class ReaderActivity extends AppCompatActivity {
      */
     private static final String KEY_APP_MASTER = "This is my key  ";
     /**
-     *
-     */
-    private static final String DATA = "This is the data";
-    /**
-     * Classic sector number set to 6.
-     */
-    private static final int DEFAULT_SECTOR_CLASSIC = 6;
-    /**
-     * Ultralight First User Memory Page Number.
-     */
-    private static final int DEFAULT_PAGENO_ULTRALIGHT = 4;
-    /**
      * NxpNfclib instance.
      */
     private NxpNfcLib libInstance = null;
@@ -194,6 +182,7 @@ public class ReaderActivity extends AppCompatActivity {
     private static Handler mHandler;
 
     private boolean bWriteAllowed = true;
+    private KeyInfoProvider infoProvider;
 
     private boolean mIsPerformingCardOperations = false;
     private CardType mCardType = CardType.UnknownCard;
@@ -284,7 +273,7 @@ public class ReaderActivity extends AppCompatActivity {
     }
 
     private void initializeKeys() {
-        KeyInfoProvider infoProvider = KeyInfoProvider.getInstance(getApplicationContext());
+        infoProvider = KeyInfoProvider.getInstance(getApplicationContext());
 
         SharedPreferences sharedPrefs = getPreferences(Context.MODE_PRIVATE);
         boolean keysStoredFlag = sharedPrefs.getBoolean(EXTRA_KEYS_STORED_FLAG, false);
@@ -735,50 +724,6 @@ public class ReaderActivity extends AppCompatActivity {
     }
 
     /**
-     * Encrypt the supplied data with key provided.
-     *
-     * @param data data bytes to be encrypted
-     * @param key  Key to encrypt the buffer
-     * @return encrypted data bytes
-     * @throws NoSuchAlgorithmException           NoSuchAlgorithmException
-     * @throws NoSuchPaddingException             NoSuchPaddingException
-     * @throws InvalidKeyException                InvalidKeyException
-     * @throws IllegalBlockSizeException          IllegalBlockSizeException
-     * @throws BadPaddingException                eption BadPaddingException
-     * @throws InvalidAlgorithmParameterException InvalidAlgorithmParameterException
-     */
-    protected byte[] encryptAESData(final byte[] data, final byte[] key)
-            throws NoSuchAlgorithmException, NoSuchPaddingException,
-            InvalidKeyException, IllegalBlockSizeException,
-            BadPaddingException, InvalidAlgorithmParameterException {
-        final SecretKeySpec keySpec = new SecretKeySpec(key, "AES");
-        cipher.init(Cipher.ENCRYPT_MODE, keySpec, iv);
-        byte[] encdata = cipher.doFinal(data);
-        return encdata;
-    }
-
-    /**
-     * @param encdata Encrypted input buffer.
-     * @param key     Key to decrypt the buffer.
-     * @return byte array.
-     * @throws NoSuchAlgorithmException           No such algorithm exce.
-     * @throws NoSuchPaddingException             NoSuchPaddingException.
-     * @throws InvalidKeyException                if key is invalid.
-     * @throws IllegalBlockSizeException          if block size is illegal.
-     * @throws BadPaddingException                if padding is bad.
-     * @throws InvalidAlgorithmParameterException if algo. is not avaliable or not present.
-     */
-    protected byte[] decryptAESData(final byte[] encdata, final byte[] key)
-            throws NoSuchAlgorithmException, NoSuchPaddingException,
-            InvalidKeyException, IllegalBlockSizeException,
-            BadPaddingException, InvalidAlgorithmParameterException {
-        final SecretKeySpec keySpec = new SecretKeySpec(key, "AES");
-        cipher.init(Cipher.DECRYPT_MODE, keySpec, iv);
-        byte[] decdata = cipher.doFinal(encdata);
-        return decdata;
-    }
-
-    /**
      * This will display message in toast or logcat or on screen or all three.
      *
      * @param str   String to be logged or displayed
@@ -811,44 +756,6 @@ public class ReaderActivity extends AppCompatActivity {
                 break;
         }
         return;
-    }
-
-
-    /**
-     * This will send the message to the handler with required String and
-     * character.
-     *
-     * @param stringMessage message to be send
-     * @param codeLetter    't' for Toast; 'l' for Logcat; 'd' for Display in UI; 'a' for
-     *                      All
-     */
-    protected void sendMessageToHandler(final String stringMessage,
-                                        final char codeLetter) {
-        Bundle b = new Bundle();
-        b.putString("message", stringMessage);
-        b.putChar("where", codeLetter);
-        Message msg = mHandler.obtainMessage();
-        msg.setData(b);
-        mHandler.sendMessage(msg);
-    }
-
-    public NdefRecordWrapper createTextRecord(String payload, Locale locale,
-                                              boolean encodeInUtf8) {
-        byte[] langBytes = locale.getLanguage().getBytes(
-                Charset.forName("US-ASCII"));
-        Charset utfEncoding = encodeInUtf8 ? Charset.forName("UTF-8") : Charset
-                .forName("UTF-16");
-        byte[] textBytes = payload.getBytes(utfEncoding);
-        int utfBit = encodeInUtf8 ? 0 : (1 << 7);
-        char status = (char) (utfBit + langBytes.length);
-        byte[] data = new byte[1 + langBytes.length + textBytes.length];
-        data[0] = (byte) status;
-        System.arraycopy(langBytes, 0, data, 1, langBytes.length);
-        System.arraycopy(textBytes, 0, data, 1 + langBytes.length,
-                textBytes.length);
-        NdefRecordWrapper record = new NdefRecordWrapper(NdefRecord.TNF_WELL_KNOWN,
-                NdefRecord.RTD_TEXT, new byte[0], data);
-        return record;
     }
 
     @Override
