@@ -37,20 +37,21 @@
                 android:lineSpacingMultiplier="1.5"
                 />
         <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
-            <ImageView android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
+            <ImageView android:layout_width="40dp"
+                       android:layout_height="40dp"
                        android:layout_gravity="left|center_vertical"
                        android:layout_margin="@dimen/info_horizontal_margin"
                        android:src="@drawable/ic_fg_40px"
-                        android:id="@+id/ic_fingerprint"/>
+                        android:id="@+id/iv_fingerprint"/>
             <TextView
+                    android:id="@+id/tv_auth_result"
                     android:text="@string/auth_sensor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="11sp"
-                    android:layout_toRightOf="@id/ic_fingerprint"
+                    android:layout_toRightOf="@id/iv_fingerprint"
             />
         </RelativeLayout>
 

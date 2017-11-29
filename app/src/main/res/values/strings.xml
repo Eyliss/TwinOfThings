@@ -50,6 +50,8 @@
     <string name="auth_title">Sign in</string>
     <string name="auth_text">Confirm fingerprint to continue</string>
     <string name="auth_sensor">Touch sensor</string>
+    <string name="auth_succeed">Fingerprint recognized</string>
+    <string name="auth_failed">Fingerprint not recognized.\nTry again.</string>
 
     <string name="info_title">App information</string>
     <string name="info_version">Version 1.0</string>

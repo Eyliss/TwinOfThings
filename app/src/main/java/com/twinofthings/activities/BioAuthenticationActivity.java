@@ -1,15 +1,20 @@
 package com.twinofthings.activities;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.KeyguardManager;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
+import android.os.Handler;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.twinofthings.R;
@@ -32,6 +37,7 @@ import javax.crypto.SecretKey;
 
 public class BioAuthenticationActivity extends AppCompatActivity {
 
+
     private static final String KEY_NAME = "rc_key";
 
     private FingerprintManager fingerprintManager;
@@ -40,11 +46,48 @@ public class BioAuthenticationActivity extends AppCompatActivity {
     private KeyGenerator keyGenerator;
     private Cipher cipher;
     private FingerprintManager.CryptoObject cryptoObject;
+    private TextView mAuthResult;
+    private ImageView mAuthIcon;
+
+    public interface AuthenticationListener {
+        public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result);
+        public void onAuthenticationFailed();
+    }
+
+    private AuthenticationListener mAuthenticationListener = new AuthenticationListener() {
+        @Override
+        public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
+            mAuthResult.setText(R.string.auth_succeed);
+            mAuthResult.setTextColor(getResources().getColor(R.color.teal));
+            mAuthIcon.setImageResource(R.drawable.ic_check_circle_black_24dp);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent i = new Intent(BioAuthenticationActivity.this, MainActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+            }, 1500);
+
+        }
+
+        @Override
+        public void onAuthenticationFailed() {
+            mAuthResult.setText(R.string.auth_failed);
+            mAuthResult.setTextColor(getResources().getColor(R.color.deep_orange));
+            mAuthIcon.setImageResource(R.drawable.ic_auth_error);
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bio_authentication);
+
+        mAuthResult = (TextView) findViewById(R.id.tv_auth_result);
+        mAuthIcon = (ImageView) findViewById(R.id.iv_fingerprint);
 
         keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
         fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
@@ -73,9 +116,8 @@ public class BioAuthenticationActivity extends AppCompatActivity {
         generateKey();
 
         if (cipherInit()) {
-            cryptoObject =
-                  new FingerprintManager.CryptoObject(cipher);
-            RCFingerprintHandler helper = new RCFingerprintHandler(this);
+            cryptoObject = new FingerprintManager.CryptoObject(cipher);
+            RCFingerprintHandler helper = new RCFingerprintHandler(this,mAuthenticationListener);
             helper.startAuth(fingerprintManager, cryptoObject);
         }
     }

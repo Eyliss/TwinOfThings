@@ -21,9 +21,11 @@ public class RCFingerprintHandler extends FingerprintManager.AuthenticationCallb
 
     private CancellationSignal cancellationSignal;
     private Context appContext;
+    private BioAuthenticationActivity.AuthenticationListener mAuthenticationListener;
 
-    public RCFingerprintHandler(Context context) {
+    public RCFingerprintHandler(Context context, BioAuthenticationActivity.AuthenticationListener authenticationListener) {
         appContext = context;
+        mAuthenticationListener = authenticationListener;
     }
 
     public void startAuth(FingerprintManager manager,
@@ -40,28 +42,24 @@ public class RCFingerprintHandler extends FingerprintManager.AuthenticationCallb
     @Override
     public void onAuthenticationError(int errMsgId,
                                       CharSequence errString) {
-        Toast.makeText(appContext,
-              "Authentication error\n" + errString,
-              Toast.LENGTH_LONG).show();
+        mAuthenticationListener.onAuthenticationFailed();
     }
 
     @Override
     public void onAuthenticationHelp(int helpMsgId,
                                      CharSequence helpString) {
-        Toast.makeText(appContext, "Authentication help\n" + helpString, Toast.LENGTH_LONG).show();
+        mAuthenticationListener.onAuthenticationFailed();
     }
 
     @Override
     public void onAuthenticationFailed() {
-        Toast.makeText(appContext, "Authentication failed.", Toast.LENGTH_LONG).show();
+        mAuthenticationListener.onAuthenticationFailed();
     }
 
     @Override
     public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
 
-        Toast.makeText(appContext, "Authentication succeeded.", Toast.LENGTH_LONG).show();
-        Intent i = new Intent(appContext, MainActivity.class);
-        appContext.startActivity(i);
-        ((Activity)appContext).finish();
+        mAuthenticationListener.onAuthenticationSucceeded(result);
+
     }
 }
