@@ -427,6 +427,7 @@ public class ReaderActivity extends AppCompatActivity {
 
         byte[] appId = new byte[]{0x12, 0x00, 0x00};
         byte[] appId_2 = new byte[]{0x03, 0x02, 0x01};
+        byte[] appId_3 = new byte[]{0x06, 0x05, 0x04};
 
         int fileSize_pubKey  = 64;
         int fileSize_hashMsg = 32;
@@ -479,8 +480,6 @@ public class ReaderActivity extends AppCompatActivity {
                 showMessage(
                       "Pub Key read from the card : " + Util.bytesToHex(desFireEV1.readData(0, 0,
                             64)), 'd');
-
-                //desFireEV1.selectApplication(0);
 
             /*readAccess - Take values from 0x00 to 0xF.
             0xE : free access.
@@ -563,6 +562,35 @@ public class ReaderActivity extends AppCompatActivity {
                       "Signature Key read from the card : "
                             + Util.bytesToHex(desFireEV1.readData(0, 0,
                             64)), 'd');
+
+                //**NEW WRITTIN IN TAG FOR FINGERPRINT**//
+//                desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
+//                desFireEV1.createFile(fileNo_2, new DESFireFile.StdDataFileSettings(
+//                      IDESFireEV1.CommunicationType.Plain, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, fileSize_privKey));
+//
+//                desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
+//
+//                desFireEV1.writeData(0, 0, Util.hexStringToByteArray(signature));
+//                signature = Util.bytesToHex(desFireEV1.readData(0, 0,64));
+//                showMessage(
+//                      "Signature Key read from the card : "
+//                            + Util.bytesToHex(desFireEV1.readData(0, 0,
+//                            64)), 'd');
+//
+//                EV1ApplicationKeySettings.Builder appsetbuilder_3 = new EV1ApplicationKeySettings.Builder();
+//
+//                EV1ApplicationKeySettings appsettings_3 = appsetbuilder_3.setAppKeySettingsChangeable(true)
+//                      .setAppMasterKeyChangeable(true)
+//                      .setAuthenticationRequiredForApplicationManagement(false)
+//                      .setAuthenticationRequiredForDirectoryConfigurationData(false)
+//                      .setKeyTypeOfApplicationKeys(KeyType.AES128).build();
+//
+//            /* Create the new application with the recently defined application settings .
+//               Then select the new application with its app ID.
+//             */
+//
+//                desFireEV1.createApplication(appId_3, appsettings_3);
+//                desFireEV1.selectApplication(appId_3);
 
                 startProcess();
 
