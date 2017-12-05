@@ -65,6 +65,8 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     private String publicKey;
     private String challenge;
     private String signature;
+    private String sezamePk;
+    private String sezameSign;
 
     private EditText mBrandName;
     private TextView mTimestamp;
@@ -105,6 +107,8 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         publicKey = getIntent().getStringExtra(Constants.PUB_KEY);
         signature = getIntent().getStringExtra(Constants.SIGNATURE);
         challenge = getIntent().getStringExtra(Constants.CHALLENGE);
+        sezamePk = getIntent().getStringExtra(Constants.SEZAME_PUB_KEY);
+        sezameSign = getIntent().getStringExtra(Constants.SEZAME_SIGNATURE);
 
         setupGoogleApliClient();
 
@@ -352,7 +356,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     private void sendTwinDataToServer(String brandName,String productName,String productSubline,String timestamp,String ownerName,String serialId,String material,String comments,String thumbnailEncoded) {
 
 
-        RCApiManager.provision(publicKey, signature, challenge, brandName, productName, productSubline,timestamp,ownerName,serialId,material,comments,thumbnailEncoded,new Callback<RCApiResponse>() {
+        RCApiManager.provision(publicKey, signature, challenge, sezamePk, sezameSign, brandName, productName, productSubline,timestamp,ownerName,serialId,material,comments,thumbnailEncoded,new Callback<RCApiResponse>() {
             @Override
             public void onResponse(Call<RCApiResponse> call, Response<RCApiResponse> response) {
                 RCApiResponse apiResponse = response.body();

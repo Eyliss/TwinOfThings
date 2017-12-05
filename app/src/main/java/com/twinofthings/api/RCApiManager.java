@@ -46,7 +46,7 @@ public class RCApiManager {
         call.enqueue(callback);
     }
 
-    public static void validate(String publicKey, String signature, String challenge, Callback<RCApiResponse> callback){
+    public static void validate(String publicKey, String signature, String challenge, String sezamePk, String sezameSign, Callback<RCApiResponse> callback){
         JsonObject object = new JsonObject();
         object.addProperty("public_key",publicKey);
         object.addProperty("signature",signature);
@@ -66,13 +66,13 @@ public class RCApiManager {
         call.enqueue(callback);
     }
 
-    public static void provision(String publicKey, String signature, String challenge, String brandName, String productName, String productSubline, String timestamp, String ownerName, String serialId, String material, String commentsDetail, String thumb, Callback<RCApiResponse> callback){
+    public static void provision(String publicKey, String signature, String challenge, String sezamePk, String sezameSign, String brandName, String productName, String productSubline, String timestamp, String ownerName, String serialId, String material, String commentsDetail, String thumb, Callback<RCApiResponse> callback){
         JsonObject object = new JsonObject();
         object.addProperty("public_key",publicKey);
         object.addProperty("signature",signature);
         object.addProperty("challenge",challenge);
-        object.addProperty("sezame_pk",signature);
-        object.addProperty("sezame_sig",challenge);
+        object.addProperty("sezame_pk",sezamePk);
+        object.addProperty("sezame_sig",sezameSign);
 
         JsonObject metadata = new JsonObject();
         metadata.addProperty("brand_name",brandName);

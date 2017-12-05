@@ -36,6 +36,8 @@ public class Constants {
     public final static String PUB_KEY = "public_key";
     public final static String CHALLENGE = "challenge";
     public final static String SIGNATURE = "signature";
+    public final static String SEZAME_PUB_KEY = "sezame_public_key";
+    public final static String SEZAME_SIGNATURE = "sezame_signature";
 
     public static String SCAN = "scan";
     public static String CREATE_TWIN = "create_twin";
