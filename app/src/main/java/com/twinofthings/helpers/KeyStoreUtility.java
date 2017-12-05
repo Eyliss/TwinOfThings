@@ -93,7 +93,7 @@ public class KeyStoreUtility {
         } catch (KeyStoreException e) {
             e.printStackTrace();
         }
-        return S.EMPTY;
+        return "";
     }
 
     private String generateCertificateRequestString(String userName, String deviceId, KeyPair keyPair) {
@@ -115,7 +115,7 @@ public class KeyStoreUtility {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return S.EMPTY;
+        return "";
     }
 
     /**
@@ -202,19 +202,19 @@ public class KeyStoreUtility {
             KeyStore.Entry entry = keyStore.getEntry(alias, null);
 
             if (entry == null) {
-                Log.d(TAG,"No key found under alias: %s", alias);
-                Timber.w("Exiting signData()...");
+                Log.d(TAG,"No key found under alias: " + alias);
+                Log.d(TAG,"Exiting signData()...");
                 return null;
             }
 
             if (!(entry instanceof KeyStore.PrivateKeyEntry)) {
-                Timber.w("Not an instance of a PrivateKeyEntry");
-                Timber.w("Exiting signData()...");
+                Log.d(TAG,"Not an instance of a PrivateKeyEntry");
+                Log.d(TAG,"Exiting signData()...");
                 return null;
             }
             return (KeyStore.PrivateKeyEntry) entry;
         } catch (Exception e) {
-            Timber.e(e);
+            e.printStackTrace();
             return null;
         }
     }
