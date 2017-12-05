@@ -1,5 +1,7 @@
 package com.twinofthings.activities;
 
+import com.google.gson.Gson;
+
 import android.Manifest;
 import android.app.Activity;
 import android.app.KeyguardManager;
@@ -18,15 +20,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.twinofthings.R;
+import com.twinofthings.api.RCApiManager;
+import com.twinofthings.api.RCApiResponse;
+import com.twinofthings.helpers.KeyStoreUtility;
 import com.twinofthings.helpers.RCFingerprintHandler;
+import com.twinofthings.models.Credentials;
+import com.twinofthings.utils.Constants;
+import com.twinofthings.utils.Util;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
+import java.security.KeyPair;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
+import java.security.Signature;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 
@@ -34,6 +46,10 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BioAuthenticationActivity extends AppCompatActivity {
 
@@ -48,6 +64,9 @@ public class BioAuthenticationActivity extends AppCompatActivity {
     private FingerprintManager.CryptoObject cryptoObject;
     private TextView mAuthResult;
     private ImageView mAuthIcon;
+    private Signature mSignature;
+    private String sezamePk;
+    private String sezameSign;
 
     public interface AuthenticationListener {
         public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result);
@@ -60,15 +79,8 @@ public class BioAuthenticationActivity extends AppCompatActivity {
             mAuthResult.setText(R.string.auth_succeed);
             mAuthResult.setTextColor(getResources().getColor(R.color.teal));
             mAuthIcon.setImageResource(R.drawable.ic_check_circle_black_24dp);
-
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent i = new Intent(BioAuthenticationActivity.this, MainActivity.class);
-                    startActivity(i);
-                    finish();
-                }
-            }, 1500);
+            mSignature = result.getCryptoObject().getSignature();
+            getCredentials();
 
         }
 
@@ -173,6 +185,56 @@ public class BioAuthenticationActivity extends AppCompatActivity {
               | UnrecoverableKeyException | IOException
               | NoSuchAlgorithmException | InvalidKeyException e) {
             throw new RuntimeException("Failed to init Cipher", e);
+        }
+    }
+
+    private void getCredentials(){
+
+        RCApiManager.getCredentials(new Callback<RCApiResponse>() {
+            @Override
+            public void onResponse(Call<RCApiResponse> call, Response<RCApiResponse> response) {
+                RCApiResponse apiResponse = response.body();
+
+                if(apiResponse.isSuccessful()){
+                    Gson gson = new Gson();
+                    Credentials credentials = gson.fromJson(apiResponse.getStringData(), Credentials.class);
+                    createKeyPair(credentials);
+                }else{
+                    Toast.makeText(BioAuthenticationActivity.this, apiResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RCApiResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void createKeyPair(Credentials credentials){
+        try {
+            KeyStoreUtility keyStoreUtility = new KeyStoreUtility();
+            KeyPair keyPair = keyStoreUtility.createKeyPair();
+            sezamePk = keyStoreUtility.savePublicKey();
+
+            byte[] data = credentials.getChallenge().getBytes("UTF8");
+
+            mSignature.initSign(keyPair.getPrivate());
+            mSignature.update(data);
+            byte[] signatureBytes = mSignature.sign();
+            sezameSign = Util.bytesToHex(signatureBytes);
+
+            Intent intent = new Intent(BioAuthenticationActivity.this, MainActivity.class);
+            intent.putExtra(Constants.INTENT_CREDENTIALS,credentials);
+            intent.putExtra(Constants.SEZAME_PUB_KEY,sezamePk);
+            intent.putExtra(Constants.SEZAME_SIGNATURE,sezameSign);
+            startActivity(intent);
+            finish();
+
+        } catch (GeneralSecurityException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
     }
 }

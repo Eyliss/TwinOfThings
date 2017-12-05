@@ -56,17 +56,22 @@ import com.twinofthings.fragments.AlertDialogFragment;
 import com.twinofthings.fragments.ProvisioningFragment;
 import com.twinofthings.fragments.ScanFragment;
 import com.twinofthings.helpers.KeyInfoProvider;
+import com.twinofthings.helpers.KeyStoreUtility;
 import com.twinofthings.helpers.SampleAppKeys;
 import com.twinofthings.models.Credentials;
 import com.twinofthings.utils.Constants;
 import com.twinofthings.utils.Util;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.security.GeneralSecurityException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.Key;
+import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
+import java.security.Signature;
 import java.util.Arrays;
 import java.util.Locale;
 
@@ -92,8 +97,8 @@ public class ReaderActivity extends AppCompatActivity {
     private String publicKey = "AA8BC774646ADF5C9B753652379DE877C70087EB711A351580CC7261738BB65ABE33E1E370190EE74FD79421C8C4F80F9375CE2E687CC5D155C453CB33876CF7";
     private String signature = "1948D64C603E29035A7926F7B3CD3235AECD1A39816E74932287814EEA52FE27E2CC4EC4171C94C372870B8D4FF43337AD12D01EF7CFD52C7B432869576CAD97";
     private String challenge = "9834876DCFB05CB167A5C24953EBA58C4AC89B1ADF57F28F2F9D09AF107EE8F0";
-    private String sezamePk;
-    private String sezameSign;
+    private String sezamePk = "";
+    private String sezameSign = "";
     private String tagId = "";
 
     private IKeyData objKEY_2KTDES_ULC = null;
@@ -205,6 +210,8 @@ public class ReaderActivity extends AppCompatActivity {
         publicKey = getIntent().getStringExtra(Constants.PUB_KEY);
         signature = getIntent().getStringExtra(Constants.SIGNATURE);
         challenge = getIntent().getStringExtra(Constants.CHALLENGE);
+        sezamePk = getIntent().getStringExtra(Constants.SEZAME_PUB_KEY);
+        sezameSign = getIntent().getStringExtra(Constants.SEZAME_SIGNATURE);
 
         boolean readPermission = (ContextCompat.checkSelfPermission(ReaderActivity.this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
@@ -810,6 +817,7 @@ public class ReaderActivity extends AppCompatActivity {
         if(process.equals(Constants.SCAN)){
             ((ScanFragment)mFragment).startScan();
             validateTransaction();
+
         }else{
             if(mFragment instanceof ScanFragment){
                 goToCreateDigitalTwin();
@@ -820,7 +828,8 @@ public class ReaderActivity extends AppCompatActivity {
     }
 
     private void validateTransaction(){
-        RCApiManager.validate(publicKey,signature,challenge, "","", new Callback<RCApiResponse>() {
+
+        RCApiManager.validate(publicKey,signature,challenge, sezamePk,sezameSign, new Callback<RCApiResponse>() {
             @Override
             public void onResponse(Call<RCApiResponse> call, Response<RCApiResponse> response) {
                 RCApiResponse apiResponse = response.body();

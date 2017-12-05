@@ -51,8 +51,8 @@ public class RCApiManager {
         object.addProperty("public_key",publicKey);
         object.addProperty("signature",signature);
         object.addProperty("challenge",challenge);
-        object.addProperty("sezame_pk",signature);
-        object.addProperty("sezame_sig",challenge);
+        object.addProperty("sezame_pk",sezamePk);
+        object.addProperty("sezame_sig",sezameSign);
 
         Call<RCApiResponse> call = RCServiceWithAuth.validate(object);
         call.enqueue(callback);

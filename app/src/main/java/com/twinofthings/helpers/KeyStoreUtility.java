@@ -1,11 +1,15 @@
 package com.twinofthings.helpers;
 
+import com.twinofthings.utils.Util;
+
+import org.apache.commons.codec.binary.Base64;
 import org.spongycastle.openssl.jcajce.JcaPEMWriter;
 import org.spongycastle.operator.ContentSigner;
 import org.spongycastle.operator.OperatorCreationException;
 import org.spongycastle.operator.jcajce.JcaContentSignerBuilder;
 import org.spongycastle.pkcs.PKCS10CertificationRequest;
 import org.spongycastle.pkcs.jcajce.JcaPKCS10CertificationRequestBuilder;
+import org.spongycastle.util.Arrays;
 import org.spongycastle.util.encoders.Hex;
 import org.spongycastle.util.io.pem.PemObject;
 
@@ -16,7 +20,9 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
 import java.security.InvalidKeyException;
+import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.KeyStore;
@@ -29,6 +35,8 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 
 import javax.crypto.Cipher;
 import javax.crypto.Mac;
@@ -65,11 +73,9 @@ public class KeyStoreUtility {
      * In the registration process we need to create a certificate-request and send it to the
      * HQ-Server - once returned, we store the signed certificate in our keystore
      *
-     * @param userName username as returned from hq
-     * @param deviceId deviceId as returned from hq
-     * @return certificate request in pem-format
+     * @return KeyPair request in pem-format
      */
-    public String createKeyPairAndReturnCertificateRequest(String userName, String deviceId) {
+    public KeyPair createKeyPair() {
         try {
             store.load(null);
             if (store.containsAlias(KEY_NAME)) {
@@ -81,10 +87,7 @@ public class KeyStoreUtility {
                 KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(SecurityConstants.TYPE_RSA);
                 keyPairGenerator.initialize(4096);
                 keyPair = keyPairGenerator.generateKeyPair();
-
-                String certificateRequestString = generateCertificateRequestString(userName, deviceId, keyPair);
-
-                return certificateRequestString;
+                return keyPair;
             } catch (NoSuchAlgorithmException e) {
                 throw new RuntimeException("Failed to get an instance of KeyGenerator", e);
             }
@@ -93,29 +96,43 @@ public class KeyStoreUtility {
         } catch (KeyStoreException e) {
             e.printStackTrace();
         }
-        return "";
+        return null;
     }
 
-    private String generateCertificateRequestString(String userName, String deviceId, KeyPair keyPair) {
-        try {
-            JcaPKCS10CertificationRequestBuilder p10Builder =
-                  new JcaPKCS10CertificationRequestBuilder(new X500Principal("CN=" + userName + "@" + deviceId), keyPair.getPublic());
-            JcaContentSignerBuilder csBuilder = new JcaContentSignerBuilder(SecurityConstants.SIGNATURE_SHA256withRSA);
-            ContentSigner signer = csBuilder.build(keyPair.getPrivate());
-            PKCS10CertificationRequest csr = p10Builder.build(signer);
-            PemObject pemObject = new PemObject("CERTIFICATE REQUEST", csr.getEncoded());
-            StringWriter stringWriter = new StringWriter();
-            JcaPEMWriter jcaPEMWriter = new JcaPEMWriter(stringWriter);
-            jcaPEMWriter.writeObject(pemObject);
-            jcaPEMWriter.close();
-            stringWriter.close();
-            return stringWriter.toString();
-        } catch (OperatorCreationException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "";
+    public PrivateKey loadPrivateKey(String key64) throws GeneralSecurityException {
+        byte[] clear = Base64.encodeBase64(key64 .getBytes());
+        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(clear);
+        KeyFactory fact = KeyFactory.getInstance("DSA");
+        PrivateKey priv = fact.generatePrivate(keySpec);
+        Arrays.fill(clear, (byte) 0);
+        return priv;
+    }
+
+
+    public PublicKey loadPublicKey(String stored) throws GeneralSecurityException {
+        byte[] data = Base64.encodeBase64(stored .getBytes());
+        X509EncodedKeySpec spec = new X509EncodedKeySpec(data);
+        KeyFactory fact = KeyFactory.getInstance("DSA");
+        return fact.generatePublic(spec);
+    }
+
+    public String savePrivateKey() throws GeneralSecurityException {
+        KeyFactory fact = KeyFactory.getInstance("DSA");
+        PKCS8EncodedKeySpec spec = fact.getKeySpec(keyPair.getPrivate(),
+              PKCS8EncodedKeySpec.class);
+        byte[] packed = spec.getEncoded();
+        String key64 = Base64.encodeBase64String(packed);
+
+        Arrays.fill(packed, (byte) 0);
+        return key64;
+    }
+
+
+    public String savePublicKey() throws GeneralSecurityException {
+        KeyFactory fact = KeyFactory.getInstance("DSA");
+        X509EncodedKeySpec spec = fact.getKeySpec(keyPair.getPublic(),
+              X509EncodedKeySpec.class);
+        return Base64.encodeBase64String(spec.getEncoded());
     }
 
     /**
