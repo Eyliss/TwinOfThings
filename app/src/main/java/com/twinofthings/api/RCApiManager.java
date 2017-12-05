@@ -51,6 +51,8 @@ public class RCApiManager {
         object.addProperty("public_key",publicKey);
         object.addProperty("signature",signature);
         object.addProperty("challenge",challenge);
+        object.addProperty("sezame_pk",signature);
+        object.addProperty("sezame_sig",challenge);
 
         Call<RCApiResponse> call = RCServiceWithAuth.validate(object);
         call.enqueue(callback);
@@ -69,7 +71,8 @@ public class RCApiManager {
         object.addProperty("public_key",publicKey);
         object.addProperty("signature",signature);
         object.addProperty("challenge",challenge);
-
+        object.addProperty("sezame_pk",signature);
+        object.addProperty("sezame_sig",challenge);
 
         JsonObject metadata = new JsonObject();
         metadata.addProperty("brand_name",brandName);
