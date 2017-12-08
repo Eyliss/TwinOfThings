@@ -94,7 +94,7 @@ public class ScannedTwinActivity extends AppCompatActivity {
         mBrand = (TextView)findViewById(R.id.tv_brand);
         mComments = (TextView)findViewById(R.id.tv_comments);
         mThumbnail = (CircleImageView) findViewById(R.id.thumbnail);
-        mThumbnail.setBorderColor(getResources().getColor(R.color.electric_violet));
+        mThumbnail.setBorderColor(getResources().getColor(R.color.colorPrimaryDark));
         mThumbnail.setBorderWidth(5);
     }
 

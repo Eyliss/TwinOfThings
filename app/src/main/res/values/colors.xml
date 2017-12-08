@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#ffffff</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="grey">#919191</color>
-    <color name="very_light_grey">#F9F7FB</color>
-    <color name="cyan">#0DDEC4</color>
-    <color name="bright_violet">#7E29FB</color>
-    <color name="dodger_blue">#2B93FC</color>
-    <color name="tuatara">#393938</color>
-    <color name="electric_violet">#7436FB</color>
+    <color name="colorPrimaryDark">#000000</color>
     <color name="teal">#009688</color>
-    <color name="deep_orange">#F4511E</color>
-
+    <color name="deep_orange">#FF5722</color>
 </resources>

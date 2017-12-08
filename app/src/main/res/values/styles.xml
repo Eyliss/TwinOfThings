@@ -5,7 +5,7 @@
         <item name="colorPrimary">@android:color/white</item>
         <item name="colorControlActivated">@android:color/white</item>
         <item name="colorControlHighlight">@android:color/white</item>
-        <item name="android:editTextStyle">@style/EditTextStyle</item>
+        <!--<item name="android:editTextStyle">@style/EditTextStyle</item>-->
     </style>
     <!-- ToolBar -->
     <style name="ToolBarStyle" parent="Theme.AppCompat">
@@ -23,9 +23,9 @@
     <style name="TextViewCustomFont">
         <item name="fontPath">fonts/CooperHewitt-Book.otf</item>
     </style>
-    <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
-        <item name="colorControlNormal">@color/dodger_blue</item>
-        <item name="colorControlActivated">@color/dodger_blue</item>
-        <item name="colorControlHighlight">@color/dodger_blue</item>
-    </style>
+    <!--<style name="EditTextStyle" parent="Widget.AppCompat.EditText">-->
+        <!--<item name="colorControlNormal">@color/dodger_blue</item>-->
+        <!--<item name="colorControlActivated">@color/dodger_blue</item>-->
+        <!--<item name="colorControlHighlight">@color/dodger_blue</item>-->
+    <!--</style>-->
 </resources>

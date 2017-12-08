@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_white"
                 android:text="@string/enter_meta_data"
-                android:textColor="@color/bright_violet"
+                android:textColor="@color/colorPrimaryDark"
                 android:padding="10dp"
                 android:visibility="gone"
                 android:layout_gravity="center"

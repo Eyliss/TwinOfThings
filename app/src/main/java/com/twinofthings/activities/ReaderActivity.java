@@ -935,7 +935,7 @@ public class ReaderActivity extends AppCompatActivity {
             mSignature.update(data);
             byte[] signatureBytes = mSignature.sign();
             sezameSign = Util.bytesToHex(signatureBytes);
-            
+
         } catch (GeneralSecurityException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {

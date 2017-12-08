@@ -53,12 +53,11 @@
                         android:gravity="left"
                         android:textSize="14sp"
                         android:textColor="@android:color/black"
-                        android:textColorHint="@color/grey"
+                        android:textColorHint="@color/colorPrimaryDark"
                         android:paddingBottom="20dp"
                         android:layout_marginBottom="@dimen/form_field_vertical_margin"
                         android:drawableLeft="@drawable/ic_brand"
                         android:drawablePadding="10dp"
-                        android:backgroundTint="@color/bright_violet"
                         android:hint="@string/brand"/>
                 <EditText
                         android:layout_width="match_parent"
@@ -67,12 +66,11 @@
                         android:gravity="left"
                         android:textSize="14sp"
                         android:textColor="@android:color/black"
-                        android:textColorHint="@color/grey"
+                        android:textColorHint="@color/colorPrimaryDark"
                         android:paddingBottom="20dp"
                         android:layout_marginBottom="@dimen/form_field_vertical_margin"
                         android:drawableLeft="@drawable/ic_product_name"
                         android:drawablePadding="10dp"
-                        android:backgroundTint="@color/bright_violet"
                         android:maxLines="1"
                         android:hint="@string/product_name"/>
                 <!--<EditText-->
@@ -104,7 +102,7 @@
                             android:gravity="left"
                             android:text="@string/timestamp"
                             android:textSize="14sp"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/colorPrimaryDark"
                             android:drawableLeft="@drawable/ic_time"
                             android:drawablePadding="10dp"/>
                     <TextView
@@ -124,12 +122,11 @@
                         android:maxLines="1"
                         android:textSize="14sp"
                         android:textColor="@android:color/black"
-                        android:textColorHint="@color/grey"
+                        android:textColorHint="@color/colorPrimaryDark"
                         android:layout_marginBottom="@dimen/form_field_vertical_margin"
                         android:paddingBottom="20dp"
                         android:drawableLeft="@drawable/ic_owner"
                         android:drawablePadding="10dp"
-                        android:backgroundTint="@color/bright_violet"
                         android:hint="@string/owner"/>
                 <EditText
                         android:layout_width="match_parent"
@@ -139,12 +136,11 @@
                         android:maxLines="1"
                         android:textSize="14sp"
                         android:textColor="@android:color/black"
-                        android:textColorHint="@color/grey"
+                        android:textColorHint="@color/colorPrimaryDark"
                         android:layout_marginBottom="@dimen/form_field_vertical_margin"
                         android:paddingBottom="20dp"
                         android:drawableLeft="@drawable/ic_fingerprint"
                         android:drawablePadding="10dp"
-                        android:backgroundTint="@color/bright_violet"
                         android:hint="@string/serial_id"/>
                 <EditText
                         android:layout_width="match_parent"
@@ -153,19 +149,18 @@
                         android:gravity="left"
                         android:textSize="14sp"
                         android:textColor="@android:color/black"
-                        android:textColorHint="@color/grey"
+                        android:textColorHint="@color/colorPrimaryDark"
                         android:layout_marginBottom="@dimen/form_field_vertical_margin"
                         android:paddingBottom="20dp"
                         android:drawableLeft="@drawable/ic_material"
                         android:drawablePadding="10dp"
-                        android:backgroundTint="@color/bright_violet"
                         android:hint="@string/material"
                 />
                 <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/very_light_grey"
+                        android:background="@color/colorPrimaryDark"
                         android:layout_marginBottom="@dimen/form_field_vertical_margin"
                         android:padding="5dp">
                     <EditText
@@ -176,9 +171,8 @@
                             android:maxLines="3"
                             android:textColor="@android:color/black"
                             android:textSize="14sp"
-                            android:textColorHint="@color/grey"
+                            android:textColorHint="@color/colorPrimaryDark"
                             android:hint="@string/comments_hint"
-                            android:background="@color/very_light_grey"
                             android:layout_marginStart="@dimen/activity_horizontal_margin"
                     />
                 </LinearLayout>

@@ -80,12 +80,12 @@ public class ScanFragment extends Fragment {
     public void startScan(){
         rocketAnimation.stop();
         mScanTitle.setText(R.string.scanning_successful);
-        mScanTitle.setTextColor(getResources().getColor(R.color.cyan));
+        mScanTitle.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
         mScanDescription.setText(R.string.loading);
         rocketImage.setImageResource(R.drawable.ic_scan_success);
         scanImage.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.VISIBLE);
-        mProgressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.cyan), PorterDuff.Mode.MULTIPLY);
+        mProgressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.colorPrimaryDark), PorterDuff.Mode.MULTIPLY);
     }
 
     //Configure UI when scan stops
