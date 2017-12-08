@@ -6,8 +6,10 @@ import com.twinofthings.R;
 import com.twinofthings.api.RCApiManager;
 import com.twinofthings.api.RCApiResponse;
 import com.twinofthings.fragments.ScanFragment;
+import com.twinofthings.helpers.KeyStoreUtility;
 import com.twinofthings.models.Credentials;
 import com.twinofthings.utils.Constants;
+import com.twinofthings.utils.Util;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,6 +19,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+import java.security.KeyPair;
+import java.security.Signature;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,10 +44,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        credentials = getIntent().getParcelableExtra(Constants.INTENT_CREDENTIALS);
-        sezamePk = getIntent().getStringExtra(Constants.SEZAME_PUB_KEY);
-        sezameSign = getIntent().getStringExtra(Constants.SEZAME_SIGNATURE);
-
         bindViews();
     }
 
@@ -49,7 +52,7 @@ public class MainActivity extends Activity {
         mCreateTwinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToReaderScreen(Constants.CREATE_TWIN);
+                getCredentials();
             }
         });
         mScanTagButton = (Button)findViewById(R.id.scan_tag_button);
@@ -68,6 +71,50 @@ public class MainActivity extends Activity {
         });
     }
 
+    private void getCredentials(){
+
+        RCApiManager.getCredentials(new Callback<RCApiResponse>() {
+            @Override
+            public void onResponse(Call<RCApiResponse> call, Response<RCApiResponse> response) {
+                RCApiResponse apiResponse = response.body();
+
+                if(apiResponse.isSuccessful()){
+                    Gson gson = new Gson();
+                    Credentials credentials = gson.fromJson(apiResponse.getStringData(), Credentials.class);
+                    createKeyPair(credentials);
+                }else{
+                    Toast.makeText(MainActivity.this, apiResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RCApiResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void createKeyPair(Credentials credentials){
+        try {
+            KeyStoreUtility keyStoreUtility = new KeyStoreUtility();
+            KeyPair keyPair = keyStoreUtility.createKeyPair();
+            sezamePk = Util.bytesToHex(keyPair.getPublic().getEncoded());
+
+            byte[] data = credentials.getChallenge().getBytes("UTF8");
+            Signature mSignature = Signature.getInstance("SHA256withRSA");
+            mSignature.initSign(keyPair.getPrivate());
+            mSignature.update(data);
+            byte[] signatureBytes = mSignature.sign();
+            sezameSign = Util.bytesToHex(signatureBytes);
+
+            goToReaderScreen(Constants.CREATE_TWIN);
+
+        } catch (GeneralSecurityException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void goToReaderScreen(String proccess){
         Intent intent = new Intent(getApplicationContext(), ReaderActivity.class);

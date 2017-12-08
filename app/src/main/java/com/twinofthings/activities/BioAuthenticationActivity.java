@@ -44,6 +44,7 @@ import java.security.cert.CertificateException;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
+import javax.crypto.Mac;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
@@ -64,9 +65,6 @@ public class BioAuthenticationActivity extends AppCompatActivity {
     private FingerprintManager.CryptoObject cryptoObject;
     private TextView mAuthResult;
     private ImageView mAuthIcon;
-    private Signature mSignature;
-    private String sezamePk;
-    private String sezameSign;
 
     public interface AuthenticationListener {
         public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result);
@@ -79,9 +77,9 @@ public class BioAuthenticationActivity extends AppCompatActivity {
             mAuthResult.setText(R.string.auth_succeed);
             mAuthResult.setTextColor(getResources().getColor(R.color.teal));
             mAuthIcon.setImageResource(R.drawable.ic_check_circle_black_24dp);
-            mSignature = result.getCryptoObject().getSignature();
-            getCredentials();
-
+            Intent intent = new Intent(BioAuthenticationActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         }
 
         @Override
@@ -185,56 +183,6 @@ public class BioAuthenticationActivity extends AppCompatActivity {
               | UnrecoverableKeyException | IOException
               | NoSuchAlgorithmException | InvalidKeyException e) {
             throw new RuntimeException("Failed to init Cipher", e);
-        }
-    }
-
-    private void getCredentials(){
-
-        RCApiManager.getCredentials(new Callback<RCApiResponse>() {
-            @Override
-            public void onResponse(Call<RCApiResponse> call, Response<RCApiResponse> response) {
-                RCApiResponse apiResponse = response.body();
-
-                if(apiResponse.isSuccessful()){
-                    Gson gson = new Gson();
-                    Credentials credentials = gson.fromJson(apiResponse.getStringData(), Credentials.class);
-                    createKeyPair(credentials);
-                }else{
-                    Toast.makeText(BioAuthenticationActivity.this, apiResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<RCApiResponse> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void createKeyPair(Credentials credentials){
-        try {
-            KeyStoreUtility keyStoreUtility = new KeyStoreUtility();
-            KeyPair keyPair = keyStoreUtility.createKeyPair();
-            sezamePk = keyStoreUtility.savePublicKey();
-
-            byte[] data = credentials.getChallenge().getBytes("UTF8");
-
-            mSignature.initSign(keyPair.getPrivate());
-            mSignature.update(data);
-            byte[] signatureBytes = mSignature.sign();
-            sezameSign = Util.bytesToHex(signatureBytes);
-
-            Intent intent = new Intent(BioAuthenticationActivity.this, MainActivity.class);
-            intent.putExtra(Constants.INTENT_CREDENTIALS,credentials);
-            intent.putExtra(Constants.SEZAME_PUB_KEY,sezamePk);
-            intent.putExtra(Constants.SEZAME_SIGNATURE,sezameSign);
-            startActivity(intent);
-            finish();
-
-        } catch (GeneralSecurityException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
         }
     }
 }

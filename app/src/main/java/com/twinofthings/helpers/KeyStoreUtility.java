@@ -128,9 +128,9 @@ public class KeyStoreUtility {
     }
 
 
-    public String savePublicKey() throws GeneralSecurityException {
+    public static String savePublicKey(PublicKey publicKey) throws GeneralSecurityException {
         KeyFactory fact = KeyFactory.getInstance("DSA");
-        X509EncodedKeySpec spec = fact.getKeySpec(keyPair.getPublic(),
+        X509EncodedKeySpec spec = fact.getKeySpec(publicKey,
               X509EncodedKeySpec.class);
         return Base64.encodeBase64String(spec.getEncoded());
     }
