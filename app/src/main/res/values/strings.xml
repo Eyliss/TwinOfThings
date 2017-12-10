@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">TwinOfThings</string>
     <string name="splash_text">EVERY PRODUCT\nHAS ITS OWN STORY.</string>
-    <string name="main_text">ENTER A NEW TRUSTWORTHY\nWORLD\nWITH TWIN OF THINGS.</string>
-    <string name="main_subtext">CLICK ONE OF THE BUTTONS BELOW TO\nCREATE A DIGITAL TWIN OR SCAN A NFC TAG.</string>
-    <string name="create_twin_button_text">CREATE DIGITAL TWIN</string>
-    <string name="scan_tag_button_text">SCAN NFC TAG</string>
+    <string name="product_number">PRODUCT #01</string>
+
+    <string name="create_identity_button_text">CREATE IDENTITY</string>
+    <string name="validate_identity_button_text">VALIDATE IDENTITY</string>
     <string name="back_to_start_button_text">BACK TO START SCREEN</string>
     <string name="create_twin_success">GREAT,\nYOU CREATED A\nDIGITAL TWIN</string>
     <string name="error_field_required">Field cannot be empty</string>
