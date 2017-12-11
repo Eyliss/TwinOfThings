@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 import com.twinofthings.R;
 import com.twinofthings.api.RCApiManager;
 import com.twinofthings.api.RCApiResponse;
-import com.twinofthings.fragments.ScanFragment;
 import com.twinofthings.helpers.KeyStoreUtility;
 import com.twinofthings.models.Credentials;
 import com.twinofthings.utils.Constants;

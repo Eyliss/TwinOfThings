@@ -8,14 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
-import android.nfc.tech.MifareClassic;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -31,12 +28,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nxp.nfclib.CardType;
-import com.nxp.nfclib.CustomModules;
 import com.nxp.nfclib.KeyType;
 import com.nxp.nfclib.NxpNfcLib;
-import com.nxp.nfclib.classic.ClassicFactory;
-import com.nxp.nfclib.classic.IMFClassic;
-import com.nxp.nfclib.classic.IMFClassicEV1;
 import com.nxp.nfclib.defaultimpl.KeyData;
 import com.nxp.nfclib.desfire.DESFireFactory;
 import com.nxp.nfclib.desfire.DESFireFile;
@@ -45,16 +38,14 @@ import com.nxp.nfclib.desfire.IDESFireEV1;
 import com.nxp.nfclib.desfire.IDESFireEV2;
 import com.nxp.nfclib.exceptions.NxpNfcLibException;
 import com.nxp.nfclib.interfaces.IKeyData;
-import com.nxp.nfclib.ndef.NdefMessageWrapper;
-import com.nxp.nfclib.ndef.NdefRecordWrapper;
 import com.nxp.nfclib.utils.NxpLogUtils;
 import com.nxp.nfclib.utils.Utilities;
 import com.twinofthings.R;
 import com.twinofthings.api.RCApiManager;
 import com.twinofthings.api.RCApiResponse;
 import com.twinofthings.fragments.AlertDialogFragment;
-import com.twinofthings.fragments.ProvisioningFragment;
-import com.twinofthings.fragments.ScanFragment;
+import com.twinofthings.fragments.CreateIdentityFragment;
+import com.twinofthings.fragments.ValidateIdentityFragment;
 import com.twinofthings.helpers.KeyInfoProvider;
 import com.twinofthings.helpers.KeyStoreUtility;
 import com.twinofthings.helpers.SampleAppKeys;
@@ -64,20 +55,14 @@ import com.twinofthings.utils.Util;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.security.GeneralSecurityException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
 import java.security.Signature;
 import java.util.Arrays;
-import java.util.Locale;
 
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -234,11 +219,11 @@ public class ReaderActivity extends AppCompatActivity {
 
             if(process != null){
                 if(process.equals(Constants.SCAN)){
-                    mFragment = ScanFragment.newInstance();
+                    mFragment = ValidateIdentityFragment.newInstance();
                     getSupportFragmentManager().beginTransaction()
                           .add(R.id.fragment_container, mFragment,SCAN_FRAGMENT_TAG).commit();
                 }else{
-                    mFragment = ProvisioningFragment.newInstance();
+                    mFragment = CreateIdentityFragment.newInstance();
                     getSupportFragmentManager().beginTransaction()
                           .add(R.id.fragment_container, mFragment,CREATE_FRAGMENT_TAG).commit();
                 }
@@ -842,14 +827,14 @@ public class ReaderActivity extends AppCompatActivity {
     //Start validation o creation depends of the proccess selected by the user
     private void startProcess(){
         if(process.equals(Constants.SCAN)){
-            ((ScanFragment)mFragment).startScan();
+            ((ValidateIdentityFragment)mFragment).startScan();
             validateTransaction();
 
         }else{
-            if(mFragment instanceof ScanFragment){
+            if(mFragment instanceof ValidateIdentityFragment){
                 goToCreateDigitalTwin();
             }else{
-                ((ProvisioningFragment)mFragment).adaptUItoResult(tagId);
+                ((CreateIdentityFragment)mFragment).adaptUItoResult(tagId);
             }
         }
     }
@@ -872,7 +857,7 @@ public class ReaderActivity extends AppCompatActivity {
                     if(apiResponse.hasErrors()){
                         showCreateDialog();
                     }else{
-                        ((ScanFragment)mFragment).stopScan();
+                        ((ValidateIdentityFragment)mFragment).stopScan();
                     }
                 }
             }

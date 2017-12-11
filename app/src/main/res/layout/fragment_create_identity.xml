@@ -14,45 +14,45 @@
                   android:gravity="center_horizontal"
                   android:layout_centerInParent="true"
                   android:layout_margin="@dimen/activity_horizontal_margin">
-        <RelativeLayout android:layout_width="225dp"
-                        android:layout_height="200dp"
+        <RelativeLayout android:layout_width="250dp"
+                        android:layout_height="250dp"
                         android:layout_gravity="center_horizontal|center_vertical">
             <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="60dp"
-                    android:layout_marginTop="60dp"
-                    android:id="@+id/provisioning_icon"
-                    android:src="@drawable/ic_scan_provisioning"/>
-            <ImageView
-                    android:id="@+id/provisioning_clip"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
+                    android:id="@+id/provisioning_icon"
+                    android:src="@drawable/ic_scan_shared"
+            android:layout_centerInParent="true"/>
+            <ImageView
+                    android:id="@+id/provisioning_clip"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/clippers"/>
+                    android:src="@drawable/ic_create_identity"/>
         </RelativeLayout>
         <TextView
-                android:id="@+id/creating_title"
-                android:text="@string/create_digital_twin_title"
+                android:id="@+id/create_identity_title"
+                android:text="@string/validate_identity_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/section_vertical_margin"
+                android:textColor="@android:color/black"/>
+        <TextView
+                android:id="@+id/create_identity_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center"
                 android:layout_marginTop="@dimen/section_vertical_margin"
-                android:textColor="@android:color/white"/>
-        <TextView
-                android:id="@+id/creating_description"
-                android:text="@string/create_digital_twin_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:gravity="center"
-                android:layout_marginTop="@dimen/section_vertical_margin"
                 android:layout_marginBottom="@dimen/section_vertical_margin"
-                android:lineSpacingMultiplier="1.5"
-                android:textColor="@android:color/white"/>
+                android:visibility="gone"
+                android:text="@string/loading"
+                android:textColor="@android:color/darker_gray"/>
         <ImageButton
                 android:id="@+id/close_button"
                 android:layout_width="wrap_content"

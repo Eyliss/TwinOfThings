@@ -12,13 +12,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.twinofthings.R;
 import com.twinofthings.activities.ReaderActivity;
 
-public class ProvisioningFragment extends Fragment {
+public class CreateIdentityFragment extends Fragment {
 
     private ImageButton mCloseButton;
     private ImageView mProvisioningIcon;
@@ -29,12 +28,12 @@ public class ProvisioningFragment extends Fragment {
     private Button mEnterData;
     private ObjectAnimator scaleDown;
 
-    public ProvisioningFragment() {
+    public CreateIdentityFragment() {
         // Required empty public constructor
     }
 
-    public static ProvisioningFragment newInstance() {
-        ProvisioningFragment fragment = new ProvisioningFragment();
+    public static CreateIdentityFragment newInstance() {
+        CreateIdentityFragment fragment = new CreateIdentityFragment();
         return fragment;
     }
 
@@ -47,7 +46,7 @@ public class ProvisioningFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_provisioning, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_create_identity, container, false);
         bindViews(rootView);
 
         return rootView;
@@ -57,8 +56,8 @@ public class ProvisioningFragment extends Fragment {
 
         mProvisioningIcon = (ImageView) rootView.findViewById(R.id.provisioning_icon);
         mProvisioningClip = (ImageView) rootView.findViewById(R.id.provisioning_clip);
-        mProvisioningTitle = (TextView) rootView.findViewById(R.id.creating_title);
-        mProvisioningDescription = (TextView) rootView.findViewById(R.id.creating_description);
+        mProvisioningTitle = (TextView) rootView.findViewById(R.id.create_identity_title);
+        mProvisioningDescription = (TextView) rootView.findViewById(R.id.create_identity_description);
         mEnterData = (Button)rootView.findViewById(R.id.btn_enter_product_data);
         mCloseButton = (ImageButton)rootView.findViewById(R.id.close_button);
         mEnterData.setOnClickListener(new View.OnClickListener() {

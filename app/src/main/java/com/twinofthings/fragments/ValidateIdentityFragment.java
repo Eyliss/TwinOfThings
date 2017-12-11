@@ -17,7 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class ScanFragment extends Fragment {
+public class ValidateIdentityFragment extends Fragment {
 
     private ImageButton mCloseButton;
     private RelativeLayout mImagesContainer;
@@ -29,12 +29,12 @@ public class ScanFragment extends Fragment {
 
     AnimationDrawable rocketAnimation;
 
-    public ScanFragment() {
+    public ValidateIdentityFragment() {
 
     }
 
-    public static ScanFragment newInstance() {
-        ScanFragment fragment = new ScanFragment();
+    public static ValidateIdentityFragment newInstance() {
+        ValidateIdentityFragment fragment = new ValidateIdentityFragment();
         return fragment;
     }
 
@@ -47,7 +47,7 @@ public class ScanFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_scan, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_validate_identity, container, false);
 
         bindViews(rootView);
 
@@ -57,8 +57,8 @@ public class ScanFragment extends Fragment {
     private void bindViews(View rootView){
         mCloseButton = (ImageButton)rootView.findViewById(R.id.close_button);
         mImagesContainer = (RelativeLayout) rootView.findViewById(R.id.images_container);
-        mScanTitle = (TextView) rootView.findViewById(R.id.scanning_title);
-        mScanDescription = (TextView) rootView.findViewById(R.id.scanning_description);
+        mScanTitle = (TextView) rootView.findViewById(R.id.validate_identity_title);
+        mScanDescription = (TextView) rootView.findViewById(R.id.validate_identity_description);
         mProgressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
         rocketImage = (ImageView) rootView.findViewById(R.id.scan_clip);
         scanImage = (ImageView) rootView.findViewById(R.id.scan_image);
@@ -81,7 +81,8 @@ public class ScanFragment extends Fragment {
         rocketAnimation.stop();
         mScanTitle.setText(R.string.scanning_successful);
         mScanTitle.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-        mScanDescription.setText(R.string.loading);
+
+        mScanDescription.setVisibility(View.VISIBLE);
         rocketImage.setImageResource(R.drawable.ic_scan_success);
         scanImage.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.VISIBLE);
@@ -91,9 +92,9 @@ public class ScanFragment extends Fragment {
     //Configure UI when scan stops
     public void stopScan(){
         rocketAnimation.start();
-        mScanTitle.setText(R.string.scanning_tag_title);
+        mScanTitle.setText(R.string.validate_identity_title);
         mScanTitle.setTextColor(getResources().getColor(android.R.color.white));
-        mScanDescription.setText(R.string.scanning_tag_description);
+        mScanDescription.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);
     }
 
