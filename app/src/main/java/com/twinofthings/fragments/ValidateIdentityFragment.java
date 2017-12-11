@@ -61,7 +61,7 @@ public class ValidateIdentityFragment extends Fragment {
         rocketImage = (ImageView) rootView.findViewById(R.id.scan_clip);
         scanImage = (ImageView) rootView.findViewById(R.id.scan_image);
 
-        ((ReaderActivity) getActivity()).setActionBarTitle(R.string.scan_activity_title);
+        ((ReaderActivity) getActivity()).setActionBarTitle(R.string.validate_identity);
 
 //        rocketImage.setImageResource(R.drawable.radar_animation);
 //        rocketAnimation = (AnimationDrawable) rocketImage.getDrawable();

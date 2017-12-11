@@ -79,8 +79,8 @@ public class MainActivity extends Activity {
 
                 if(apiResponse.isSuccessful()){
                     Gson gson = new Gson();
-                    Credentials credentials = gson.fromJson(apiResponse.getStringData(), Credentials.class);
-                    createKeyPair(credentials);
+                    credentials = gson.fromJson(apiResponse.getStringData(), Credentials.class);
+                    createKeyPair();
                 }else{
                     Toast.makeText(MainActivity.this, apiResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 }
@@ -93,7 +93,7 @@ public class MainActivity extends Activity {
         });
     }
 
-    private void createKeyPair(Credentials credentials){
+    private void createKeyPair(){
         try {
             KeyStoreUtility keyStoreUtility = new KeyStoreUtility();
             KeyPair keyPair = keyStoreUtility.createKeyPair();

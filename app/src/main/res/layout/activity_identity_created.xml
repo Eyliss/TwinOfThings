@@ -59,7 +59,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="100dp"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:background="@drawable/button_black_border"
+                android:background="@drawable/button_grey_border"
                 android:text="@string/new_identity_button_text"
                 android:textSize="18sp"
                 android:textColor="@android:color/black"
@@ -70,7 +70,7 @@
                 android:layout_width="220dp"
                 android:layout_height="50dp"
                 android:textSize="18sp"
-                android:background="@drawable/button_black_border"
+                android:background="@drawable/button_grey_border"
                 android:text="@string/home_button_text"
                 android:textColor="@android:color/black"
                 android:layout_gravity="center"/>

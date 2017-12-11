@@ -275,7 +275,7 @@
                 android:layout_width="220dp"
                 android:layout_height="50dp"
                 android:textSize="18sp"
-                android:background="@drawable/button_black_border"
+                android:background="@drawable/button_grey_border"
                 android:text="@string/home_button_text"
                 android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold"

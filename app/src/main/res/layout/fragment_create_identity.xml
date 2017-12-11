@@ -58,12 +58,12 @@
                 android:id="@+id/btn_enter_product_data"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_white"
+                android:background="@drawable/button_grey_border"
                 android:text="@string/enter_meta_data"
                 android:textColor="@color/colorPrimaryDark"
                 android:padding="10dp"
                 android:visibility="gone"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/section_vertical_margin"/>
+                android:layout_marginTop="@dimen/activity_vertical_margin"/>
     </LinearLayout>
 </RelativeLayout>

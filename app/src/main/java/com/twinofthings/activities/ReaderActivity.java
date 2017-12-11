@@ -191,6 +191,7 @@ public class ReaderActivity extends AppCompatActivity {
 
         // Get a support ActionBar corresponding to this toolbar and enable the Up button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         publicKey = getIntent().getStringExtra(Constants.PUB_KEY);
         signature = getIntent().getStringExtra(Constants.SIGNATURE);
@@ -421,7 +422,6 @@ public class ReaderActivity extends AppCompatActivity {
 
         byte[] appId = new byte[]{0x12, 0x00, 0x00};
         byte[] appId_2 = new byte[]{0x03, 0x02, 0x01};
-        byte[] appId_3 = new byte[]{0x06, 0x05, 0x04};
 
         int fileSize_pubKey  = 64;
         int fileSize_hashMsg = 32;
@@ -474,6 +474,8 @@ public class ReaderActivity extends AppCompatActivity {
                 showMessage(
                       "Pub Key read from the card : " + Util.bytesToHex(desFireEV1.readData(0, 0,
                             64)), 'd');
+
+                //desFireEV1.selectApplication(0);
 
             /*readAccess - Take values from 0x00 to 0xF.
             0xE : free access.
@@ -557,48 +559,6 @@ public class ReaderActivity extends AppCompatActivity {
                             + Util.bytesToHex(desFireEV1.readData(0, 0,
                             64)), 'd');
 
-                //**NEW WRITING IN TAG FOR FINGERPRINT**//
-//                desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
-//                desFireEV1.createFile(fileNo_2, new DESFireFile.StdDataFileSettings(
-//                      IDESFireEV1.CommunicationType.Plain, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, fileSize_privKey));
-//
-//                desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
-//
-//                desFireEV1.writeData(0, 0, Util.hexStringToByteArray(sezameSign));
-//                sezameSign = Util.bytesToHex(desFireEV1.readData(0, 0,64));
-//                showMessage(
-//                      "Sezame signature Key read from the card : "
-//                            + Util.bytesToHex(desFireEV1.readData(0, 0,
-//                            64)), 'd');
-//
-//                EV1ApplicationKeySettings.Builder appsetbuilder_3 = new EV1ApplicationKeySettings.Builder();
-//
-//                EV1ApplicationKeySettings appsettings_3 = appsetbuilder_3.setAppKeySettingsChangeable(true)
-//                      .setAppMasterKeyChangeable(true)
-//                      .setAuthenticationRequiredForApplicationManagement(false)
-//                      .setAuthenticationRequiredForDirectoryConfigurationData(false)
-//                      .setKeyTypeOfApplicationKeys(KeyType.AES128).build();
-//
-//            /* Create the new application with the recently defined application settings .
-//               Then select the new application with its app ID.
-//             */
-//
-//                desFireEV1.createApplication(appId_3, appsettings_3);
-//                desFireEV1.selectApplication(appId_3);
-//
-//                desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
-//                desFireEV1.createFile(fileNo, new DESFireFile.StdDataFileSettings(
-//                      IDESFireEV1.CommunicationType.Plain, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, fileSize_privKey));
-//
-//                desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
-//
-//                desFireEV1.writeData(0, 0, Util.hexStringToByteArray(sezamePk));
-//                sezamePk = Util.bytesToHex(desFireEV1.readData(0, 0, 64));
-//                showMessage(
-//                      "Sezame Public Key read from the card : "
-//                            + Util.bytesToHex(desFireEV1.readData(0, 0,
-//                            64)), 'd');
-
                 startProcess();
 
             }else{
@@ -616,6 +576,7 @@ public class ReaderActivity extends AppCompatActivity {
                     desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
                     desFireEV1.selectApplication(appId);
 
+
                     desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
                     publicKey = Util.bytesToHex(desFireEV1.readData(0,0,64));
                     Log.d(TAG,"Reader public key "+publicKey);
@@ -628,26 +589,11 @@ public class ReaderActivity extends AppCompatActivity {
                     desFireEV1.selectApplication(0);
 
                     desFireEV1.authenticate(0, IDESFireEV1.AuthType.Native, KeyType.TWO_KEY_THREEDES, keyData);
-
                     desFireEV1.selectApplication(appId_2);
+
                     desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
                     signature = Util.bytesToHex(desFireEV1.readData(0, 0,64));
                     Log.d(TAG,"Reader signature "+signature);
-
-//                    //**NEW READING IN TAG FOR FINGERPRINT**//
-//
-//                    desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
-//
-//                    sezameSign = Util.bytesToHex(desFireEV1.readData(0, 0,64));
-//                    showMessage("Sezame signature Key read from the card : " + Util.bytesToHex(desFireEV1.readData(0, 0,
-//                                64)), 'd');
-//
-//                    desFireEV1.selectApplication(appId_3);
-//                    desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
-//                    sezamePk = Util.bytesToHex(desFireEV1.readData(0, 0, 64));
-//                    showMessage("Sezame Public Key read from the card : "+ Util.bytesToHex(desFireEV1.readData(0, 0,
-//                                64)), 'd');
-
 
                     startProcess();
                 }else{
@@ -683,6 +629,7 @@ public class ReaderActivity extends AppCompatActivity {
         }
 
     }
+
 
     private void desfireEV2CardLogic() {
         byte[] appId = new byte[]{0x12, 0x00, 0x00};

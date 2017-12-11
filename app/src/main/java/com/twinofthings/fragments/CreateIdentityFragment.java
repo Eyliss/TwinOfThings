@@ -79,7 +79,7 @@ public class CreateIdentityFragment extends Fragment {
 
     //If scanning has been success, modify the interface to notify to the user
     public void adaptUItoResult(String tagId){
-        scaleDown.end();
+//        scaleDown.end();
         
 //        mProvisioningIcon.setImageResource(R.drawable.provisioning_icon_success);
 //        mProvisioningClip.getLayoutParams().height = mProvisioningIcon.getLayoutParams().height * 2;
@@ -88,7 +88,6 @@ public class CreateIdentityFragment extends Fragment {
 //        mProvisioningClip.setImageResource(R.drawable.provisioning_clip_success);
 
         mProvisioningTitle.setText(R.string.tag_provisioning_successful);
-        mProvisioningTitle.setTextColor(getResources().getColor(android.R.color.holo_blue_bright));
         mProvisioningDescription.setVisibility(TextUtils.isEmpty(tagId) ? View.GONE : View.VISIBLE);
         mProvisioningDescription.setText(getString(R.string.tag_id,tagId));
 

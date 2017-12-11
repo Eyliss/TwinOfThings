@@ -44,7 +44,7 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:background="@drawable/button_black_border"
+                android:background="@drawable/button_grey_border"
                 android:text="@string/create_identity_button_text"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
@@ -56,8 +56,8 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:textSize="18sp"
-                android:background="@drawable/button_black_border"
-                android:text="@string/validate_identity_button_text"
+                android:background="@drawable/button_grey_border"
+                android:text="@string/validate_identity"
                 android:textColor="@android:color/black"
                 android:layout_gravity="center"/>
     </LinearLayout>

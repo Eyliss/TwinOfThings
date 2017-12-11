@@ -6,7 +6,7 @@
     <string name="create_identity_button_text">CREATE IDENTITY</string>
     <string name="create_button_text">CREATE</string>
 
-    <string name="validate_identity_button_text">VALIDATE IDENTITY</string>
+    <string name="validate_identity">VALIDATE IDENTITY</string>
     <string name="new_identity_button_text">NEW IDENTITY</string>
 
     <string name="home_button_text">HOME</string>
@@ -40,7 +40,7 @@
     <string name="timestamp">TIME STAMP</string>
     <string name="pup_id">PUP. ID</string>
     <string name="registered">REGISTERED</string>
-    <string name="tag_id">TAG ID # %1$s</string>
+    <string name="tag_id">ID # %1$s</string>
     <string name="transaction_error">transaction not found</string>
 
     <string name="dialog_tx_not_found_title">Transaction not found</string>

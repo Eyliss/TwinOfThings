@@ -208,7 +208,7 @@
 
                 <EditText
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="wrap_content"
                         android:id="@+id/comments"
                         android:gravity="start"
                         android:maxLines="3"
@@ -220,7 +220,7 @@
                         android:layout_width="220dp"
                         android:layout_height="50dp"
                         android:textSize="18sp"
-                        android:background="@drawable/button_black_border"
+                        android:background="@drawable/button_grey_border"
                         android:text="@string/create_button_text"
                         android:textColor="@android:color/black"
                         android:layout_gravity="center"
