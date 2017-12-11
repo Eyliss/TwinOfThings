@@ -194,8 +194,8 @@
                         android:id="@+id/create_digital_twin_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/create_twin_button_bg"
-                        android:text="@string/create_identity_button_text"
+                        android:background="@drawable/button_black_border"
+                        android:text="@string/create_button_text"
                         android:textColor="@android:color/white"
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/form_field_vertical_margin"/>

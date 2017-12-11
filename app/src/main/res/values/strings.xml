@@ -4,9 +4,13 @@
     <string name="product_number">PRODUCT #01</string>
 
     <string name="create_identity_button_text">CREATE IDENTITY</string>
+    <string name="create_button_text">CREATE</string>
+
     <string name="validate_identity_button_text">VALIDATE IDENTITY</string>
-    <string name="back_to_start_button_text">BACK TO START SCREEN</string>
-    <string name="create_twin_success">GREAT,\nYOU CREATED A\nDIGITAL TWIN</string>
+    <string name="new_identity_button_text">NEW IDENTITY</string>
+
+    <string name="home_button_text">HOME</string>
+    <string name="create_new_identity_success">PRODUCT WAS\nSUCCESSFULLY REGISTERED</string>
     <string name="error_field_required">Field cannot be empty</string>
     <string name="error_picture_required">Image need to be provided</string>
 

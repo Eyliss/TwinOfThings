@@ -26,66 +26,55 @@
                     android:src="@drawable/ic_toolbar_right" />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
-    <RelativeLayout android:layout_width="match_parent"
-                    android:layout_below="@+id/toolbar"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/section_vertical_margin"
-                    android:layout_marginBottom="@dimen/section_vertical_margin"
-                    android:id="@+id/images_container">
-        <ImageView
-                android:src="@drawable/outline"
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical"
+                  android:layout_margin="@dimen/activity_vertical_margin"
+                  android:layout_below="@+id/toolbar">
+        <com.twinofthings.helpers.CircleImageView
+                android:src="@drawable/ic_image_placeholder"
+                android:id="@+id/thumbnail"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_centerInParent="true"/>
-        <com.twinofthings.helpers.CircleImageView
-                android:src="@android:drawable/ic_menu_camera"
-                android:id="@+id/thumbnail"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
-                android:layout_centerInParent="true"/>
-        <ImageView android:layout_width="100dp"
-                   android:layout_height="100dp"
-                   android:src="@drawable/ic_scan_success"
+                android:layout_gravity="center"/>
+        <TextView
+                android:id="@+id/centered_text"
+                android:text="@string/create_new_identity_success"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                android:layout_margin="@dimen/activity_vertical_margin"/>
+        <ImageView android:layout_width="65dp"
+                   android:layout_height="65dp"
+                   android:src="@drawable/ic_success"
                    android:id="@+id/success_icon"
-                   android:layout_centerHorizontal="true"
-                   android:layout_centerVertical="true"
-                   android:layout_alignStart="@id/thumbnail"
-                   android:layout_marginLeft="-55dp"/>
-    </RelativeLayout>
-    <TextView
-            android:id="@+id/centered_text"
-            android:text="@string/create_twin_success"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:layout_centerInParent="true"
-            android:lineSpacingMultiplier="1.5"
-            android:textColor="@android:color/white"
-            android:gravity="center"
-            android:layout_below="@id/images_container"/>
-    <Button
-            android:id="@+id/scan_tag_button"
-            android:layout_width="220dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:drawableLeft="@drawable/ic_scan_tag_button"
-            android:drawableTint="@android:color/white"
-            android:layout_above="@id/back_to_start"
-            android:background="@drawable/button_black_border"
-            android:text="@string/validate_identity_button_text"
-            android:padding="10dp"
-            android:textColor="@android:color/white"
-            android:layout_centerHorizontal="true"/>
-    <Button
-            android:id="@+id/back_to_start"
-            android:layout_width="220dp"
-            android:layout_height="50dp"
-            android:padding="10dp"
-            android:background="@drawable/button_black_border"
-            android:text="@string/back_to_start_button_text"
-            android:textColor="@android:color/white"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-    android:layout_marginBottom="@dimen/double_section_vertical_margin"/>
+                   android:layout_gravity="center"/>
+        <Button
+                android:id="@+id/scan_tag_button"
+                android:layout_width="220dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/button_black_border"
+                android:text="@string/new_identity_button_text"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center"
+        />
+        <Button
+                android:id="@+id/back_to_start"
+                android:layout_width="220dp"
+                android:layout_height="50dp"
+                android:textSize="18sp"
+                android:background="@drawable/button_black_border"
+                android:text="@string/home_button_text"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center"/>
+    </LinearLayout>
+
 
 </RelativeLayout>

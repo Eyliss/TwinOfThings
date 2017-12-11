@@ -238,7 +238,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:background="@drawable/button_purple_border"
-                android:text="@string/back_to_start_button_text"
+                android:text="@string/home_button_text"
                 android:textColor="@color/colorPrimaryDark"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/section_vertical_margin"
