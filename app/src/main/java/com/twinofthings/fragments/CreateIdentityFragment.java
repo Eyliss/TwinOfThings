@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -65,17 +64,17 @@ public class CreateIdentityFragment extends Fragment {
             }
         });
 
-        scaleDown = ObjectAnimator.ofPropertyValuesHolder(mProvisioningClip,
-              PropertyValuesHolder.ofFloat("scaleX", 1.2f),
-              PropertyValuesHolder.ofFloat("scaleY", 1.2f));
-        scaleDown.setDuration(310);
+//        scaleDown = ObjectAnimator.ofPropertyValuesHolder(mProvisioningClip,
+//              PropertyValuesHolder.ofFloat("scaleX", 1.2f),
+//              PropertyValuesHolder.ofFloat("scaleY", 1.2f));
+//        scaleDown.setDuration(310);
+//
+//        scaleDown.setRepeatCount(ObjectAnimator.INFINITE);
+//        scaleDown.setRepeatMode(ObjectAnimator.REVERSE);
 
-        scaleDown.setRepeatCount(ObjectAnimator.INFINITE);
-        scaleDown.setRepeatMode(ObjectAnimator.REVERSE);
+//        scaleDown.start();
 
-        scaleDown.start();
-
-        ((ReaderActivity) getActivity()).setActionBarTitle(R.string.create_twin_activity_title);
+        ((ReaderActivity) getActivity()).setActionBarTitle(R.string.create_identity_activity_title);
     }
 
     //If scanning has been success, modify the interface to notify to the user

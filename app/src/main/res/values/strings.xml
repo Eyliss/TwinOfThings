@@ -23,8 +23,10 @@
 
     <string name="create_digital_twin_title">PLEASE BRING YOUR DEVICE\nIN PROXIMITY TO THE TAG</string>
 
-    <string name="create_twin_activity_title">Create Digital Twin</string>
-    <string name="scan_activity_title">Scanning</string>
+    <string name="create_identity_activity_title">CREATE IDENTITY</string>
+    <string name="created_activity_title">CREATE NEW IDENTITY</string>
+    <string name="scan_activity_title">SCAN</string>
+    <string name="scanned_activity_title">IDENTITY DATA</string>
     <string name="identity_info">IDENTITY INFO</string>
     <string name="owner">OWNER</string>
     <string name="object_id">OBJECT ID</string>

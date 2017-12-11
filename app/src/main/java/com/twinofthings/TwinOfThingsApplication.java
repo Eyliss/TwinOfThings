@@ -14,7 +14,7 @@ public class TwinOfThingsApplication extends Application {
     public void onCreate() {
         super.onCreate();
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-              .setDefaultFontPath("fonts/CooperHewitt-Book.otf")
+              .setDefaultFontPath("fonts/HelveticaNeueLTPro-MdCn.otf")
               .setFontAttrId(R.attr.fontPath)
               .build()
         );

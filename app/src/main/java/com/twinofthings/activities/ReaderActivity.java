@@ -558,46 +558,46 @@ public class ReaderActivity extends AppCompatActivity {
                             64)), 'd');
 
                 //**NEW WRITING IN TAG FOR FINGERPRINT**//
-                desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
-                desFireEV1.createFile(fileNo_2, new DESFireFile.StdDataFileSettings(
-                      IDESFireEV1.CommunicationType.Plain, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, fileSize_privKey));
-
-                desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
-
-                desFireEV1.writeData(0, 0, Util.hexStringToByteArray(sezameSign));
-                sezameSign = Util.bytesToHex(desFireEV1.readData(0, 0,64));
-                showMessage(
-                      "Sezame signature Key read from the card : "
-                            + Util.bytesToHex(desFireEV1.readData(0, 0,
-                            64)), 'd');
-
-                EV1ApplicationKeySettings.Builder appsetbuilder_3 = new EV1ApplicationKeySettings.Builder();
-
-                EV1ApplicationKeySettings appsettings_3 = appsetbuilder_3.setAppKeySettingsChangeable(true)
-                      .setAppMasterKeyChangeable(true)
-                      .setAuthenticationRequiredForApplicationManagement(false)
-                      .setAuthenticationRequiredForDirectoryConfigurationData(false)
-                      .setKeyTypeOfApplicationKeys(KeyType.AES128).build();
-
-            /* Create the new application with the recently defined application settings .
-               Then select the new application with its app ID.
-             */
-
-                desFireEV1.createApplication(appId_3, appsettings_3);
-                desFireEV1.selectApplication(appId_3);
-
-                desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
-                desFireEV1.createFile(fileNo, new DESFireFile.StdDataFileSettings(
-                      IDESFireEV1.CommunicationType.Plain, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, fileSize_privKey));
-
-                desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
-
-                desFireEV1.writeData(0, 0, Util.hexStringToByteArray(sezamePk));
-                sezamePk = Util.bytesToHex(desFireEV1.readData(0, 0, 64));
-                showMessage(
-                      "Sezame Public Key read from the card : "
-                            + Util.bytesToHex(desFireEV1.readData(0, 0,
-                            64)), 'd');
+//                desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
+//                desFireEV1.createFile(fileNo_2, new DESFireFile.StdDataFileSettings(
+//                      IDESFireEV1.CommunicationType.Plain, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, fileSize_privKey));
+//
+//                desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
+//
+//                desFireEV1.writeData(0, 0, Util.hexStringToByteArray(sezameSign));
+//                sezameSign = Util.bytesToHex(desFireEV1.readData(0, 0,64));
+//                showMessage(
+//                      "Sezame signature Key read from the card : "
+//                            + Util.bytesToHex(desFireEV1.readData(0, 0,
+//                            64)), 'd');
+//
+//                EV1ApplicationKeySettings.Builder appsetbuilder_3 = new EV1ApplicationKeySettings.Builder();
+//
+//                EV1ApplicationKeySettings appsettings_3 = appsetbuilder_3.setAppKeySettingsChangeable(true)
+//                      .setAppMasterKeyChangeable(true)
+//                      .setAuthenticationRequiredForApplicationManagement(false)
+//                      .setAuthenticationRequiredForDirectoryConfigurationData(false)
+//                      .setKeyTypeOfApplicationKeys(KeyType.AES128).build();
+//
+//            /* Create the new application with the recently defined application settings .
+//               Then select the new application with its app ID.
+//             */
+//
+//                desFireEV1.createApplication(appId_3, appsettings_3);
+//                desFireEV1.selectApplication(appId_3);
+//
+//                desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
+//                desFireEV1.createFile(fileNo, new DESFireFile.StdDataFileSettings(
+//                      IDESFireEV1.CommunicationType.Plain, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, fileSize_privKey));
+//
+//                desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
+//
+//                desFireEV1.writeData(0, 0, Util.hexStringToByteArray(sezamePk));
+//                sezamePk = Util.bytesToHex(desFireEV1.readData(0, 0, 64));
+//                showMessage(
+//                      "Sezame Public Key read from the card : "
+//                            + Util.bytesToHex(desFireEV1.readData(0, 0,
+//                            64)), 'd');
 
                 startProcess();
 
@@ -634,19 +634,19 @@ public class ReaderActivity extends AppCompatActivity {
                     signature = Util.bytesToHex(desFireEV1.readData(0, 0,64));
                     Log.d(TAG,"Reader signature "+signature);
 
-                    //**NEW READING IN TAG FOR FINGERPRINT**//
-
-                    desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
-
-                    sezameSign = Util.bytesToHex(desFireEV1.readData(0, 0,64));
-                    showMessage("Sezame signature Key read from the card : " + Util.bytesToHex(desFireEV1.readData(0, 0,
-                                64)), 'd');
-
-                    desFireEV1.selectApplication(appId_3);
-                    desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
-                    sezamePk = Util.bytesToHex(desFireEV1.readData(0, 0, 64));
-                    showMessage("Sezame Public Key read from the card : "+ Util.bytesToHex(desFireEV1.readData(0, 0,
-                                64)), 'd');
+//                    //**NEW READING IN TAG FOR FINGERPRINT**//
+//
+//                    desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
+//
+//                    sezameSign = Util.bytesToHex(desFireEV1.readData(0, 0,64));
+//                    showMessage("Sezame signature Key read from the card : " + Util.bytesToHex(desFireEV1.readData(0, 0,
+//                                64)), 'd');
+//
+//                    desFireEV1.selectApplication(appId_3);
+//                    desFireEV1.authenticate(0, IDESFireEV1.AuthType.AES, KeyType.AES128, default_zeroes_key);
+//                    sezamePk = Util.bytesToHex(desFireEV1.readData(0, 0, 64));
+//                    showMessage("Sezame Public Key read from the card : "+ Util.bytesToHex(desFireEV1.readData(0, 0,
+//                                64)), 'd');
 
 
                     startProcess();

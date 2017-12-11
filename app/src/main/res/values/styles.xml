@@ -2,9 +2,9 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@android:color/white</item>
-        <item name="colorControlActivated">@android:color/white</item>
-        <item name="colorControlHighlight">@android:color/white</item>
+        <item name="colorPrimary">@android:color/black</item>
+        <item name="colorControlActivated">@android:color/black</item>
+        <item name="colorControlHighlight">@android:color/black</item>
         <!--<item name="android:editTextStyle">@style/EditTextStyle</item>-->
     </style>
     <!-- ToolBar -->
@@ -22,7 +22,7 @@
         <item name="windowActionBarOverlay">true</item>
     </style>
     <style name="TextViewCustomFont">
-        <item name="fontPath">fonts/CooperHewitt-Book.otf</item>
+        <item name="fontPath">fonts/HelveticaNeueLTPro-MdCn.otf</item>
     </style>
     <!--<style name="EditTextStyle" parent="Widget.AppCompat.EditText">-->
         <!--<item name="colorControlNormal">@color/dodger_blue</item>-->

@@ -102,20 +102,11 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/identity_info"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
                     android:textColor="@color/colorPrimaryDark"
                     android:padding="5dp"
                     android:layout_centerInParent="true"/>
-
-            <View
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:layout_alignEnd="@+id/tv_product_info"
-                    android:layout_alignStart="@+id/tv_product_info"
-                    android:layout_below="@+id/tv_product_info"
-                    android:layout_marginTop="5dp"
-                    android:layout_centerHorizontal="true"
-                    android:background="@color/colorPrimaryDark"/>
         </RelativeLayout>
     </LinearLayout>
     <ScrollView
@@ -128,6 +119,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:background="@android:color/white">
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black"/>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -136,101 +131,144 @@
                 android:paddingStart="30dp"
                 android:background="@color/colorPrimary"
                 android:layout_margin="@dimen/separator_height">
+            <ImageView android:layout_width="25dp"
+                       android:layout_height="25dp"
+                       android:layout_gravity="center"
+                       android:layout_marginEnd="10dp"
+                       android:src="@drawable/ic_owner"/>
             <TextView
                     android:layout_width="0dp"
                     android:layout_weight="0.4"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
+                    android:layout_height="match_parent"
+                    android:gravity="left|center_vertical"
                     android:text="@string/owner"
-                    android:textSize="14sp"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:drawableLeft="@drawable/ic_owner"
-                    android:drawablePadding="10dp"/>
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"/>
             <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.6"
-                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+                    android:layout_height="match_parent"
+                    android:gravity="left|center_vertical"
                     android:id="@+id/tv_owner"
-                    android:gravity="left"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black"
             />
         </LinearLayout>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:paddingStart="30dp"
-                android:layout_margin="@dimen/separator_height">
-            <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.4"
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black"/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="@string/object_id"
-                    android:textSize="14sp"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:drawableLeft="@drawable/ic_object_id"
-                    android:drawablePadding="7dp"/>
-            <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.6"
+                    android:padding="10dp"
+                    android:paddingStart="30dp"
+                    android:background="@color/colorPrimary"
+                    android:layout_margin="@dimen/separator_height">
+                <ImageView android:layout_width="20dp"
+                           android:layout_height="20dp"
+                           android:layout_gravity="center"
+                           android:layout_marginEnd="10dp"
+                           android:src="@drawable/ic_object_id"/>
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="match_parent"
+                        android:gravity="left|center_vertical"
+                        android:text="@string/object_id"
+                        android:textSize="18sp"
+                        android:layout_marginStart="5dp"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"/>
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="match_parent"
+                        android:gravity="left|center_vertical"
+                        android:id="@+id/tv_object_id"
+                        android:textSize="18sp"
+                        android:textColor="@android:color/black"
+                />
+            </LinearLayout>
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black"/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_object_id"
-                    android:gravity="left"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="14sp"/>
-        </LinearLayout>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:paddingStart="30dp"
-                android:layout_margin="@dimen/separator_height">
-            <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.4"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="@string/material"
-                    android:textSize="14sp"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:drawableLeft="@drawable/ic_material"
-                    android:drawablePadding="7dp"/>
-            <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.6"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_material"
-                    android:gravity="left"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="14sp"/>
-        </LinearLayout>
+                    android:padding="10dp"
+                    android:paddingStart="30dp"
+                    android:background="@color/colorPrimary"
+                    android:layout_margin="@dimen/separator_height">
+                <ImageView android:layout_width="20dp"
+                           android:layout_height="20dp"
+                           android:layout_gravity="center"
+                           android:layout_marginEnd="10dp"
+                           android:src="@drawable/ic_material"/>
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="match_parent"
+                        android:gravity="left|center_vertical"
+                        android:text="@string/material"
+                        android:textSize="18sp"
+                        android:layout_marginStart="5dp"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"/>
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="match_parent"
+                        android:gravity="left|center_vertical"
+                        android:id="@+id/tv_material"
+                        android:textSize="18sp"
+                        android:textColor="@android:color/black"
+                />
+            </LinearLayout>
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black"/>
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:paddingStart="30dp"
-                android:layout_margin="@dimen/separator_height">
-            <TextView
+                android:paddingStart="30dp">
+            <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:text="@string/more_detail"
-                    android:textSize="14sp"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:layout_marginStart="25dp"/>
+                    android:background="@color/colorPrimary">
+                <ImageView android:layout_width="20dp"
+                           android:layout_height="20dp"
+                           android:layout_gravity="center"
+                           android:layout_marginEnd="10dp"
+                           android:src="@drawable/ic_more"/>
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="match_parent"
+                        android:gravity="left|center_vertical"
+                        android:text="@string/more_detail"
+                        android:textSize="18sp"
+                        android:layout_marginStart="5dp"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"/>
+            </LinearLayout>
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_comments"
                     android:gravity="start"
                     android:textColor="@android:color/black"
-                    android:textSize="14sp"
-                    android:layout_marginStart="25dp"/>
+                    android:textSize="18sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="35dp"/>
         </LinearLayout>
         <Button
                 android:id="@+id/back_to_start"
@@ -240,6 +278,7 @@
                 android:background="@drawable/button_black_border"
                 android:text="@string/home_button_text"
                 android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/section_vertical_margin"
                 android:layout_marginBottom="@dimen/section_vertical_margin"/>
