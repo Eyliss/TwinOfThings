@@ -19,7 +19,6 @@ import com.twinofthings.activities.ReaderActivity;
 
 public class CreateIdentityFragment extends Fragment {
 
-    private ImageButton mCloseButton;
     private ImageView mProvisioningIcon;
     private ImageView mProvisioningClip;
 
@@ -59,18 +58,10 @@ public class CreateIdentityFragment extends Fragment {
         mProvisioningTitle = (TextView) rootView.findViewById(R.id.create_identity_title);
         mProvisioningDescription = (TextView) rootView.findViewById(R.id.create_identity_description);
         mEnterData = (Button)rootView.findViewById(R.id.btn_enter_product_data);
-        mCloseButton = (ImageButton)rootView.findViewById(R.id.close_button);
         mEnterData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((ReaderActivity)getActivity()).goToCreateDigitalTwin();
-            }
-        });
-
-        mCloseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((ReaderActivity) getActivity()).finishProcess();
             }
         });
 
@@ -91,18 +82,17 @@ public class CreateIdentityFragment extends Fragment {
     public void adaptUItoResult(String tagId){
         scaleDown.end();
         
-        mProvisioningIcon.setImageResource(R.drawable.provisioning_icon_success);
-        mProvisioningClip.getLayoutParams().height = mProvisioningIcon.getLayoutParams().height * 2;
-        mProvisioningClip.getLayoutParams().width = mProvisioningIcon.getLayoutParams().width * 2;
-        mProvisioningClip.requestLayout();
-        mProvisioningClip.setImageResource(R.drawable.provisioning_clip_success);
+//        mProvisioningIcon.setImageResource(R.drawable.provisioning_icon_success);
+//        mProvisioningClip.getLayoutParams().height = mProvisioningIcon.getLayoutParams().height * 2;
+//        mProvisioningClip.getLayoutParams().width = mProvisioningIcon.getLayoutParams().width * 2;
+//        mProvisioningClip.requestLayout();
+//        mProvisioningClip.setImageResource(R.drawable.provisioning_clip_success);
 
         mProvisioningTitle.setText(R.string.tag_provisioning_successful);
         mProvisioningTitle.setTextColor(getResources().getColor(android.R.color.holo_blue_bright));
         mProvisioningDescription.setVisibility(TextUtils.isEmpty(tagId) ? View.GONE : View.VISIBLE);
         mProvisioningDescription.setText(getString(R.string.tag_id,tagId));
 
-        mCloseButton.setVisibility(View.GONE);
         mEnterData.setVisibility(View.VISIBLE);
     }
 

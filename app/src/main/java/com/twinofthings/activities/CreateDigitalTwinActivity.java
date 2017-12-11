@@ -81,7 +81,6 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
 //    private TextView mLocation;
     private Button mCreateTwin;
     private CircleImageView mUploadPicture;
-    private TextView mTvTakePhoto;
 
     private Location mLastLocation;
     private String locationName;
@@ -98,7 +97,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_create_digital_twin);
+        setContentView(R.layout.activity_create_identity);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -170,9 +169,7 @@ public class CreateDigitalTwinActivity extends AppCompatActivity implements Goog
         });
 
         mUploadPicture = (CircleImageView) findViewById(R.id.ib_upload_picture);
-        mTvTakePhoto = (TextView) findViewById(R.id.tv_take_photo);
         mUploadPicture.setBorderWidth(3);
-        mTvTakePhoto.setOnClickListener(takePhotoListener);
         mUploadPicture.setOnClickListener(takePhotoListener);
     }
 

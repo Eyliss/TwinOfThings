@@ -101,8 +101,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="@string/product_info"
-                    android:textSize="16sp"
+                    android:text="@string/identity_info"
+                    android:textSize="18sp"
                     android:textColor="@color/colorPrimaryDark"
                     android:padding="5dp"
                     android:layout_centerInParent="true"/>
@@ -171,7 +171,7 @@
                     android:text="@string/object_id"
                     android:textSize="14sp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:drawableLeft="@drawable/ic_fingerprint"
+                    android:drawableLeft="@drawable/ic_object_id"
                     android:drawablePadding="7dp"/>
             <TextView
                     android:layout_width="0dp"
@@ -219,7 +219,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="start"
-                    android:text="@string/comments"
+                    android:text="@string/more_detail"
                     android:textSize="14sp"
                     android:textColor="@color/colorPrimaryDark"
                     android:layout_marginStart="25dp"/>
@@ -234,10 +234,10 @@
         </LinearLayout>
         <Button
                 android:id="@+id/back_to_start"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:background="@drawable/button_purple_border"
+                android:layout_width="220dp"
+                android:layout_height="50dp"
+                android:textSize="18sp"
+                android:background="@drawable/button_black_border"
                 android:text="@string/home_button_text"
                 android:textColor="@color/colorPrimaryDark"
                 android:layout_gravity="center"

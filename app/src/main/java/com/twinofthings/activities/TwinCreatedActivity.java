@@ -11,11 +11,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.twinofthings.R;
 import com.twinofthings.helpers.CircleImageView;
-import com.twinofthings.models.Transaction;
 import com.twinofthings.utils.Constants;
 import com.twinofthings.utils.Util;
 
@@ -39,7 +37,7 @@ public class TwinCreatedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_twin_created);
+        setContentView(R.layout.activity_identity_created);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);

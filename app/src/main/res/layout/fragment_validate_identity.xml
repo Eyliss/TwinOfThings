@@ -61,12 +61,4 @@
                 android:text="@string/loading"
                 android:textColor="@android:color/darker_gray"/>
     </LinearLayout>
-    <ImageButton
-            android:id="@+id/close_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_close"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"/>
 </RelativeLayout>

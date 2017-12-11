@@ -53,12 +53,6 @@
                 android:visibility="gone"
                 android:text="@string/loading"
                 android:textColor="@android:color/darker_gray"/>
-        <ImageButton
-                android:id="@+id/close_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_close"
-                android:layout_gravity="center"/>
         <Button
                 android:id="@+id/btn_enter_product_data"
                 android:layout_width="220dp"

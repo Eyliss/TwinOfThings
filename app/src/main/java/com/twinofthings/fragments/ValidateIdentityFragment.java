@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 public class ValidateIdentityFragment extends Fragment {
 
-    private ImageButton mCloseButton;
     private RelativeLayout mImagesContainer;
     private TextView mScanTitle;
     private TextView mScanDescription;
@@ -27,7 +26,7 @@ public class ValidateIdentityFragment extends Fragment {
     private ImageView rocketImage;
     private ImageView scanImage;
 
-    AnimationDrawable rocketAnimation;
+//    AnimationDrawable rocketAnimation;
 
     public ValidateIdentityFragment() {
 
@@ -55,35 +54,28 @@ public class ValidateIdentityFragment extends Fragment {
     }
 
     private void bindViews(View rootView){
-        mCloseButton = (ImageButton)rootView.findViewById(R.id.close_button);
         mImagesContainer = (RelativeLayout) rootView.findViewById(R.id.images_container);
         mScanTitle = (TextView) rootView.findViewById(R.id.validate_identity_title);
         mScanDescription = (TextView) rootView.findViewById(R.id.validate_identity_description);
         mProgressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
         rocketImage = (ImageView) rootView.findViewById(R.id.scan_clip);
         scanImage = (ImageView) rootView.findViewById(R.id.scan_image);
-        mCloseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((ReaderActivity) getActivity()).finishProcess();
-            }
-        });
 
         ((ReaderActivity) getActivity()).setActionBarTitle(R.string.scan_activity_title);
 
-        rocketImage.setImageResource(R.drawable.radar_animation);
-        rocketAnimation = (AnimationDrawable) rocketImage.getDrawable();
-        rocketAnimation.start();
+//        rocketImage.setImageResource(R.drawable.radar_animation);
+//        rocketAnimation = (AnimationDrawable) rocketImage.getDrawable();
+//        rocketAnimation.start();
     }
 
     //Configure UI for scanning
     public void startScan(){
-        rocketAnimation.stop();
+//        rocketAnimation.stop();
         mScanTitle.setText(R.string.scanning_successful);
         mScanTitle.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
 
         mScanDescription.setVisibility(View.VISIBLE);
-        rocketImage.setImageResource(R.drawable.ic_scan_success);
+        rocketImage.setImageResource(R.drawable.ic_success);
         scanImage.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.VISIBLE);
         mProgressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.colorPrimaryDark), PorterDuff.Mode.MULTIPLY);
@@ -91,7 +83,7 @@ public class ValidateIdentityFragment extends Fragment {
 
     //Configure UI when scan stops
     public void stopScan(){
-        rocketAnimation.start();
+//        rocketAnimation.start();
         mScanTitle.setText(R.string.validate_identity_title);
         mScanTitle.setTextColor(getResources().getColor(android.R.color.white));
         mScanDescription.setVisibility(View.VISIBLE);

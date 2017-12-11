@@ -25,23 +25,19 @@
 
     <string name="create_twin_activity_title">Create Digital Twin</string>
     <string name="scan_activity_title">Scanning</string>
-    <string name="product_info">Product Info</string>
-    <string name="owner">Owner</string>
-    <string name="serial_id">Product Serial ID</string>
-    <string name="object_id">Object ID</string>
-    <string name="material">Material</string>
-    <string name="color">Color</string>
-    <string name="comments">Comments</string>
-    <string name="brand">Brand</string>
-    <string name="location">Location</string>
-    <string name="product_name">Product Name</string>
-    <string name="product_subline">Product Subline</string>
-    <string name="take_photo">take photo</string>
+    <string name="identity_info">IDENTITY INFO</string>
+    <string name="owner">OWNER</string>
+    <string name="object_id">OBJECT ID</string>
+    <string name="material">MATERIAL</string>
+    <string name="color">COLOR</string>
+    <string name="more_detail">MORE DETAIL</string>
+    <string name="brand">BRAND</string>
+    <string name="location">LOCATION</string>
+    <string name="product_name">PRODUCT NAME</string>
 
-    <string name="timestamp">Time Stamp</string>
-    <string name="comments_hint">Your comments here</string>
-    <string name="pup_id">Pup. ID</string>
-    <string name="registered">Registered</string>
+    <string name="timestamp">TIME STAMP</string>
+    <string name="pup_id">PUP. ID</string>
+    <string name="registered">REGISTERED</string>
     <string name="tag_id">TAG ID # %1$s</string>
     <string name="transaction_error">transaction not found</string>
 
