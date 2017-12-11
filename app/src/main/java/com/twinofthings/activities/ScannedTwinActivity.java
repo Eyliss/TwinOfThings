@@ -95,12 +95,12 @@ public class ScannedTwinActivity extends AppCompatActivity {
         mComments = (TextView)findViewById(R.id.tv_comments);
         mThumbnail = (CircleImageView) findViewById(R.id.thumbnail);
         mThumbnail.setBorderColor(getResources().getColor(R.color.colorPrimaryDark));
-        mThumbnail.setBorderWidth(5);
+        mThumbnail.setBorderWidth(2);
     }
 
     private void setProductInfo(){
 
-        CalligraphyTypefaceSpan typefaceSpan = new CalligraphyTypefaceSpan(TypefaceUtils.load(getAssets(), "fonts/CooperHewitt-Bold.otf"));
+        CalligraphyTypefaceSpan typefaceSpan = new CalligraphyTypefaceSpan(TypefaceUtils.load(getAssets(), "fonts/HelveticaNeueLTPro-MdCn.otf"));
 
         String timestamp = mTransaction.getMetadata().getTimestamp();
         SpannableStringBuilder str = new SpannableStringBuilder(timestamp);

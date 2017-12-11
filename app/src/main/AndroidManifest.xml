@@ -71,7 +71,7 @@
         </activity>
         <activity
                 android:name=".activities.ScannedTwinActivity"
-                android:label="@string/scan_activity_title"
+                android:label="@string/scanned_activity_title"
                 android:parentActivityName=".activities.MainActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
@@ -103,6 +103,7 @@
                     android:value="com.twinofthings.activities.MainActivity"/>
         </activity>
         <activity android:name=".activities.BioAuthenticationActivity"
+                  android:label="@string/bioauthentication_activity_title"
                   android:windowSoftInputMode="adjustResize">
         </activity>
     </application>

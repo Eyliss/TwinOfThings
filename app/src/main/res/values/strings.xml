@@ -42,6 +42,7 @@
     <string name="registered">REGISTERED</string>
     <string name="tag_id">ID # %1$s</string>
     <string name="transaction_error">transaction not found</string>
+    <string name="bioauthentication_activity_title">AUTHENTICATION</string>
 
     <string name="dialog_tx_not_found_title">Transaction not found</string>
     <string name="dialog_tx_not_found_text">Do you want to create it now?</string>
@@ -52,7 +53,6 @@
     <string name="auth_sensor">Touch sensor</string>
     <string name="auth_succeed">Fingerprint recognized</string>
     <string name="auth_failed">Fingerprint not recognized.\nTry again.</string>
-
     <string name="info_title">App information</string>
     <string name="info_version">Version 1.0</string>
     <string name="info_copyright">Copyright 2017 innogy SE\nInnogy Innovatin Hub\nMachine Economy Lighthouse\nwww.innovationhub.innogy.com</string>

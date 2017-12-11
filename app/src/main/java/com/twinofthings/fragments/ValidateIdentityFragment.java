@@ -73,10 +73,8 @@ public class ValidateIdentityFragment extends Fragment {
 //        rocketAnimation.stop();
         mScanTitle.setText(R.string.scanning_successful);
         mScanTitle.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-
         mScanDescription.setVisibility(View.VISIBLE);
-        rocketImage.setImageResource(R.drawable.ic_success);
-        scanImage.setVisibility(View.GONE);
+        scanImage.setImageResource(R.drawable.ic_success);
         mProgressBar.setVisibility(View.VISIBLE);
         mProgressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.colorPrimaryDark), PorterDuff.Mode.MULTIPLY);
     }

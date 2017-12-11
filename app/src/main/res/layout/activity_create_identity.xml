@@ -17,23 +17,27 @@
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
-                        app:theme="@style/ToolBarStyle"
-                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-                    <RelativeLayout
-                            android:id="@+id/notification"
+                        android:background="@drawable/dotted_bg"
+                        app:theme="@style/ToolBarStyle">
+                    <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="18dp"
-                            android:gravity="right">
-
-                        <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_alignParentEnd="true"
-                                android:src="@drawable/ic_toolbar_right" />
-                    </RelativeLayout>
+                            android:src="@drawable/ic_toolbar_right"
+                            android:padding="5dp"
+                            android:layout_gravity="right|end"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:foregroundGravity="right"
+                            android:adjustViewBounds="true"
+                            android:layout_height="wrap_content"/>
+                    />
                 </android.support.v7.widget.Toolbar>
+                <ImageView android:layout_width="match_parent"
+                           android:id="@+id/dotted_view"
+                           android:layout_height="30dp"
+                           android:src="@drawable/dotted_bg" android:scaleType="centerCrop"
+                           android:layout_below="@id/toolbar"
+                />
                 <com.twinofthings.helpers.CircleImageView
                         android:src="@drawable/ic_upload_picture_placeholder"
                         android:id="@+id/ib_upload_picture"
@@ -41,7 +45,7 @@
                         android:layout_centerInParent="true"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:layout_margin="@dimen/info_vertical_margin"/>
+                        android:layout_marginBottom="@dimen/info_vertical_margin"/>
             </RelativeLayout>
             <LinearLayout
                     android:orientation="vertical"
@@ -117,18 +121,18 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="left"
+                            android:layout_marginStart="30dp"
                             android:text="@string/timestamp"
                             android:textSize="18sp"
-                            android:textColor="@android:color/black"
-                            android:drawablePadding="10dp"/>
+                            android:textColor="@android:color/black"/>
                     <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
+                            android:textSize="18sp"
                             android:textColor="@android:color/black"
                             android:padding="5dp"
                             android:id="@+id/tv_timestamp"
-                            android:layout_marginStart="25dp"/>
+                            android:layout_marginStart="30dp"/>
                 </LinearLayout>
                 <LinearLayout android:layout_width="match_parent"
                               android:layout_height="wrap_content"
@@ -201,6 +205,7 @@
                                android:src="@drawable/ic_more"/>
                     <TextView android:layout_width="match_parent"
                               android:layout_height="match_parent"
+                              android:gravity="center_vertical"
                               android:textSize="18sp"
                               android:textColor="@android:color/black"
                               android:text="@string/more_detail"/>
@@ -210,10 +215,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/comments"
+                        android:layout_margin="@dimen/section_vertical_margin"
                         android:gravity="start"
                         android:maxLines="3"
                         android:textColor="@android:color/black"
-                        android:textSize="14sp"
+                        android:textSize="18sp"
                 />
                 <Button
                         android:id="@+id/create_digital_twin_button"
