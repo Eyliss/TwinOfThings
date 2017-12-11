@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                        android:orientation="vertical">
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/upper_layout">
+                <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:theme="@style/ToolBarStyle"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+                    <RelativeLayout
+                            android:id="@+id/notification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="18dp"
+                            android:gravity="right">
+
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentEnd="true"
+                                android:src="@drawable/ic_toolbar_right" />
+                    </RelativeLayout>
+                </android.support.v7.widget.Toolbar>
+                <com.twinofthings.helpers.CircleImageView
+                        android:src="@drawable/ic_upload_picture_placeholder"
+                        android:id="@+id/ib_upload_picture"
+                        android:layout_below="@id/toolbar"
+                        android:layout_centerInParent="true"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="@dimen/info_vertical_margin"/>
+            </RelativeLayout>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/section_vertical_margin"
+                    android:weightSum="1">
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal"
+                              android:layout_marginBottom="@dimen/form_field_vertical_margin">
+                    <ImageView android:layout_width="25dp"
+                               android:layout_height="25dp"
+                            android:layout_gravity="center"
+                               android:layout_marginEnd="10dp"
+                            android:src="@drawable/ic_brand"/>
+                    <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/brand_name"
+                            android:gravity="left"
+                            android:textSize="18sp"
+                            android:textColor="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:paddingBottom="10dp"
+                            android:hint="@string/brand"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal"
+                              android:layout_marginBottom="@dimen/form_field_vertical_margin">
+                    <ImageView android:layout_width="25dp"
+                               android:layout_height="25dp"
+                               android:layout_gravity="center"
+                               android:layout_marginEnd="10dp"
+                               android:src="@drawable/ic_product_name"/>
+                    <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/product_name"
+                            android:gravity="left"
+                            android:textSize="18sp"
+                            android:textColor="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:paddingBottom="10dp"
+                            android:hint="@string/product_name"/>
+                </LinearLayout>
+                <!--<EditText-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:id="@+id/product_subline"-->
+                        <!--android:gravity="left"-->
+                        <!--android:textSize="14sp"-->
+                        <!--android:paddingBottom="20dp"-->
+                        <!--android:textColor="@android:color/black"-->
+                        <!--android:textColorHint="@color/grey"-->
+                        <!--android:layout_marginBottom="@dimen/form_field_vertical_margin"-->
+                        <!--android:drawableLeft="@drawable/ic_product_name"-->
+                        <!--android:drawablePadding="10dp"-->
+                        <!--android:backgroundTint="@color/bright_violet"-->
+                        <!--android:maxLines="1"-->
+                        <!--android:hint="@string/product_subline"/>-->
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:layout_marginBottom="@dimen/form_field_vertical_margin"
+                >
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:text="@string/timestamp"
+                            android:textSize="18sp"
+                            android:textColor="@android:color/black"
+                            android:drawablePadding="10dp"/>
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:textColor="@android:color/black"
+                            android:padding="5dp"
+                            android:id="@+id/tv_timestamp"
+                            android:layout_marginStart="25dp"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal"
+                              android:layout_marginBottom="@dimen/form_field_vertical_margin">
+                    <ImageView android:layout_width="25dp"
+                               android:layout_height="25dp"
+                               android:layout_gravity="center"
+                               android:layout_marginEnd="10dp"
+                               android:src="@drawable/ic_owner"/>
+                    <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/owner_name"
+                            android:gravity="left"
+                            android:textSize="18sp"
+                            android:textColor="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:paddingBottom="10dp"
+                            android:hint="@string/owner"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal"
+                              android:layout_marginBottom="@dimen/form_field_vertical_margin">
+                    <ImageView android:layout_width="20dp"
+                               android:layout_height="20dp"
+                               android:layout_gravity="center"
+                               android:layout_marginEnd="15dp"
+                               android:src="@drawable/ic_object_id"/>
+                    <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/serial_id"
+                            android:gravity="left"
+                            android:textSize="18sp"
+                            android:textColor="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:paddingBottom="10dp"
+                            android:hint="@string/object_id"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal"
+                              android:layout_marginBottom="@dimen/form_field_vertical_margin">
+                    <ImageView android:layout_width="25dp"
+                               android:layout_height="25dp"
+                               android:layout_gravity="center"
+                               android:layout_marginEnd="10dp"
+                               android:src="@drawable/ic_material"/>
+                    <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/material"
+                            android:gravity="left"
+                            android:textSize="18sp"
+                            android:textColor="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:paddingBottom="10dp"
+                            android:hint="@string/material"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal"
+                              android:layout_marginBottom="@dimen/form_field_vertical_margin">
+                    <ImageView android:layout_width="25dp"
+                               android:layout_height="25dp"
+                               android:layout_gravity="center"
+                               android:layout_marginEnd="15dp"
+                               android:src="@drawable/ic_more"/>
+                    <TextView android:layout_width="match_parent"
+                              android:layout_height="match_parent"
+                              android:textSize="18sp"
+                              android:textColor="@android:color/black"
+                              android:text="@string/more_detail"/>
+                </LinearLayout>
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:id="@+id/comments"
+                        android:gravity="start"
+                        android:maxLines="3"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"
+                />
+                <Button
+                        android:id="@+id/create_digital_twin_button"
+                        android:layout_width="220dp"
+                        android:layout_height="50dp"
+                        android:textSize="18sp"
+                        android:background="@drawable/button_black_border"
+                        android:text="@string/create_button_text"
+                        android:textColor="@android:color/black"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/form_field_vertical_margin"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
+
