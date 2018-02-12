@@ -20,17 +20,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.twinofthings.R;
-import com.twinofthings.api.RCApiManager;
-import com.twinofthings.api.RCApiResponse;
-import com.twinofthings.helpers.KeyStoreUtility;
 import com.twinofthings.helpers.RCFingerprintHandler;
-import com.twinofthings.models.Credentials;
-import com.twinofthings.utils.Constants;
-import com.twinofthings.utils.Util;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.security.GeneralSecurityException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.KeyPair;
@@ -109,18 +101,16 @@ public class BioAuthenticationActivity extends AppCompatActivity {
         }
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this,
-                  "Fingerprint authentication permission not enabled",
-                  Toast.LENGTH_LONG).show();
-
-            return;
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);;
+            startActivity(intent);
+            finish();
         }
 
         if (!fingerprintManager.hasEnrolledFingerprints()) {
 
-            // This happens when no fingerprints are registered.
-            Toast.makeText(this,"Register at least one fingerprint in Settings",Toast.LENGTH_LONG).show();
-            return;
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);;
+            startActivity(intent);
+            finish();
         }
 
         generateKey();

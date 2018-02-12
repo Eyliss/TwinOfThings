@@ -193,6 +193,12 @@ public class ReaderActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
+        if(getIntent().hasExtra(Constants.INTENT_PROCESS_TYPE)){
+            process = getIntent().getStringExtra(Constants.INTENT_PROCESS_TYPE);
+        }else{
+            finish();
+        }
+
         publicKey = getIntent().getStringExtra(Constants.PUB_KEY);
         signature = getIntent().getStringExtra(Constants.SIGNATURE);
         challenge = getIntent().getStringExtra(Constants.CHALLENGE);
@@ -208,7 +214,6 @@ public class ReaderActivity extends AppCompatActivity {
             );
         }
 
-        process = getIntent().getStringExtra(Constants.INTENT_PROCESS_TYPE);
         if (findViewById(R.id.fragment_container) != null) {
 
             // However, if we're being restored from a previous state,
